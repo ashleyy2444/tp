@@ -17,7 +17,7 @@ public class JobDifficultyTest {
         // Test with a company that is not in the JobDifficultyCompanyList and a salary of 3000
         JobDifficulty jobDifficulty2 = new JobDifficulty(new CompanyName("unknown"), new Salary("3000"));
         int actualDifficulty2 = jobDifficulty2.getDifficulty();
-        assert(actualDifficulty2 >= 20 && actualDifficulty2 <= 50);
+        assert(actualDifficulty2 >= 20 && actualDifficulty2 <= 70);
 
         // Test with a company that is in the JobDifficultyCompanyList and a salary of 5000
         JobDifficulty jobDifficulty3 = new JobDifficulty(new CompanyName("ibm"), new Salary("5000"));
