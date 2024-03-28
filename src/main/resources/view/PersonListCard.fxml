@@ -37,6 +37,7 @@
       <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" />
       <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
       <Label fx:id="info" styleClass="cell_small_label" text="\$info" />
+      <Label fx:id="jobDifficulty" styleClass="cell_small_label" text="\$jobDifficulty" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
