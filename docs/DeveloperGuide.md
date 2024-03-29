@@ -273,6 +273,32 @@ comparator.
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Filtering of list by tag, salary range, and programming languages feature
+The proposed feature will allow users to filter their lists according to the tags, salary range and programming 
+language.
+#### Proposed Implementation
+The FindCommand class will be changed into a  class which will call the FindNameCommand, FindTagCommand, 
+FindSalaryRangeCommand and FindProgrammingLanguageCommand Command classes when executed. 
+
+**Command Format:**
+- FindNameCommand: `Find n/NAME`
+- FindTagCommand: `Find t/TAG`
+- FindSalaryRangeCommand: `Find s/SALARY_RANGE`
+- FindProgrammingLanguageCommand: `Find pl/PROGRAMMING_LANGUAGE`
+
+**Process:**
+1. FindCommand class will determine the specific FindCommand Command class (FindNameCommand, FindTagCommand, etc.) 
+   to call (n/, t/, etc.)
+2. The specific FindCommandClass will check if their respective categories (names, tags, etc.) in the contact 
+   list contain the keyword
+3. Return the list of contacts which contain the keyword
+
+
+
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
