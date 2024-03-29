@@ -268,6 +268,18 @@ Based on the image above:
 `AddressBook` which contains the `UniquePersonList` object. The `UniquePersonList` then sorts it based on the
 comparator.
 
+### \[Proposed\] Automatically generate job difficulty level
+
+#### Overview
+The job difficulty score calculation feature allows program to 
+calculate a difficulty score for a job automatically based on the company name and salary. 
+This feature leverages on the local storage of famous company names and their job difficulty levels.
+
+#### Method Details
+`calculateDifficultyScore(Company company, Salary salary)`<br>
+This method takes in a Company object and a Salary object. 
+It retrieves the difficulty level of the company and adds it to the salary 
+to calculate the job difficulty score.
 
 ### \[Proposed\] Data archiving
 
