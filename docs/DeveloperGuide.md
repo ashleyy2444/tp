@@ -268,6 +268,30 @@ Based on the image above:
 `AddressBook` which contains the `UniquePersonList` object. The `UniquePersonList` then sorts it based on the
 comparator.
 
+### \[Proposed\] Job Difficulty Feature
+![job_difficulty_class](images/JobDifficultyDiagram.png)
+#### Overview
+The job difficulty feature allows program auto calculate a difficulty score for a job 
+based on the company name and salary. 
+This feature leverages on the local storage of 
+famous company names and their job difficulty levels.  
+
+#### Class Structure
+The `JobDifficulty` class is responsible for calculating the 
+job difficulty score. It uses the `CompanyName` and `Salary` classes 
+to retrieve the necessary information.
+
+#### Method Details
+`JobDifficulty(CompanyName companyName, Salary salary)` <br>
+This is the constructor for the JobDifficulty class. 
+It takes in a CompanyName object and a Salary object. 
+It retrieves the difficulty level of the company and adds 
+it to the salary to calculate the job difficulty score.
+
+`getDifficulty()` <br>
+This method returns the calculated job difficulty score
+
+
 
 ### \[Proposed\] Data archiving
 
