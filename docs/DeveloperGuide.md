@@ -224,20 +224,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Sorting contact list
 
@@ -321,6 +307,27 @@ The `FindCommand` class will be changed into a  class which will call the `FindN
 
 
 
+
+#### Design considerations:
+
+**Aspect: How filter executes:**
+
+* **Alternative 1:** Filter from the list of names and salary range.
+    * Pros:
+      - Provides filtering based on two different criteria, enhancing flexibility for users.
+      - Utilizes a straightforward approach by focusing on essential attributes like names and salary range.
+    * Cons:
+      - Does not cover all relevant aspects of contacts, leading to potential oversight in filtering results.
+
+
+* **Alternative 2:** Filter from the list of tags and programming languages.
+    * Pros:
+      - Offers filtering based on distinct criteria, allowing users to refine search results more precisely.
+      - Utilises efficient data structures like sets for handling tags and programming languages, potentially
+          enhancing performance.
+    * Cons:
+      - Complexity may increase due to handling multiple filtering criteria simultaneously, potentially leading to
+          longer implementation time and increased risk of errors.
 
 --------------------------------------------------------------------------------------------------------------------
 
