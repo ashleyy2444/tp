@@ -277,8 +277,8 @@ _{Explain here how the data archiving feature will be implemented}_
 The proposed feature will allow users to filter their lists according to the tags, salary range and programming 
 language.
 #### Proposed Implementation
-The FindCommand class will be changed into a  class which will call the FindNameCommand, FindTagCommand, 
-FindSalaryRangeCommand and FindProgrammingLanguageCommand Command classes when executed. 
+The `FindCommand` class will be changed into a  class which will call the `FindNameCommand`, `FindTagCommand`, 
+`FindSalaryRangeCommand` and `FindProgrammingLanguageCommand` Command classes when executed. 
 
 **Command Format:**
 - FindNameCommand: `Find n/NAME`
