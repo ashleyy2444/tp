@@ -291,8 +291,6 @@ it to the salary to calculate the job difficulty score.
 `getDifficulty()` <br>
 This method returns the calculated job difficulty score
 
-
-
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
