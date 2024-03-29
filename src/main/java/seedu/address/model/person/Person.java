@@ -31,6 +31,7 @@ public class Person {
     private final InterviewTime dateTime;
     private final Set<ProgrammingLanguage> programmingLanguages = new HashSet<>();
     private final Integer priority; // default priority level
+    private final JobDifficulty jobDifficulty;
     /**
      * Every field must be present and not null.
      */
@@ -51,6 +52,7 @@ public class Person {
         this.tags.addAll(tags);
         this.programmingLanguages.addAll(programmingLanguages);
         this.priority = priority;
+        this.jobDifficulty = new JobDifficulty(companyName, salary);
     }
     public CompanyName getCompanyName() {
         return companyName;
@@ -82,6 +84,9 @@ public class Person {
     }
     public Integer getPriority() {
         return priority;
+    }
+    public JobDifficulty getJobDifficulty() {
+        return jobDifficulty;
     }
 
     /**
