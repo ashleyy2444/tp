@@ -52,7 +52,7 @@ public class FindCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("tag", predicate)
+                .add("predicate", predicate)
                 .toString();
     }
 }

@@ -48,7 +48,6 @@ public class TypicalPersons {
     public static final Person CARL = new PersonBuilder().withCompanyName("Shopee").withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
-            .withTags("owesMoney")
             .withAddress("wall street")
             .withProgrammingLanguages("Java")
             .withPriority(3)
