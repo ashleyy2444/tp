@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+
 /**
  * Represents a Person's salary in the address book.
  */
@@ -89,8 +90,7 @@ public class Salary {
     /**
      * Returns true is given String is a valid Salary within the salary range
      */
-    public boolean isWithinSalaryRange(String salaryRange) {
-        Salary salaryToTest = new Salary(salaryRange);
+    public boolean isWithinSalaryRange(Salary salaryToTest) {
         boolean isMinWithinRange = salaryToTest.salary1 <= this.salary1;
         boolean isMaxWithinRange = salaryToTest.salary2 >= this.salary1;
         return isMinWithinRange && isMaxWithinRange;

@@ -2,10 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindSalaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 
 
@@ -26,9 +28,12 @@ public class FindSalaryCommandParser implements Parser<FindSalaryCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindSalaryCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        String[] salaryKeywords = trimmedArgs.split("\\s+");
+        Salary[] salaries = new Salary[salaryKeywords.length];
+        for (int i = 0; i < salaryKeywords.length; i++) {
+            salaries[i] = ParserUtil.parseSalary(salaryKeywords[i]);
+        }
+        return new FindSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(salaries)));
     }
 
 }

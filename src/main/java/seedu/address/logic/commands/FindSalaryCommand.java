@@ -18,8 +18,8 @@ public class FindSalaryCommand extends Command {
     public static final String COMMAND_WORD = "finds";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all companies whose salary range contain any of "
-            + "the specified salary (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: SALARY_RANGE\n"
+            + "the specified salary and displays them as a list with index numbers.\n"
+            + "Parameters: SALARY_RANGE [more SALARY_RANGE]\n"
             + "Example: " + COMMAND_WORD + " 5000-6000";
 
     private final SalaryContainsKeywordsPredicate predicate;

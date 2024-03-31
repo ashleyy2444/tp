@@ -4,22 +4,23 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class SalaryContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final List<Salary> keywords;
 
-    public SalaryContainsKeywordsPredicate(List<String> keywords) {
+    public SalaryContainsKeywordsPredicate(List<Salary> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> person.getSalary().isWithinSalaryRange(keyword));
+                .anyMatch(salary -> person.getSalary().isWithinSalaryRange(salary));
     }
 
     @Override
@@ -39,6 +40,6 @@ public class SalaryContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("Salary", keywords).toString();
+        return new ToStringBuilder(this).add("salaries", keywords).toString();
     }
 }
