@@ -24,7 +24,7 @@ import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindSalaryCommand}.
  */
-public class FindSalaryCommandTest {
+public class FilterSalaryCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -35,14 +35,14 @@ public class FindSalaryCommandTest {
         SalaryContainsKeywordsPredicate secondPredicate =
                 new SalaryContainsKeywordsPredicate(Collections.singletonList(new Salary("2000-5000")));
 
-        FindSalaryCommand findSalaryFirstCommand = new FindSalaryCommand(firstPredicate);
-        FindSalaryCommand findSalarySecondCommand = new FindSalaryCommand(secondPredicate);
+        FilterSalaryCommand findSalaryFirstCommand = new FilterSalaryCommand(firstPredicate);
+        FilterSalaryCommand findSalarySecondCommand = new FilterSalaryCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findSalaryFirstCommand.equals(findSalaryFirstCommand));
 
         // same values -> returns true
-        FindSalaryCommand findSalaryFirstCommandCopy = new FindSalaryCommand(firstPredicate);
+        FilterSalaryCommand findSalaryFirstCommandCopy = new FilterSalaryCommand(firstPredicate);
         assertTrue(findSalaryFirstCommand.equals(findSalaryFirstCommandCopy));
 
         // different types -> returns false
@@ -60,7 +60,7 @@ public class FindSalaryCommandTest {
     public void execute_oneSalary_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         SalaryContainsKeywordsPredicate predicate = preparePredicate(new Salary("500-3000"));
-        FindSalaryCommand command = new FindSalaryCommand(predicate);
+        FilterSalaryCommand command = new FilterSalaryCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
@@ -69,7 +69,7 @@ public class FindSalaryCommandTest {
     public void execute_multipleSalaries_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         SalaryContainsKeywordsPredicate predicate = preparePredicate(new Salary("2000-3000"), new Salary("1000"));
-        FindSalaryCommand command = new FindSalaryCommand(predicate);
+        FilterSalaryCommand command = new FilterSalaryCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
@@ -82,8 +82,8 @@ public class FindSalaryCommandTest {
     public void toStringMethod() {
         SalaryContainsKeywordsPredicate predicate =
                 new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("5000")));
-        FindSalaryCommand findSalaryCommand = new FindSalaryCommand(predicate);
-        String expected = FindSalaryCommand.class.getCanonicalName() + "{salary=" + predicate + "}";
+        FilterSalaryCommand findSalaryCommand = new FilterSalaryCommand(predicate);
+        String expected = FilterSalaryCommand.class.getCanonicalName() + "{salary=" + predicate + "}";
         assertEquals(expected, findSalaryCommand.toString());
     }
 

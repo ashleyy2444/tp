@@ -13,9 +13,9 @@ import seedu.address.model.person.SalaryContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindSalaryCommand extends Command {
+public class FilterSalaryCommand extends Command {
 
-    public static final String COMMAND_WORD = "finds";
+    public static final String COMMAND_WORD = "filters";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all companies whose salary range contain any of "
             + "the specified salary and displays them as a list with index numbers.\n"
@@ -24,7 +24,7 @@ public class FindSalaryCommand extends Command {
 
     private final SalaryContainsKeywordsPredicate predicate;
 
-    public FindSalaryCommand(SalaryContainsKeywordsPredicate predicate) {
+    public FilterSalaryCommand(SalaryContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -43,11 +43,11 @@ public class FindSalaryCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindSalaryCommand)) {
+        if (!(other instanceof FilterSalaryCommand)) {
             return false;
         }
 
-        FindSalaryCommand otherFindCommand = (FindSalaryCommand) other;
+        FilterSalaryCommand otherFindCommand = (FilterSalaryCommand) other;
         return predicate.equals(otherFindCommand.predicate);
     }
 

@@ -81,9 +81,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_findSalary() throws Exception {
         List<String> keywords = Arrays.asList("2000", "9000-10000", "4000");
-        FindSalaryCommand command = (FindSalaryCommand) parser.parseCommand(
-                FindSalaryCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("2000"),
+        FilterSalaryCommand command = (FilterSalaryCommand) parser.parseCommand(
+                FilterSalaryCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("2000"),
                 new Salary("9000-10000"), new Salary("4000")))), command);
     }
     @Test
