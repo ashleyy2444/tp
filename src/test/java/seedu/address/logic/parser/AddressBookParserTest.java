@@ -13,19 +13,13 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Salary;
+import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -77,6 +71,21 @@ public class AddressBookParserTest {
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
+
+
+
+
+
+
+
+    @Test
+    public void parseCommand_findSalary() throws Exception {
+        List<String> keywords = Arrays.asList("2000", "9000-10000", "4000");
+        FindSalaryCommand command = (FindSalaryCommand) parser.parseCommand(
+                FindSalaryCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("2000"),
+                new Salary("9000-10000"), new Salary("4000")))), command);
+    }
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);

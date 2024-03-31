@@ -54,7 +54,7 @@ public class FindSalaryCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("salary", predicate)
                 .toString();
     }
 }
