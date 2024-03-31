@@ -54,7 +54,7 @@ public class FindTagCommand extends Command {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("tag", predicate)
                 .toString();
     }
 }
