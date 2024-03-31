@@ -92,7 +92,7 @@ public class Salary {
     public boolean isWithinSalaryRange(String salaryRange) {
         Salary salaryToTest = new Salary(salaryRange);
         boolean isMinWithinRange = salaryToTest.salary1 <= this.salary1;
-        boolean isMaxWithinRange = salaryToTest.salary2 >= this.salary2;
+        boolean isMaxWithinRange = salaryToTest.salary2 >= this.salary1;
         return isMinWithinRange && isMaxWithinRange;
     }
 
