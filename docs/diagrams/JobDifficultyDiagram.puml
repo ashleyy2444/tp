@@ -1,0 +1,17 @@
+@startuml
+class JobDifficulty {
+  -difficulty : int
+  --
+  +JobDifficulty(CompanyName, Salary) : void
+  +getDifficulty() : int
+  +toString() : String
+}
+class CompanyName {
+  -companyName : String
+}
+class Salary {
+  -salary : int
+}
+JobDifficulty *-- CompanyName
+JobDifficulty *-- Salary
+@enduml

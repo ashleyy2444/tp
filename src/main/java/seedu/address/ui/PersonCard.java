@@ -47,6 +47,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label info;
     @FXML
+    private Label jobDifficulty;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane programmingLanguages;
@@ -66,6 +68,7 @@ public class PersonCard extends UiPart<Region> {
         dateTime.setText("Interview Time: " + person.getDateTime().toString());
         salary.setText("Salary: " + person.getSalary().toString() + "$");
         info.setText(person.getInfo().value);
+        jobDifficulty.setText("Predict Job Difficulty: " + person.getJobDifficulty().toString() + "%");
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
