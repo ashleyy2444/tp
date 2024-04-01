@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DIFFICULTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -50,6 +51,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             index = 3;
         } else if (Objects.equals(keyword, PREFIX_SALARY.getPrefix())) {
             index = 4;
+        } else if (Objects.equals(keyword, PREFIX_JOB_DIFFICULTY.getPrefix())) {
+            index = 5;
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_KEYWORD, SortCommand.MESSAGE_USAGE));

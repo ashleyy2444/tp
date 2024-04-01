@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -9,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -87,8 +89,23 @@ public class SortCommandTest {
     }
 
     @Test
+    public void execute_validJobDifficultyCliUnsortedList_success() throws CommandException {
+        Integer prefixToSort = 5; //sort by Job Difficulty
+        SortCommand sortCommand = new SortCommand(prefixToSort);
+
+        String expectedMessage = SortCommand.MESSAGE_LIST_SORTED_SUCCESS;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateSortedPersonList(new PersonSalaryComparator());
+
+        CommandResult result = sortCommand.execute(model);
+
+        assertEquals(result.getFeedbackToUser(), expectedMessage);
+    }
+
+    @Test
     public void execute_invalidCliUnsortedList_throwsCommandException() {
-        Integer prefixToSort = 5; //outside [0-4]
+        Integer prefixToSort = 6; //outside [0-5]
         SortCommand sortCommand = new SortCommand(prefixToSort);
 
         assertCommandFailure(sortCommand, model, Messages.MESSAGE_INVALID_SORT_COMMAND_INDEX);

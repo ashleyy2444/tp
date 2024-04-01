@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.PersonCompanyNameComparator;
 import seedu.address.model.person.PersonInterviewTimeComparator;
+import seedu.address.model.person.PersonJobDifficultyComparator;
 import seedu.address.model.person.PersonNameComparator;
 import seedu.address.model.person.PersonPriorityComparator;
 import seedu.address.model.person.PersonSalaryComparator;
@@ -59,6 +60,9 @@ public class SortCommand extends Command {
             break;
         case 4:
             model.updateSortedPersonList(new PersonSalaryComparator());
+            break;
+        case 5:
+            model.updateSortedPersonList(new PersonJobDifficultyComparator());
             break;
         default:
             throw new CommandException(Messages.MESSAGE_INVALID_SORT_COMMAND_INDEX);
