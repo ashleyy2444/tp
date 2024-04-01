@@ -77,8 +77,6 @@ public class FilterSalaryCommandTest {
     }
 
 
-
-
     @Test
     public void toStringMethod() {
         SalaryContainsKeywordsPredicate predicate =

@@ -10,9 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class SalaryRange {
     public static final String MESSAGE_CONSTRAINTS = "SALARY_RANGE should only contain numbers, with range [0, "
             + "4294967295] "
-            + "or two pure digital numbers with ‘-’ in between or '<=' or '>=' followed by a digital number. "
+            + "or two pure digital numbers with ‘-’ in between or '<=' or '>=' followed by a digital number.\n"
             + "Numbers can vary from large to small or from small to large.\n"
-            + "Both digital numbers should be within the range [0, 4294967295]\n"
+            + "Both digital numbers should be within the range [0, 2147483647]\n"
             + "Examples:\n"
             + "2000-4000\n"
             + ">=5000\n"
@@ -140,7 +140,7 @@ public class SalaryRange {
      */
     public boolean isWithinSalaryRange(Salary salaryToTest) {
         SalaryRange test = new SalaryRange(salaryToTest.toString());
-        boolean isMinWithinRange = this.minSalary <= test.minSalary;
+        boolean isMinWithinRange = this.minSalary <= test.maxSalary;
         boolean isMaxWithinRange = this.maxSalary >= test.minSalary;
         return isMinWithinRange && isMaxWithinRange;
     }
