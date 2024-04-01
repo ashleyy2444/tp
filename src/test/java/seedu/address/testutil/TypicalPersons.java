@@ -32,7 +32,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withTags("friends")
             .withProgrammingLanguages("Java")
-            .withSalary("2000")
+            .withSalary("200000")
             .withPriority(2)
             .build();
     public static final Person BENSON = new PersonBuilder().withCompanyName("Amazon").withName("Benson Meier")
@@ -45,6 +45,7 @@ public class TypicalPersons {
             .withProgrammingLanguages("Java")
             .withPriority(1)
             .build();
+
     public static final Person CARL = new PersonBuilder().withCompanyName("Shopee").withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")

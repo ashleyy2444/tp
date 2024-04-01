@@ -224,20 +224,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Sorting contact list
 
@@ -268,6 +254,28 @@ Based on the image above:
 `AddressBook` which contains the `UniquePersonList` object. The `UniquePersonList` then sorts it based on the
 comparator.
 
+### \[Proposed\] Job Difficulty Feature
+![job_difficulty_class](images/JobDifficultyDiagram.png)
+#### Overview
+The job difficulty feature allows program auto calculate a difficulty score for a job 
+based on the company name and salary. 
+This feature leverages on the local storage of 
+famous company names and their job difficulty levels.  
+
+#### Class Structure
+The `JobDifficulty` class is responsible for calculating the 
+job difficulty score. It uses the `CompanyName` and `Salary` classes 
+to retrieve the necessary information.
+
+#### Method Details
+`JobDifficulty(CompanyName companyName, Salary salary)` <br>
+This is the constructor for the JobDifficulty class. 
+It takes in a CompanyName object and a Salary object. 
+It retrieves the difficulty level of the company and adds 
+it to the salary to calculate the job difficulty score.
+
+`getDifficulty()` <br>
+This method returns the calculated job difficulty score
 
 ### \[Proposed\] Data archiving
 
@@ -299,6 +307,27 @@ The `FindCommand` class will be changed into a  class which will call the `FindN
 
 
 
+
+#### Design considerations:
+
+**Aspect: How filter executes:**
+
+* **Alternative 1:** Filter from the list of names and salary range.
+    * Pros:
+      - Provides filtering based on two different criteria, enhancing flexibility for users.
+      - Utilizes a straightforward approach by focusing on essential attributes like names and salary range.
+    * Cons:
+      - Does not cover all relevant aspects of contacts, leading to potential oversight in filtering results.
+
+
+* **Alternative 2:** Filter from the list of tags and programming languages.
+    * Pros:
+      - Offers filtering based on distinct criteria, allowing users to refine search results more precisely.
+      - Utilises efficient data structures like sets for handling tags and programming languages, potentially
+          enhancing performance.
+    * Cons:
+      - Complexity may increase due to handling multiple filtering criteria simultaneously, potentially leading to
+          longer implementation time and increased risk of errors.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -339,6 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Computer science job seeker | add contact information of interviewer / company | contact the interviewer / company                                  |
 | `* * *`  | Computer science job seeker | add salary range                                 | check the salary range of the job                                  |
 | `* * *`  | Computer science job seeker | add company name                                 | check which company the job is from                                |
+| `* * *`  | Computer science job seeker | add extra info about the company                 | recall the extra information about each of the companies           |                   |
 | `* * *`  | Computer science job seeker | add interview time                               | check what is the interview time                                   |
 | `* *`    | Computer science job seeker | add programming language(s) related to the job   | identify which programming language(s) is/are required for the job |
 | `* *`    | Computer science job seeker | add job responsibilities                         | check what are the job responsibilities for the job                |
@@ -410,8 +440,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the salary or salary range info to their address book.
 2. User inputs the 'add' command with the salary detail in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the salary information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the salary information for the contact and displays a success message.
 
       Use case ends.
 
@@ -430,8 +460,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the company’s name info to their address book.
 2. User inputs the 'add' command with the company’s name in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the company’s name information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the company’s name information for the contact and displays a success message.
 
       Use case ends.
 
@@ -450,8 +480,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the programming language  info to their address book.
 2. User inputs the 'add' command with the programming language detail in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the programming language information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the programming language information for the contact and displays a success message.
 
       Use case ends.
 
@@ -463,6 +493,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 ---
+
+**Use case: Add extra info about the company to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with extra company info to their address book.
+2. User inputs the 'add' command with the extra information detail in the correct format.
+3. CCBot validates the input details.
+4. CCBot adds or updates the extra information for the contact and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. If the  extra information detail is invalid:
+    * 3a1. CCBot shows an error message indicating the validation failure and an error message about the format or character limit.
+
+      Use case resumes at step 2.
+
+---
+
+
 
 
 ### Non-Functional Requirements
