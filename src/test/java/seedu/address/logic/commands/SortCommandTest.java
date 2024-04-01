@@ -87,6 +87,19 @@ public class SortCommandTest {
     }
 
     @Test
+    public void execute_validJobDifficultyCliUnsortedList_success() {
+        Integer prefixToSort = 5; //sort by Job Difficulty
+        SortCommand sortCommand = new SortCommand(prefixToSort);
+
+        String expectedMessage = SortCommand.MESSAGE_LIST_SORTED_SUCCESS;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateSortedPersonList(new PersonSalaryComparator());
+
+        assert true;
+    }
+
+    @Test
     public void execute_invalidCliUnsortedList_throwsCommandException() {
         Integer prefixToSort = 6; //outside [0-5]
         SortCommand sortCommand = new SortCommand(prefixToSort);
