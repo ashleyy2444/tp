@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -31,17 +29,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME,
-                PREFIX_PROGRAMMING_LANGUAGE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG);
 
-        String salaryArgs = argMultimap.getValue(PREFIX_SALARY).get();
-        String tagArgs = argMultimap.getValue(PREFIX_SALARY).get();
-
-        if (salaryArgs != null) {
-            System.out.println("here4");
-            return new FilterSalaryCommandParser().parse(salaryArgs);
-        } else if (tagArgs != null) {
-            return null; //to be implemented
+        if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
+            return new FilterSalaryCommandParser().parse(argMultimap.getValue(PREFIX_SALARY).get());
+        } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            System.out.println("tagHere");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            // to be implemented
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
@@ -55,6 +50,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         long count = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
                 .count();
+        Stream.of(prefixes)
+                .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
+                .forEach(System.out::println);
         return count == 1;
     }
 
