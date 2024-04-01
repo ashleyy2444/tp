@@ -19,8 +19,9 @@ public class SalaryContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<Salary> firstPredicateKeywordList = Collections.singletonList(new Salary("1000"));
-        List<Salary> secondPredicateKeywordList = Arrays.asList(new Salary("1000"), new Salary("5000-8000"));
+        List<SalaryRange> firstPredicateKeywordList = Collections.singletonList(new SalaryRange("1000"));
+        List<SalaryRange> secondPredicateKeywordList = Arrays.asList(new SalaryRange("1000"),
+                new SalaryRange("5000-8000"));
 
         SalaryContainsKeywordsPredicate firstPredicate = new SalaryContainsKeywordsPredicate(firstPredicateKeywordList);
         SalaryContainsKeywordsPredicate secondPredicate =
@@ -48,15 +49,18 @@ public class SalaryContainsKeywordsPredicateTest {
     public void test_salaryContainsKeywords_returnsTrue() {
         // One salary keyword
         SalaryContainsKeywordsPredicate predicate = new SalaryContainsKeywordsPredicate(
-                Collections.singletonList(new Salary("1000")));
+                Collections.singletonList(new SalaryRange("1000")));
         assertTrue(predicate.test(new PersonBuilder().withSalary("1000-2000").build()));
 
         // Multiple salary keywords
-        predicate = new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("1500"), new Salary("1000")));
+        predicate = new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("1500"),
+                new SalaryRange("1000")));
         assertTrue(predicate.test(new PersonBuilder().withSalary("1000-2000").build()));
 
+
         // Only one matching salary keyword
-        predicate = new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("1000"), new Salary("3000")));
+        predicate = new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("1000"),
+                new SalaryRange("3000")));
         assertTrue(predicate.test(new PersonBuilder().withSalary("1000-2000").build()));
 
     }
@@ -67,13 +71,13 @@ public class SalaryContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withSalary("1000-2000").build()));
 
         // Non-matching keyword
-        predicate = new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("5000")));
+        predicate = new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("5000")));
         assertFalse(predicate.test(new PersonBuilder().withSalary("1000-2000").build()));
     }
 
     @Test
     public void toStringMethod() {
-        List<Salary> keywords = List.of(new Salary("1000"), new Salary("2000-5000"));
+        List<SalaryRange> keywords = List.of(new SalaryRange("1000"), new SalaryRange("2000-5000"));
         SalaryContainsKeywordsPredicate predicate = new SalaryContainsKeywordsPredicate(keywords);
 
         String expected = SalaryContainsKeywordsPredicate.class.getCanonicalName() + "{salaries=" + keywords + "}";

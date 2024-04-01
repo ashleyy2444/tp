@@ -166,8 +166,7 @@ public class SalaryRange {
         // instanceof handles nulls
         if (!(other instanceof SalaryRange)) {
             return false;
-        }
-        else {
+        } else {
             boolean isMinSame = ((SalaryRange) other).minSalary == this.minSalary;
             boolean isMaxSame = ((SalaryRange) other).maxSalary == this.maxSalary;
             return isMinSame && isMaxSame;

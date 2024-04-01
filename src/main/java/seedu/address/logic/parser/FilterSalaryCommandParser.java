@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FilterSalaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 import seedu.address.model.person.SalaryRange;
 

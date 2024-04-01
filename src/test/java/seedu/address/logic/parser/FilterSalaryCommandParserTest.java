@@ -9,8 +9,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterSalaryCommand;
-import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
+import seedu.address.model.person.SalaryRange;
 
 
 public class FilterSalaryCommandParserTest {
@@ -27,8 +27,8 @@ public class FilterSalaryCommandParserTest {
     public void parse_validArgs_returnsFindSalaryCommand() {
         // no leading and trailing whitespaces
         FilterSalaryCommand expectedFindSalaryCommand =
-                new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("2000"),
-                        new Salary("4000-9000"))));
+                new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("2000"),
+                        new SalaryRange("4000-9000"))));
         assertParseSuccess(parser, "2000 4000-9000", expectedFindSalaryCommand);
 
         // multiple whitespaces between keywords

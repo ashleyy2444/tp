@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
+import seedu.address.model.person.SalaryRange;
 
 
 /**
@@ -31,9 +31,9 @@ public class FilterSalaryCommandTest {
     @Test
     public void equals() {
         SalaryContainsKeywordsPredicate firstPredicate =
-                new SalaryContainsKeywordsPredicate(Collections.singletonList(new Salary("2000")));
+                new SalaryContainsKeywordsPredicate(Collections.singletonList(new SalaryRange("2000")));
         SalaryContainsKeywordsPredicate secondPredicate =
-                new SalaryContainsKeywordsPredicate(Collections.singletonList(new Salary("2000-5000")));
+                new SalaryContainsKeywordsPredicate(Collections.singletonList(new SalaryRange("2000-5000")));
 
         FilterSalaryCommand findSalaryFirstCommand = new FilterSalaryCommand(firstPredicate);
         FilterSalaryCommand findSalarySecondCommand = new FilterSalaryCommand(secondPredicate);
@@ -59,7 +59,7 @@ public class FilterSalaryCommandTest {
     @Test
     public void execute_oneSalary_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        SalaryContainsKeywordsPredicate predicate = preparePredicate(new Salary("500-3000"));
+        SalaryContainsKeywordsPredicate predicate = preparePredicate(new SalaryRange("500-3000"));
         FilterSalaryCommand command = new FilterSalaryCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -68,7 +68,8 @@ public class FilterSalaryCommandTest {
     @Test
     public void execute_multipleSalaries_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        SalaryContainsKeywordsPredicate predicate = preparePredicate(new Salary("2000-3000"), new Salary("1000"));
+        SalaryContainsKeywordsPredicate predicate = preparePredicate(new SalaryRange("2000-3000"),
+                new SalaryRange("1000"));
         FilterSalaryCommand command = new FilterSalaryCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -81,7 +82,7 @@ public class FilterSalaryCommandTest {
     @Test
     public void toStringMethod() {
         SalaryContainsKeywordsPredicate predicate =
-                new SalaryContainsKeywordsPredicate(Arrays.asList(new Salary("5000")));
+                new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("5000")));
         FilterSalaryCommand findSalaryCommand = new FilterSalaryCommand(predicate);
         String expected = FilterSalaryCommand.class.getCanonicalName() + "{salary=" + predicate + "}";
         assertEquals(expected, findSalaryCommand.toString());
@@ -90,7 +91,7 @@ public class FilterSalaryCommandTest {
     /**
      * Parses {@code userInput} into a {@code SalaryContainsKeywordsPredicate}.
      */
-    private SalaryContainsKeywordsPredicate preparePredicate(Salary... salaries) {
+    private SalaryContainsKeywordsPredicate preparePredicate(SalaryRange... salaries) {
         return new SalaryContainsKeywordsPredicate(Arrays.asList(salaries));
     }
 }
