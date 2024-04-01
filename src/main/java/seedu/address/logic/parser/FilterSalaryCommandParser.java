@@ -8,6 +8,7 @@ import seedu.address.logic.commands.FilterSalaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
+import seedu.address.model.person.SalaryRange;
 
 
 /**
@@ -28,9 +29,9 @@ public class FilterSalaryCommandParser implements Parser<FilterSalaryCommand> {
         }
 
         String[] salaryKeywords = trimmedArgs.split("\\s+");
-        Salary[] salaries = new Salary[salaryKeywords.length];
+        SalaryRange[] salaries = new SalaryRange[salaryKeywords.length];
         for (int i = 0; i < salaryKeywords.length; i++) {
-            salaries[i] = ParserUtil.parseSalary(salaryKeywords[i]);
+            salaries[i] = ParserUtil.parseSalaryRange(salaryKeywords[i]);
         }
         return new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(salaries)));
     }

@@ -10,16 +10,16 @@ import seedu.address.commons.util.ToStringBuilder;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class SalaryContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<Salary> keywords;
+    private final List<SalaryRange> keywords;
 
-    public SalaryContainsKeywordsPredicate(List<Salary> keywords) {
+    public SalaryContainsKeywordsPredicate(List<SalaryRange> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(salary -> person.getSalary().isWithinSalaryRange(salary));
+                .anyMatch(salaryRange -> salaryRange.isWithinSalaryRange(person.getSalary()));
     }
 
     @Override
