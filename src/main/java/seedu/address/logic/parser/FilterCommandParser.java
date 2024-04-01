@@ -34,7 +34,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             return new FilterSalaryCommandParser().parse(argMultimap.getValue(PREFIX_SALARY).get());
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            System.out.println("tagHere");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
             // to be implemented
         } else {
@@ -50,9 +49,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         long count = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
                 .count();
-        Stream.of(prefixes)
-                .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
-                .forEach(System.out::println);
         return count == 1;
     }
 
