@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -10,14 +11,15 @@ import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Filters and lists all contacts in address book whose Salary is within the salary range provided.
  */
 public class FilterSalaryCommand extends FilterCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all companies whose salary range contain any of "
+    public static final String COMMAND_WORD = FilterCommand.COMMAND_WORD + " " + PREFIX_SALARY;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all companies whose "
+            + "salary range contain any of "
             + "the specified salary and displays them as a list with index numbers.\n"
-            + "Parameters: SALARY_RANGE [more SALARY_RANGE]\n"
-            + "Example: " + COMMAND_WORD + " 5000-6000";
+            + "Parameters: SALARY_RANGE...\n"
+            + "Example: " + COMMAND_WORD + "5000-6000";
 
     private final SalaryContainsKeywordsPredicate predicate;
 

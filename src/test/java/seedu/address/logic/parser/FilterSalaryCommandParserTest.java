@@ -24,15 +24,15 @@ public class FilterSalaryCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindSalaryCommand() {
+    public void parse_validArgs_returnsFilterSalaryCommand() {
         // no leading and trailing whitespaces
-        FilterSalaryCommand expectedFindSalaryCommand =
+        FilterSalaryCommand expectedFilterSalaryCommand =
                 new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("2000"),
                         new SalaryRange("4000-9000"))));
-        assertParseSuccess(parser, "2000 4000-9000", expectedFindSalaryCommand);
+        assertParseSuccess(parser, "2000 4000-9000", expectedFilterSalaryCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n 2000 \n \t 4000-9000  \t", expectedFindSalaryCommand);
+        assertParseSuccess(parser, " \n 2000 \n \t 4000-9000  \t", expectedFilterSalaryCommand);
     }
 
 }

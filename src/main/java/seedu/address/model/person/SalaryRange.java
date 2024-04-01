@@ -10,14 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class SalaryRange {
     public static final String MESSAGE_CONSTRAINTS = "SALARY_RANGE should only contain numbers, with range [0, "
             + "4294967295] "
-            + "or two pure digital numbers with ‘-’ in between or '<' or '>' followed by a digital number. "
+            + "or two pure digital numbers with ‘-’ in between or '<=' or '>=' followed by a digital number. "
             + "Numbers can vary from large to small or from small to large.\n"
             + "Both digital numbers should be within the range [0, 4294967295]\n"
             + "Examples:\n"
             + "2000-4000\n"
-            + ">5000\n"
-            + "<10000\n";
-    public static final String VALIDATION_REGEX = "^(\\d+-\\d+)|((<|>)\\d+)|(\\d+)$";
+            + ">=5000\n"
+            + "<=10000\n";
+    public static final String VALIDATION_REGEX = "^(\\d+-\\d+)|((<=|>=)\\d+)|(\\d+)$";
     public static final int UPPERBOUND = 2147483647;
     public static final int LOWERBOUND = 0;
 
@@ -51,13 +51,13 @@ public class SalaryRange {
             this.minSalary = Math.min(minSalary, maxSalary);
             this.maxSalary = Math.max(minSalary, maxSalary);
             this.isRange = true;
-        } else if (salaryRange.contains(">")) {
-            String[] range = salaryRange.split(">");
+        } else if (salaryRange.contains(">=")) {
+            String[] range = salaryRange.split(">=");
             this.minSalary = Integer.parseInt(range[1]);
             this.maxSalary = UPPERBOUND;
             this.isMin = true;
-        } else if (salaryRange.contains("<")) {
-            String[] range = salaryRange.split("<");
+        } else if (salaryRange.contains("<=")) {
+            String[] range = salaryRange.split("<=");
             this.maxSalary = Integer.parseInt(range[1]);
             this.minSalary = LOWERBOUND;
             this.isMax = true;
@@ -77,9 +77,9 @@ public class SalaryRange {
         }
         if (test.contains("-")) {
             return isValidRange(test);
-        } else if (test.contains(">")) {
+        } else if (test.contains(">=")) {
             return isValidMin(test);
-        } else if (test.contains("<")) {
+        } else if (test.contains("<=")) {
             return isValidMax(test);
         } else {
             return isValidNum(test);
@@ -100,7 +100,7 @@ public class SalaryRange {
     }
     private static boolean isValidMin(String test) {
         try {
-            String[] salaryRange = test.split(">");
+            String[] salaryRange = test.split(">=");
             int minSalary = Integer.parseInt(salaryRange[1]);
             if (minSalary < LOWERBOUND) {
                 return false;
@@ -112,7 +112,7 @@ public class SalaryRange {
     }
     private static boolean isValidMax(String test) {
         try {
-            String[] salaryRange = test.split("<");
+            String[] salaryRange = test.split("<=");
             int maxSalary = Integer.parseInt(salaryRange[1]);
             if (maxSalary < LOWERBOUND) {
                 return false;
@@ -150,9 +150,9 @@ public class SalaryRange {
         if (isRange) {
             return this.minSalary + "-" + maxSalary;
         } else if (isMax) {
-            return "<" + this.maxSalary;
+            return "<=" + this.maxSalary;
         } else if (isMin) {
-            return ">" + this.minSalary;
+            return ">=" + this.minSalary;
         } else {
             return String.valueOf(minSalary);
         }

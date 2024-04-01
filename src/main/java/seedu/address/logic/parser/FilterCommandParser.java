@@ -25,13 +25,12 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME, PREFIX_PROGRAMMING_LANGUAGE);
-        if (!onlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME,
-                PREFIX_PROGRAMMING_LANGUAGE)
-                || !argMultimap.getPreamble().isEmpty()) {
-            System.out.println("here1");
+                        args, PREFIX_SALARY, PREFIX_TAG);
+        if (!onlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME,
                 PREFIX_PROGRAMMING_LANGUAGE);
 
@@ -39,6 +38,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         String tagArgs = argMultimap.getValue(PREFIX_SALARY).get();
 
         if (salaryArgs != null) {
+            System.out.println("here4");
             return new FilterSalaryCommandParser().parse(salaryArgs);
         } else if (tagArgs != null) {
             return null; //to be implemented
