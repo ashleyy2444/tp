@@ -59,7 +59,7 @@ public class FilterSalaryCommandTest {
     @Test
     public void execute_oneSalary_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        SalaryContainsKeywordsPredicate predicate = preparePredicate(new SalaryRange("500-3000"));
+        SalaryContainsKeywordsPredicate predicate = preparePredicate(new SalaryRange(">=100"));
         FilterSalaryCommand command = new FilterSalaryCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -68,8 +68,8 @@ public class FilterSalaryCommandTest {
     @Test
     public void execute_multipleSalaries_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        SalaryContainsKeywordsPredicate predicate = preparePredicate(new SalaryRange("2000-3000"),
-                new SalaryRange("1000"));
+        SalaryContainsKeywordsPredicate predicate = preparePredicate(new SalaryRange("100"),
+                new SalaryRange(">=10000"));
         FilterSalaryCommand command = new FilterSalaryCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
