@@ -88,7 +88,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_invalidCliUnsortedList_throwsCommandException() {
-        Integer prefixToSort = 5; //outside [0-4]
+        Integer prefixToSort = 6; //outside [0-5]
         SortCommand sortCommand = new SortCommand(prefixToSort);
 
         assertCommandFailure(sortCommand, model, Messages.MESSAGE_INVALID_SORT_COMMAND_INDEX);

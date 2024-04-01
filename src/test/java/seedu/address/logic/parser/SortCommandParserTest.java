@@ -20,6 +20,7 @@ public class SortCommandParserTest {
         assertParseSuccess(parser, "n/", new SortCommand(2));
         assertParseSuccess(parser, "tt/", new SortCommand(3));
         assertParseSuccess(parser, "s/", new SortCommand(4));
+        assertParseSuccess(parser, "jd/", new SortCommand(5));
     }
 
     @Test
