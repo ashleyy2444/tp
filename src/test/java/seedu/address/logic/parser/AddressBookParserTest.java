@@ -13,17 +13,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindTagCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -82,9 +74,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_findTag() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindTagCommand command = (FindTagCommand) parser.parseCommand(
-                FindTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindTagCommand(new TagContainsKeywordsPredicate(keywords)), command);
+        FilterTagCommand command = (FilterTagCommand) parser.parseCommand(
+                FilterTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterTagCommand(new TagContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

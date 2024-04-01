@@ -12,7 +12,7 @@ import seedu.address.model.person.TagContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose tags contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindTagCommand extends Command {
+public class FilterTagCommand extends Command {
 
     public static final String COMMAND_WORD = "findt";
 
@@ -23,7 +23,7 @@ public class FindTagCommand extends Command {
 
     private final TagContainsKeywordsPredicate predicate;
 
-    public FindTagCommand(TagContainsKeywordsPredicate predicate) {
+    public FilterTagCommand(TagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -43,11 +43,11 @@ public class FindTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindTagCommand)) {
+        if (!(other instanceof FilterTagCommand)) {
             return false;
         }
 
-        FindTagCommand otherFindCommand = (FindTagCommand) other;
+        FilterTagCommand otherFindCommand = (FilterTagCommand) other;
         return predicate.equals(otherFindCommand.predicate);
     }
 
