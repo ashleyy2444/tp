@@ -71,7 +71,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case FilterSalaryCommand.COMMAND_WORD:
-            return new FilterSalaryCommandParser().parse(arguments);
+            return new FilterCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

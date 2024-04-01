@@ -13,10 +13,7 @@ import seedu.address.model.person.SalaryContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterSalaryCommand extends Command {
-
-    public static final String COMMAND_WORD = "filters";
-
+public class FilterSalaryCommand extends FilterCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all companies whose salary range contain any of "
             + "the specified salary and displays them as a list with index numbers.\n"
             + "Parameters: SALARY_RANGE [more SALARY_RANGE]\n"
