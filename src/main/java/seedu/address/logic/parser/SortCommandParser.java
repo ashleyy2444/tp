@@ -20,6 +20,9 @@ public class SortCommandParser implements Parser<SortCommand> {
     public static final String MESSAGE_INVALID_COMMAND_LENGTH = "Invalid command length for sort command"
             + "sort command only accepts 1 arguments";
     public static final String MESSAGE_INVALID_COMMAND_KEYWORD = "Invalid command keyword for sort command";
+    public static final String MESSAGE_INVALID_INVERSE_COMMAND_KEYWORD = "Invalid command keyword for sort command, "
+            + "more than 1 keywords detected or do you mean [rev/] [keyword]?";
+    private boolean isReverseOrder = false;
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
      * and returns a SortCommand object for execution.
@@ -35,12 +38,28 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         String[] inputString = trimmedArgs.split("\\s+");
 
-        if (inputString.length != 1) {
+        if (inputString.length == 1) {
+            isReverseOrder = false;
+        } else if (inputString.length == 2) {
+            if (inputString[0].equalsIgnoreCase("rev/")) {
+                isReverseOrder = true;
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_INVERSE_COMMAND_KEYWORD, SortCommand.MESSAGE_USAGE));
+            }
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_LENGTH, SortCommand.MESSAGE_USAGE));
         }
 
-        String keyword = inputString[0];
+        String keyword = null;
+
+        if (isReverseOrder) {
+            keyword = inputString[1];
+        } else {
+            keyword = inputString[0];
+        }
+
         if (Objects.equals(keyword, PREFIX_PRIORITY.getPrefix())) {
             index = 0;
         } else if (Objects.equals(keyword, PREFIX_COMPANY_NAME.getPrefix())) {
@@ -57,7 +76,6 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_KEYWORD, SortCommand.MESSAGE_USAGE));
         }
-
-        return new SortCommand(index);
+        return new SortCommand(index, isReverseOrder);
     }
 }
