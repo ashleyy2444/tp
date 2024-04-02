@@ -36,7 +36,10 @@ public class FilterTagCommandParser implements Parser<FilterTagCommand> {
      * Parses {@code tagKeywords} into a {@code List<Tag>}.
      */
     public static List<Tag> createTags(String... tagKeywords) throws ParseException {
-        return new ArrayList<>(ParserUtil.parseTags(Arrays.asList(tagKeywords)));
-    }
+        List<Tag> tags = new ArrayList<>();
+        for (String keyword : tagKeywords) {
+            tags.add(ParserUtil.parseTag(keyword));
+        }
+        return tags;    }
 
 }
