@@ -9,16 +9,15 @@ import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 
 /**
- * Finds and lists all persons in address book whose tags contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Filters and lists all persons in address book whose tags contains any of the argument keywords.
  */
 public class FilterTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "findt";
+    public static final String COMMAND_WORD = "filtert";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tags contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all contacts whose tags contain any of "
+            + "the specified tags and displays them as a list with index numbers.\n"
+            + "Parameters: TAG [MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " owes money";
 
     private final TagContainsKeywordsPredicate predicate;

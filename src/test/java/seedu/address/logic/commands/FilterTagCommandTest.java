@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.FilterTagCommandParser.createTags;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
@@ -15,12 +16,11 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
-
-
 
 
 /**
@@ -31,11 +31,11 @@ public class FilterTagCommandTest {
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void equals() {
+    public void equals() throws ParseException {
         TagContainsKeywordsPredicate firstPredicate =
-                new TagContainsKeywordsPredicate(Collections.singletonList("first"));
+                new TagContainsKeywordsPredicate(createTags("first"));
         TagContainsKeywordsPredicate secondPredicate =
-                new TagContainsKeywordsPredicate(Collections.singletonList("second"));
+                new TagContainsKeywordsPredicate(createTags("second"));
 
         FilterTagCommand findTagFirstCommand = new FilterTagCommand(firstPredicate);
         FilterTagCommand findTagSecondCommand = new FilterTagCommand(secondPredicate);
@@ -58,7 +58,7 @@ public class FilterTagCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noPersonFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         TagContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterTagCommand command = new FilterTagCommand(predicate);
@@ -68,7 +68,7 @@ public class FilterTagCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multiplePersonsFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         TagContainsKeywordsPredicate predicate = preparePredicate("friends friend");
         FilterTagCommand command = new FilterTagCommand(predicate);
@@ -78,8 +78,8 @@ public class FilterTagCommandTest {
     }
 
     @Test
-    public void toStringMethod() {
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Arrays.asList("friends"));
+    public void toStringMethod() throws ParseException {
+        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(createTags("friends"));
         FilterTagCommand filterTagCommand = new FilterTagCommand(predicate);
         String expected = FilterTagCommand.class.getCanonicalName() + "{tag=" + predicate + "}";
         assertEquals(expected, filterTagCommand.toString());
@@ -88,7 +88,7 @@ public class FilterTagCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private TagContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TagContainsKeywordsPredicate preparePredicate(String userInput) throws ParseException {
+        return new TagContainsKeywordsPredicate(createTags(userInput.split("\\s+")));
     }
 }

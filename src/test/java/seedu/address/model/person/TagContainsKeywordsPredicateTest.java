@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
-import java.util.Arrays;
+import static seedu.address.logic.parser.FilterTagCommandParser.createTags;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,16 +9,18 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
+
 
 
 public class TagContainsKeywordsPredicateTest {
 
     @Test
-    public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+    public void equals() throws ParseException {
+        List<Tag> firstPredicateKeywordList = createTags("first");
+        List<Tag> secondPredicateKeywordList = createTags("first", "second");
 
         TagContainsKeywordsPredicate firstPredicate = new TagContainsKeywordsPredicate(firstPredicateKeywordList);
         TagContainsKeywordsPredicate secondPredicate = new TagContainsKeywordsPredicate(secondPredicateKeywordList);
@@ -40,41 +43,41 @@ public class TagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_tagContainsKeywords_returnsTrue() {
+    public void test_tagContainsKeywords_returnsTrue() throws ParseException {
         // One keyword
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.singletonList("manager"));
+        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(createTags("manager"));
         Assertions.assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withTags("manager").build()));
 
         // Multiple keywords
-        predicate = new TagContainsKeywordsPredicate(Arrays.asList("manager", "HR"));
+        predicate = new TagContainsKeywordsPredicate(createTags("manager", "HR"));
         Assertions.assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withTags("manager")
                 .build()));
 
         // Only one matching keyword
-        predicate = new TagContainsKeywordsPredicate(Arrays.asList("manager", "HR"));
+        predicate = new TagContainsKeywordsPredicate(createTags("manager", "HR"));
         Assertions.assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").withTags("manager", "HR")
                 .build()));
 
     }
 
     @Test
-    public void test_tagDoesNotContainKeywords_returnsFalse() {
+    public void test_tagDoesNotContainKeywords_returnsFalse() throws ParseException {
         // Zero keywords
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.emptyList());
         Assertions.assertFalse(predicate.test(new PersonBuilder().withName("Alice").withTags("manager").build()));
 
         // Non-matching keyword
-        predicate = new TagContainsKeywordsPredicate(Arrays.asList("manager"));
+        predicate = new TagContainsKeywordsPredicate(createTags("manager"));
         Assertions.assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
-    public void toStringMethod() {
-        List<String> keywords = List.of("keyword1", "keyword2");
+    public void toStringMethod() throws ParseException {
+        List<Tag> keywords = createTags("keyword1", "keyword2");
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(keywords);
 
         String expected = TagContainsKeywordsPredicate.class.getCanonicalName() + "{tags="
-                + keywords.stream().map(Tag::new).collect(Collectors.toList()) + "}";
+                + keywords.stream().collect(Collectors.toList()) + "}";
         Assertions.assertEquals(expected, predicate.toString());
     }
 }

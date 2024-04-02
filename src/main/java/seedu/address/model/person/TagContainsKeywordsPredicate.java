@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -14,8 +13,8 @@ import seedu.address.model.tag.Tag;
 public class TagContainsKeywordsPredicate implements Predicate<Person> {
     private final List<Tag> tags;
 
-    public TagContainsKeywordsPredicate(List<String> tags) {
-        this.tags = tags.stream().map(Tag::new).collect(Collectors.toList());
+    public TagContainsKeywordsPredicate(List<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override
