@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class PersonCompanyNameComparatorTest {
     @Test
     public void checkOrder() {
-        PersonCompanyNameComparator comparator = new PersonCompanyNameComparator();
+        PersonCompanyNameComparator comparator = new PersonCompanyNameComparator(false);
         //test more than
         assertTrue(comparator.compare(ALICE, BENSON) >= 1);
         //test equals
@@ -18,5 +18,15 @@ public class PersonCompanyNameComparatorTest {
         assertTrue(comparator.compare(BENSON, ALICE) <= -1);
     }
 
+    @Test
+    public void checkReverseOrder() {
+        PersonCompanyNameComparator comparator = new PersonCompanyNameComparator(true);
+        //test more than
+        assertTrue(comparator.compare(ALICE, BENSON) <= -1);
+        //test equals
+        assertTrue(comparator.compare(ALICE, ALICE) == 0);
+        //test less than
+        assertTrue(comparator.compare(BENSON, ALICE) >= 1);
+    }
 
 }
