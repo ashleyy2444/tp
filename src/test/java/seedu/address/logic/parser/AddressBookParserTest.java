@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.FilterTagCommandParser.createTags;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -100,7 +101,7 @@ public class AddressBookParserTest {
         FilterTagCommand command = (FilterTagCommand) parser.parseCommand(
                 FilterTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterTagCommand(new TagContainsKeywordsPredicate(
-                new ArrayList<>(ParserUtil.parseTags(keywords)))), command);
+                createTags("foo", "bar", "baz"))), command);
     }
 
     @Test
