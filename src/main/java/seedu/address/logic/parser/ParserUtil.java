@@ -18,6 +18,7 @@ import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
+import seedu.address.model.person.SalaryRange;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -170,6 +171,21 @@ public class ParserUtil {
             throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
+    }
+
+    /**
+     * Parses a {@code String salary range} into an {@code Salary}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code salary range} is invalid.
+     */
+    public static SalaryRange parseSalaryRange(String salaryRange) throws ParseException {
+        requireNonNull(salaryRange);
+        String trimmedSalaryRange = salaryRange.trim();
+        if (!SalaryRange.isValidSalaryRange(trimmedSalaryRange)) {
+            throw new ParseException(SalaryRange.MESSAGE_CONSTRAINTS);
+        }
+        return new SalaryRange(trimmedSalaryRange);
     }
 
     /**
