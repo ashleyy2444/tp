@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+
 /**
  * Represents a Person's salary in the address book.
  */
@@ -85,6 +86,7 @@ public class Salary {
         }
         return true;
     }
+
 
     @Override
     public String toString() {

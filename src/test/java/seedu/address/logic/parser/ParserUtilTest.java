@@ -197,6 +197,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseSalaryRange_invalidArgs_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSalaryRange("<=-1"));
+    }
+
+    @Test
     public void parseProgrammingLanguage_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseProgrammingLanguage(null));
     }
