@@ -22,21 +22,21 @@ public class CompanyNameTest {
     @Test
     public void isValidName() {
         // null name
-        assertThrows(NullPointerException.class, () -> CompanyName.isValidName(null));
+        assertThrows(NullPointerException.class, () -> CompanyName.isValidCompanyName(null));
 
         // invalid name
-        assertFalse(CompanyName.isValidName("")); // empty string
-        assertFalse(CompanyName.isValidName(" ")); // spaces only
-        assertFalse(CompanyName.isValidName("123456789 123456789 123456789 123456789 123456789 123456789 123456789 "
+        assertFalse(CompanyName.isValidCompanyName("")); // empty string
+        assertFalse(CompanyName.isValidCompanyName(" ")); // spaces only
+        assertFalse(CompanyName.isValidCompanyName("123456789 123456789 123456789 123456789 123456789 123456789 123456789 "
                 + "123456789 123456789 123456789 1")); // contains more than 100 chracters
 
 
         // valid name
-        assertTrue(CompanyName.isValidName("Google")); // alphabets only
-        assertTrue(CompanyName.isValidName("711")); // numbers only
-        assertTrue(CompanyName.isValidName("Capital Land")); // with capital letters
-        assertTrue(CompanyName.isValidName("S&P 500")); // with capital letters and non-alphanumeric characters
-        assertTrue(CompanyName.isValidName("Essilor International Compagnie Generale d'Optique SA")); // long names
+        assertTrue(CompanyName.isValidCompanyName("Google")); // alphabets only
+        assertTrue(CompanyName.isValidCompanyName("711")); // numbers only
+        assertTrue(CompanyName.isValidCompanyName("Capital Land")); // with capital letters
+        assertTrue(CompanyName.isValidCompanyName("S&P 500")); // with capital letters and non-alphanumeric characters
+        assertTrue(CompanyName.isValidCompanyName("Essilor International Compagnie Generale d'Optique SA")); // long names
     }
 
     @Test
