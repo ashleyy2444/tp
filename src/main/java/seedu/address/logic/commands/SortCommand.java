@@ -24,6 +24,7 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final Object MESSAGE_USAGE = COMMAND_WORD + ": Sorts the current list of contacts "
             + "based on a specified information. \n"
+            + "Optional: [rev/] for reverse order\n"
             + "Parameters: PERSON ATTRIBUTE (only hashable types)"
             + "[" + PREFIX_COMPANY_NAME + "COMPANY NAME] "
             + "[" + PREFIX_NAME + "NAME] "
