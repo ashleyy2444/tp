@@ -75,28 +75,13 @@ public class SalaryRange {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }
-        if (test.contains("-")) {
-            return isValidRange(test);
-        } else if (test.contains(">=")) {
+        if (test.contains(">=")) {
             return isValidMin(test);
         } else if (test.contains("<=")) {
             return isValidMax(test);
         } else {
-            return isValidNum(test);
+            return Salary.isValidSalary(test);
         }
-    }
-    private static boolean isValidRange(String test) {
-        try {
-            String[] salaryRange = test.split("-");
-            int salary1 = Integer.parseInt(salaryRange[0]);
-            int salary2 = Integer.parseInt(salaryRange[1]);
-            if (salary1 < LOWERBOUND || salary2 < LOWERBOUND) {
-                return false;
-            }
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
     }
     private static boolean isValidMin(String test) {
         try {
@@ -115,18 +100,6 @@ public class SalaryRange {
             String[] salaryRange = test.split("<=");
             int maxSalary = Integer.parseInt(salaryRange[1]);
             if (maxSalary < LOWERBOUND) {
-                return false;
-            }
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean isValidNum(String test) {
-        try {
-            int salary = Integer.parseInt(test);
-            if (salary < LOWERBOUND) {
                 return false;
             }
         } catch (NumberFormatException e) {
