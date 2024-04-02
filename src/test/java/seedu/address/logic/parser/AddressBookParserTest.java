@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -20,6 +21,8 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FilterSalaryCommand;
 import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -28,6 +31,8 @@ import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SalaryContainsKeywordsPredicate;
+import seedu.address.model.person.SalaryRange;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -81,7 +86,16 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_findTag() throws Exception {
+    public void parseCommand_filter_salary() throws Exception {
+        List<String> keywords = Arrays.asList("2000", "9000-10000", "4000");
+        FilterSalaryCommand command = (FilterSalaryCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_SALARY
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("2000"),
+                new SalaryRange("9000-10000"), new SalaryRange("4000")))), command);
+    }
+    @Test
+    public void parseCommand_filter_Tag() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FilterTagCommand command = (FilterTagCommand) parser.parseCommand(
                 FilterTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
