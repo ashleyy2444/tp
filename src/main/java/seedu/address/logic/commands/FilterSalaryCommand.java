@@ -15,7 +15,7 @@ import seedu.address.model.person.SalaryContainsKeywordsPredicate;
  */
 public class FilterSalaryCommand extends FilterCommand {
     public static final String COMMAND_WORD = FilterCommand.COMMAND_WORD + " " + PREFIX_SALARY;
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all companies whose "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all companies whose "
             + "salary range contain any of "
             + "the specified salary and displays them as a list with index numbers.\n"
             + "Parameters: SALARY_RANGE [MORE_SALARY_RANGE]...\n"
