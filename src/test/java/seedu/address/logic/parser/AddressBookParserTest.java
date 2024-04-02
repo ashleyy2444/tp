@@ -95,7 +95,7 @@ public class AddressBookParserTest {
                 new SalaryRange("9000-10000"), new SalaryRange("4000")))), command);
     }
     @Test
-    public void parseCommand_filter_Tag() throws Exception {
+    public void parseCommand_filter_tag() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FilterTagCommand command = (FilterTagCommand) parser.parseCommand(
                 FilterTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
