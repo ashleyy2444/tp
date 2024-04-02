@@ -68,7 +68,7 @@ public class FilterSalaryCommandTest {
     @Test
     public void execute_multipleSalaries_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        SalaryContainsKeywordsPredicate predicate = preparePredicate(new SalaryRange("100"),
+        SalaryContainsKeywordsPredicate predicate = preparePredicate(new SalaryRange("1000"),
                 new SalaryRange(">=10000"));
         FilterSalaryCommand command = new FilterSalaryCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);

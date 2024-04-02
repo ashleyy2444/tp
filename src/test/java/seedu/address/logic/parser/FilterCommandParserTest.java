@@ -15,8 +15,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterSalaryCommand;
+import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 import seedu.address.model.person.SalaryRange;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.tag.Tag;
 
 public class FilterCommandParserTest {
     private FilterCommandParser parser = new FilterCommandParser();
@@ -41,6 +44,14 @@ public class FilterCommandParserTest {
                 new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("2000"),
                         new SalaryRange("5000-7000"))));
         assertParseSuccess(parser, " " + PREFIX_SALARY + "2000 5000-7000", expected);
+    }
+
+    @Test
+    public void parse_validArgs_returnsFilterTagCommand() {
+        FilterCommand expected =
+                new FilterTagCommand(new TagContainsKeywordsPredicate(Arrays.asList(new Tag("friends"),
+                        new Tag("owesMoney"))));
+        assertParseSuccess(parser, " " + PREFIX_TAG + "friends owesMoney", expected);
     }
 
 }
