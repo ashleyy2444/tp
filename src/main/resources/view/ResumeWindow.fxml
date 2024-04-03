@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root resizable="false" title="Resume" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+  <icons>
+    <Image url="@/images/help_icon.png" />
+  </icons>
+  <scene>
+    <Scene>
+      <HBox spacing="5">
+        <Label fx:id="id" maxWidth="300.0" styleClass="cell_big_label">
+          <Insets right="5.0" />
+        </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="resume" styleClass="cell_small_label" text="\$resume" />
+        <Label fx:id="companyName" styleClass="cell_small_label" text="\$companyName" />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
+        <Label fx:id="education" styleClass="cell_small_label" text="\$education" />
+      </HBox>
+    </Scene>
+  </scene>
+</fx:root>
