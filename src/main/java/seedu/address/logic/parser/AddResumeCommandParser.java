@@ -7,11 +7,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
-import seedu.address.logic.commands.AddCommand;
+import java.util.Set;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddResumeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
@@ -21,18 +25,24 @@ import seedu.address.model.person.Salary;
 import seedu.address.model.person.user.Education;
 import seedu.address.model.person.user.User;
 
-import java.util.stream.Stream;
-
+/**
+ * Parses input arguments and creates a new AddResumeCommand object
+ */
 public class AddResumeCommandParser implements Parser<AddResumeCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddResumeCommand
+     * and returns an AddResumeCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddResumeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_SALARY);
+                        PREFIX_SALARY, PREFIX_EDUCATION, PREFIX_PROGRAMMING_LANGUAGE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
                 PREFIX_PHONE, PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddResumeCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS);
@@ -43,6 +53,8 @@ public class AddResumeCommandParser implements Parser<AddResumeCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).orElse("0"));
         Education education = ParserUtil.parseEducation(argMultimap.getValue(PREFIX_EDUCATION).get());
+        Set<ProgrammingLanguage> skills = ParserUtil.parseProgrammingLanguages(argMultimap
+                .getAllValues(PREFIX_PROGRAMMING_LANGUAGE));
 
         User user = User.getInstance();
         user.setCompanyName(companyName);
@@ -52,6 +64,7 @@ public class AddResumeCommandParser implements Parser<AddResumeCommand> {
         user.setAddress(address);
         user.setSalary(salary);
         user.setEducation(education);
+        user.setSkills(skills);
 
         return new AddResumeCommand(user);
     }

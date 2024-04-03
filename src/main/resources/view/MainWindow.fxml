@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="800.0" minWidth="600.0" onCloseRequest="#handleExit" title="CCBot" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="800.0" minWidth="600.0" onCloseRequest="#handleExit" title="CCBot" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/ccbot_logo_1.png" />
   </icons>

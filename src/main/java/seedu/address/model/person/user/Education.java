@@ -1,10 +1,13 @@
 package seedu.address.model.person.user;
 
-import seedu.address.model.person.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.person.Name;
+
+/**
+ * Represents the user's Education, as part of the Resume
+ */
 public class Education {
 
     public static final String MESSAGE_CONSTRAINTS =

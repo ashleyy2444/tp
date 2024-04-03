@@ -1,13 +1,10 @@
 package seedu.address.model.person.user;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
@@ -15,6 +12,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
 
+/**
+ * Represents the user in the addressbook
+ */
 public class User {
 
     private static User user;
@@ -27,6 +27,7 @@ public class User {
     private Address address;
     private Salary salary;
     private Education education;
+    private Set<ProgrammingLanguage> skills = new HashSet<>();
 
     private User() {
 
@@ -81,5 +82,11 @@ public class User {
     }
     public void setEducation(Education education) {
         this.education = education;
+    }
+    public Set<ProgrammingLanguage> getSkills() {
+        return Collections.unmodifiableSet(skills);
+    }
+    public void setSkills(Set<ProgrammingLanguage> skills) {
+        this.skills.addAll(skills);
     }
 }

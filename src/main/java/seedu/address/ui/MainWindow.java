@@ -165,9 +165,13 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Opens the resume window
+     */
     @FXML
     public void handleResume() {
         if (!resumeWindow.isShowing()) {
+            resumeWindow = new ResumeWindow();
             resumeWindow.show();
         } else {
             resumeWindow.focus();
@@ -191,6 +195,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowResume()) {
+                handleResume();
             }
 
             if (commandResult.isExit()) {
