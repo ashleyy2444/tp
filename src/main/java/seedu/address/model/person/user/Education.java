@@ -3,8 +3,6 @@ package seedu.address.model.person.user;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Name;
-
 /**
  * Represents the user's Education, as part of the Resume
  */
@@ -47,7 +45,7 @@ public class Education {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof Education)) {
             return false;
         }
 
