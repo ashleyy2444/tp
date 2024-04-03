@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class InterviewTimeTest {
@@ -21,6 +24,46 @@ public class InterviewTimeTest {
         assertThrows(IllegalArgumentException.class, () -> new InterviewTime(invalidDateTime2));
     }
 
+    @Test
+    public void testIsWithinInterviewTimeRange() {
+        InterviewTime dateTimeAfterRange = new InterviewTime("121120271400");
+        InterviewTime dateTimeBeforeRange = new InterviewTime("121120201400");
+        InterviewTime dateTimeInRange = new InterviewTime("121120231400");
+
+        // Interview time ranges
+        List<InterviewTime> wrongSize = Arrays.asList(null, null, null);
+        List<InterviewTime> invalidInput = Arrays.asList(null, null);
+        List<InterviewTime> validBefore = Arrays.asList(null, new InterviewTime("121220230900"));
+        List<InterviewTime> validAfter = Arrays.asList(new InterviewTime("011120231400"), null);
+        List<InterviewTime> validRange = Arrays.asList(new InterviewTime("011120231400"),
+                new InterviewTime("121220240300"));
+
+        // Assertion error thrown
+        try {
+            dateTimeInRange.isWithinInterviewTimeRange(wrongSize);
+            assert(false);
+        } catch (AssertionError e) {
+            assertEquals("InterviewTime range should be of size 2", e.getMessage());
+        }
+        try {
+            dateTimeInRange.isWithinInterviewTimeRange(invalidInput);
+            assert(false);
+        } catch (AssertionError e) {
+            assertEquals("InterviewTime range cannot cannot contain more than 1 null Object", e.getMessage());
+        }
+
+        // Return false
+        assertFalse(dateTimeAfterRange.isWithinInterviewTimeRange(validBefore)); // dateTime falls after range
+        assertFalse(dateTimeAfterRange.isWithinInterviewTimeRange(validRange)); // dateTime falls after range
+        assertFalse(dateTimeBeforeRange.isWithinInterviewTimeRange(validAfter)); // dateTime falls before range
+        assertFalse(dateTimeBeforeRange.isWithinInterviewTimeRange(validRange)); // dateTime falls before range
+
+        // Return true
+        assertTrue(dateTimeAfterRange.isWithinInterviewTimeRange(validAfter));
+        assertTrue(dateTimeBeforeRange.isWithinInterviewTimeRange(validBefore));
+        assertTrue(dateTimeInRange.isWithinInterviewTimeRange(validRange));
+
+    }
     @Test
     public void equals() {
         InterviewTime dateTime = new InterviewTime("121220221400");
