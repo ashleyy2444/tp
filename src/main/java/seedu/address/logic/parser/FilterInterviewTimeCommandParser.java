@@ -33,9 +33,11 @@ public class FilterInterviewTimeCommandParser {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterInterviewTimeCommand.MESSAGE_USAGE));
         }
+        trimmedArgs = " " + trimmedArgs;
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_BEFORE_INTERVIEW_TIME, PREFIX_AFTER_INTERVIEW_TIME, PREFIX_FROM_INTERVIEW_TIME);
+                        trimmedArgs, PREFIX_BEFORE_INTERVIEW_TIME, PREFIX_AFTER_INTERVIEW_TIME,
+                        PREFIX_FROM_INTERVIEW_TIME);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
