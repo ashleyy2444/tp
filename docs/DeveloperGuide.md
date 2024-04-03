@@ -368,6 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Computer science job seeker | add contact information of interviewer / company | contact the interviewer / company                                  |
 | `* * *`  | Computer science job seeker | add salary range                                 | check the salary range of the job                                  |
 | `* * *`  | Computer science job seeker | add company name                                 | check which company the job is from                                |
+| `* * *`  | Computer science job seeker | add extra info about the company                 | recall the extra information about each of the companies           |                   |
 | `* * *`  | Computer science job seeker | add interview time                               | check what is the interview time                                   |
 | `* *`    | Computer science job seeker | add programming language(s) related to the job   | identify which programming language(s) is/are required for the job |
 | `* *`    | Computer science job seeker | add job responsibilities                         | check what are the job responsibilities for the job                |
@@ -439,8 +440,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the salary or salary range info to their address book.
 2. User inputs the 'add' command with the salary detail in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the salary information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the salary information for the contact and displays a success message.
 
       Use case ends.
 
@@ -459,8 +460,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the company’s name info to their address book.
 2. User inputs the 'add' command with the company’s name in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the company’s name information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the company’s name information for the contact and displays a success message.
 
       Use case ends.
 
@@ -479,8 +480,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the programming language  info to their address book.
 2. User inputs the 'add' command with the programming language detail in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the programming language information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the programming language information for the contact and displays a success message.
 
       Use case ends.
 
@@ -492,6 +493,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 ---
+
+**Use case: Add extra info about the company to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with extra company info to their address book.
+2. User inputs the 'add' command with the extra information detail in the correct format.
+3. CCBot validates the input details.
+4. CCBot adds or updates the extra information for the contact and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. If the  extra information detail is invalid:
+    * 3a1. CCBot shows an error message indicating the validation failure and an error message about the format or character limit.
+
+      Use case resumes at step 2.
+
+---
+
+
 
 
 ### Non-Functional Requirements

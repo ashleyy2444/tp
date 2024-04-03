@@ -10,12 +10,23 @@ public class PersonPriorityComparatorTest {
 
     @Test
     public void checkOrder() {
-        PersonPriorityComparator comparator = new PersonPriorityComparator();
+        PersonPriorityComparator comparator = new PersonPriorityComparator(false);
         //test more than
         assertTrue(comparator.compare(ALICE, BENSON) >= 1);
         //test equals
         assertTrue(comparator.compare(ALICE, ALICE) == 0);
         //test less than
         assertTrue(comparator.compare(BENSON, ALICE) <= -1);
+    }
+
+    @Test
+    public void checkReverseOrder() {
+        PersonPriorityComparator comparator = new PersonPriorityComparator(true);
+        //test less than
+        assertTrue(comparator.compare(ALICE, BENSON) <= -1);
+        //test equals
+        assertTrue(comparator.compare(ALICE, ALICE) == 0);
+        //test more than
+        assertTrue(comparator.compare(BENSON, ALICE) >= 1);
     }
 }

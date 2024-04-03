@@ -12,9 +12,14 @@ Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 Class AddCommand
+Class ClearCommand
 Class DeleteCommand
 Class EditCommand
+Class ExitCommand
 Class FindCommand
+Class HelpCommand
+Class ListCommand
+Class SortCommand
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager

@@ -9,12 +9,23 @@ import org.junit.jupiter.api.Test;
 public class PersonSalaryComparatorTest {
     @Test
     public void checkOrder() {
-        PersonSalaryComparator comparator = new PersonSalaryComparator();
+        PersonSalaryComparator comparator = new PersonSalaryComparator(false);
         //test less than
         assertTrue(comparator.compare(ALICE, BENSON) <= -1);
         //test equals
         assertTrue(comparator.compare(ALICE, ALICE) == 0);
         //test more than
         assertTrue(comparator.compare(BENSON, ALICE) >= 1);
+    }
+
+    @Test
+    public void checkReverseOrder() {
+        PersonSalaryComparator comparator = new PersonSalaryComparator(true);
+        //test less than
+        assertTrue(comparator.compare(ALICE, BENSON) >= 1);
+        //test equals
+        assertTrue(comparator.compare(ALICE, ALICE) == 0);
+        //test more than
+        assertTrue(comparator.compare(BENSON, ALICE) <= 1);
     }
 }
