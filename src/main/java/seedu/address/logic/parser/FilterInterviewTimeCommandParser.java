@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterInterviewTimeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.InterviewTime;
@@ -39,7 +38,8 @@ public class FilterInterviewTimeCommandParser {
                         trimmedArgs, PREFIX_BEFORE_INTERVIEW_TIME, PREFIX_AFTER_INTERVIEW_TIME,
                         PREFIX_FROM_INTERVIEW_TIME);
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterInterviewTimeCommand.MESSAGE_USAGE));
         }
         List<List<InterviewTime>> interviewTimes = new ArrayList<>();
         if (argMultimap.getValue(PREFIX_BEFORE_INTERVIEW_TIME).isPresent()) {

@@ -19,10 +19,12 @@ public class FilterInterviewTimeCommand extends FilterCommand {
             + "range of interview times contain any of "
             + "the specified salary and displays them as a list with index numbers.\n"
             + "Parameters: INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...\n"
+            + "Valid INTERVIEW_TIME_RANGE includes:\n"
+            + "- before/INTERVIEW_TIME\n"
+            + "- after/INTERVIEW_TIME\n"
+            + "- from/INTERVIEW_TIME-INTERVIEW_TIME\n"
             + "Example:\n"
-            + "- " + COMMAND_WORD + "before/020220241100\n"
-            + "- " + COMMAND_WORD + "after/020220241100\n"
-            + "- " + COMMAND_WORD + "from/020220241100-020520241100";
+            + "- " + COMMAND_WORD + "before/020220241100 after/020220251100 from/030420240800-020520241100";
     public static final String WRONG_INTERVIEW_TIME_RANGE_MESSAGE = "INTERVIEW_TIME_RANGE should be in the form of:\n"
             + "before/INTERVIEW_TIME\nor\n"
             + "after/INTERVIEW_TIME\nor\n"

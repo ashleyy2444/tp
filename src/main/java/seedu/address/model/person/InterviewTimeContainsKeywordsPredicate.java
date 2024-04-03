@@ -34,7 +34,8 @@ public class InterviewTimeContainsKeywordsPredicate implements Predicate<Person>
             return false;
         }
 
-        InterviewTimeContainsKeywordsPredicate otherSalaryContainsKeywordsPredicate = (InterviewTimeContainsKeywordsPredicate) other;
+        InterviewTimeContainsKeywordsPredicate otherSalaryContainsKeywordsPredicate =
+                (InterviewTimeContainsKeywordsPredicate) other;
         return keywords.equals(otherSalaryContainsKeywordsPredicate.keywords);
     }
 
