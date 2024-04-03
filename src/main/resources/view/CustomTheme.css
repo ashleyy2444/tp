@@ -350,3 +350,19 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#cardPane.priorityHigh {
+    -fx-background-color: red;
+}
+
+#cardPane.priorityMedium {
+    -fx-background-color: brown;
+}
+
+#cardPane.priorityLow {
+    -fx-background-color: green;
+}
+
+#cardPane.priorityDefault {
+    -fx-background-color: grey;
+}

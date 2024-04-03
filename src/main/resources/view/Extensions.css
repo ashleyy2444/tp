@@ -18,3 +18,19 @@
 .tooltip-text {
     -fx-text-fill: rgb(255, 255, 255);
 }
+
+.personListCard.priorityHigh {
+    -fx-background-color: red;
+}
+
+.personListCard.priorityMedium {
+    -fx-background-color: yellow;
+}
+
+.personListCard.priorityLow {
+    -fx-background-color: green;
+}
+
+.personListCard.priorityDefault {
+    -fx-background-color: grey;
+}
