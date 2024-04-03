@@ -25,7 +25,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME);
-        if (!onlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME)
+        if (!exactlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
@@ -36,10 +36,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             return new FilterSalaryCommandParser().parse(argMultimap.getValue(PREFIX_SALARY).get());
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             return new FilterTagCommandParser().parse(argMultimap.getValue(PREFIX_TAG).get());
-        } else if (argMultimap.getValue(PREFIX_INTERVIEWTIME).isPresent()) {
-            return new FilterInterviewTimeCommandParser().parse(argMultimap.getValue(PREFIX_INTERVIEWTIME).get());
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            return new FilterInterviewTimeCommandParser().parse(argMultimap.getValue(PREFIX_INTERVIEWTIME).get());
         }
     }
 
@@ -47,7 +45,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * Returns true if at least one of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean onlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean exactlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         long count = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
                 .count();
