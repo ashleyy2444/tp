@@ -89,4 +89,7 @@ public class User {
     public void setSkills(Set<ProgrammingLanguage> skills) {
         this.skills.addAll(skills);
     }
+    public static void reset() {
+        user = null;
+    }
 }

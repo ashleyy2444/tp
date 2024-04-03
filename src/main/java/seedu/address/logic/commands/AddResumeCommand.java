@@ -20,6 +20,7 @@ import seedu.address.model.person.user.User;
 public class AddResumeCommand extends Command {
 
     public static final String COMMAND_WORD = "resume";
+    public static final String MESSAGE_SUCCESS = "Resume added";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds your resume to the address book. "
             + "Example: " + COMMAND_WORD + " "
@@ -44,6 +45,6 @@ public class AddResumeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult("Resume Added", false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, true, false);
     }
 }
