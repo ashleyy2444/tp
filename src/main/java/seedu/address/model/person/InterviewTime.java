@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -18,7 +19,10 @@ public class InterviewTime {
     public static final String REGEX_DD = "(0[1-9]|[1-2][0-9]|3[01])";
     public static final String REGEX_MM = "(0[1-9]|1[0-2])";
     public static final String REGEX_HHMM = "^([0-1][0-9]|2[0-3])[0-5][0-9]$";
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm"); //set format
+    public static final String INTERVIEW_TIME_FORMAT = "ddMMyyyyHHmm";
+    public static final String EXAMPLE_INTERVIEW_TIME_FORMAT_1 = "020520240800";
+    public static final String EXAMPLE_INTERVIEW_TIME_FORMAT_2 = "030820242300";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(INTERVIEW_TIME_FORMAT); //set format
 
     public final LocalDateTime dateTime;
 
@@ -54,6 +58,25 @@ public class InterviewTime {
 
     public String rawToString() {
         return dateTime.format(formatter);
+    }
+
+    /**
+     * Returns true if {@code this.dateTime} is within the range provided.
+     * @param range A List containing two {@code InterviewTime}.
+     */
+    public boolean isWithinInterviewTimeRange(List<InterviewTime> range) {
+        assert range.size() == 2 : "InterviewTime range should be of size 2";
+        assert !(range.get(0) == null && range.get(1) == null)
+                : "InterviewTime range cannot cannot contain more than 1 null Object";
+        LocalDateTime after = range.get(0) == null ? null : range.get(0).getDateTime();
+        LocalDateTime before = range.get(1) == null ? null : range.get(1).getDateTime();
+        if (after == null) {
+            return this.dateTime.isBefore(before);
+        } else if (before == null) {
+            return this.dateTime.isAfter(after);
+        } else {
+            return this.dateTime.isBefore(before) && this.dateTime.isAfter(after);
+        }
     }
 
     @Override
