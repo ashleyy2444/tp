@@ -4,10 +4,14 @@ import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.user.User;
 
 /**
@@ -42,6 +46,8 @@ public class ResumeWindow extends UiPart<Stage> {
     private Label contactLabel;
     @FXML
     private VBox contactBox;
+    @FXML
+    private Button copyButton;
 
     /**
      * Creates a new ResumeWindow.
@@ -113,6 +119,21 @@ public class ResumeWindow extends UiPart<Stage> {
         getRoot().centerOnScreen();
     }
 
+    public String generateResume() {
+        StringBuilder resumeBuilder = new StringBuilder();
+        resumeBuilder.append(companyName.getText()).append("\n");
+        resumeBuilder.append(name.getText()).append("\n");
+        resumeBuilder.append(phone.getText()).append("\n");
+        resumeBuilder.append(email.getText()).append("\n");
+        resumeBuilder.append(address.getText()).append("\n");
+        resumeBuilder.append(salary.getText()).append("\n");
+        resumeBuilder.append("Skills: ").append("\n");
+        skillsVbox.getChildren().forEach(label -> resumeBuilder.append("- ").append(((Label) label).getText())
+                .append("\n"));
+
+        return resumeBuilder.toString();
+    }
+
     /**
      * Returns true if the help window is currently being shown.
      */
@@ -132,5 +153,13 @@ public class ResumeWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    @FXML
+    private void copyResume() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent resume = new ClipboardContent();
+        resume.putString(generateResume());
+        clipboard.setContent(resume);
     }
 }
