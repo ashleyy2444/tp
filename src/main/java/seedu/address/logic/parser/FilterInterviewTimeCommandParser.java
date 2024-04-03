@@ -44,9 +44,11 @@ public class FilterInterviewTimeCommandParser {
         List<List<InterviewTime>> interviewTimes = new ArrayList<>();
         if (argMultimap.getValue(PREFIX_BEFORE_INTERVIEW_TIME).isPresent()) {
             interviewTimes.addAll(handleBeforeInterviewTime(argMultimap));
-        } else if (argMultimap.getValue(PREFIX_AFTER_INTERVIEW_TIME).isPresent()) {
+        }
+        if (argMultimap.getValue(PREFIX_AFTER_INTERVIEW_TIME).isPresent()) {
             interviewTimes.addAll(handleAfterInterviewTime(argMultimap));
-        } else if (argMultimap.getValue(PREFIX_FROM_INTERVIEW_TIME).isPresent()) {
+        }
+        if (argMultimap.getValue(PREFIX_FROM_INTERVIEW_TIME).isPresent()) {
             interviewTimes.addAll(handleFromInterviewTime(argMultimap));
         }
         return new FilterInterviewTimeCommand(new InterviewTimeContainsKeywordsPredicate(interviewTimes));
