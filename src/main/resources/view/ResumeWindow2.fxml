@@ -25,7 +25,7 @@
             <children>
                <ImageView fitHeight="272.0" fitWidth="343.0" opacity="0.61">
                   <image>
-                     <Image url="@../../../../../../Users/Admin/Downloads/autumn-2902532_640.jpg" />
+                     <Image url="@../images/resume_bg.jpg" />
                   </image>
                </ImageView>
                <HBox prefHeight="264.0" prefWidth="343.0">

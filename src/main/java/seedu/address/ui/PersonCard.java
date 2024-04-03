@@ -81,7 +81,6 @@ public class PersonCard extends UiPart<Region> {
         String styleClass;
         switch (person.getPriority()) {
         case 0:
-            System.out.println("Flag");
             styleClass = "priorityHigh";
             break;
         case 1:
