@@ -35,24 +35,24 @@ public class FilterSalaryCommandTest {
         SalaryContainsKeywordsPredicate secondPredicate =
                 new SalaryContainsKeywordsPredicate(Collections.singletonList(new SalaryRange("2000-5000")));
 
-        FilterSalaryCommand FilterSalaryFirstCommand = new FilterSalaryCommand(firstPredicate);
-        FilterSalaryCommand FilterSalarySecondCommand = new FilterSalaryCommand(secondPredicate);
+        FilterSalaryCommand filterSalaryFirstCommand = new FilterSalaryCommand(firstPredicate);
+        FilterSalaryCommand filterSalarySecondCommand = new FilterSalaryCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(FilterSalaryFirstCommand.equals(FilterSalaryFirstCommand));
+        assertTrue(filterSalaryFirstCommand.equals(filterSalaryFirstCommand));
 
         // same values -> returns true
         FilterSalaryCommand findSalaryFirstCommandCopy = new FilterSalaryCommand(firstPredicate);
-        assertTrue(FilterSalaryFirstCommand.equals(findSalaryFirstCommandCopy));
+        assertTrue(filterSalaryFirstCommand.equals(findSalaryFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(FilterSalaryFirstCommand.equals(1));
+        assertFalse(filterSalaryFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(FilterSalaryFirstCommand.equals(null));
+        assertFalse(filterSalaryFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(FilterSalaryFirstCommand.equals(FilterSalarySecondCommand));
+        assertFalse(filterSalaryFirstCommand.equals(filterSalarySecondCommand));
     }
 
 

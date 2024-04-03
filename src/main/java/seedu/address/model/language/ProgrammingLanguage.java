@@ -27,6 +27,15 @@ public class ProgrammingLanguage {
     }
 
     /**
+     * Returns the name of this programming language.
+     *
+     * @return The name of this programming language.
+     */
+    public String getLanguageName() {
+        return languageName;
+    }
+
+    /**
      * Returns true if a given string is a valid programming language name.
      *
      * @param test The string to test for validity.
