@@ -65,7 +65,7 @@ public class FilterInterviewTimeCommand extends FilterCommand {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("interview time", predicate)
+                .add("interviewTime", predicate)
                 .toString();
     }
 }
