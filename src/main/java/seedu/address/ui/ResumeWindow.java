@@ -11,7 +11,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.user.User;
 
 /**
@@ -119,6 +118,10 @@ public class ResumeWindow extends UiPart<Stage> {
         getRoot().centerOnScreen();
     }
 
+    /**
+     * Allow user to generate resume as string to copy
+     * @return
+     */
     public String generateResume() {
         StringBuilder resumeBuilder = new StringBuilder();
         resumeBuilder.append(companyName.getText()).append("\n");
