@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -23,18 +24,21 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_SALARY, PREFIX_TAG);
-        if (!onlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG)
+                        args, PREFIX_SALARY, PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE);
+        if (!onlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE);
 
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             return new FilterSalaryCommandParser().parse(argMultimap.getValue(PREFIX_SALARY).get());
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             return new FilterTagCommandParser().parse(argMultimap.getValue(PREFIX_TAG).get());
+        } else if (argMultimap.getValue(PREFIX_PROGRAMMING_LANGUAGE).isPresent()) {
+            return new FilterProgrammingLanguageCommandParser().parse(argMultimap.getValue(PREFIX_PROGRAMMING_LANGUAGE)
+                    .get());
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
