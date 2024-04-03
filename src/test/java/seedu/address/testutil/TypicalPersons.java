@@ -30,22 +30,55 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withCompanyName("Google").withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withProgrammingLanguages("Java")
+            .withSalary("200000")
+            .withPriority(2)
+            .build();
     public static final Person BENSON = new PersonBuilder().withCompanyName("Amazon").withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withDateTime("121220221500").build();
+            .withEmail("johnd@example.com")
+            .withPhone("98765432")
+            .withTags("owesMoney", "friends")
+            .withDateTime("121220221500")
+            .withSalary("1000")
+            .withProgrammingLanguages("Java")
+            .withPriority(1)
+            .build();
+
     public static final Person CARL = new PersonBuilder().withCompanyName("Shopee").withName("Carl Kurz")
-            .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street").build();
+            .withPhone("95352563")
+            .withEmail("heinz@example.com")
+            .withAddress("wall street")
+            .withProgrammingLanguages("Java")
+            .withPriority(3)
+            .build();
     public static final Person DANIEL = new PersonBuilder().withCompanyName("Tiktok").withName("Daniel Meier")
-            .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
+            .withPhone("87652533")
+            .withEmail("cornelia@example.com")
+            .withAddress("10th street")
+            .withTags("friends")
+            .withProgrammingLanguages("Java")
+            .withPriority(2)
             .build();
     public static final Person ELLE = new PersonBuilder().withCompanyName("Shopback").withName("Elle Meyer")
-            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave").build();
+            .withPhone("9482224")
+            .withEmail("werner@example.com")
+            .withAddress("michegan ave")
+            .withPriority(2)
+            .build();
     public static final Person FIONA = new PersonBuilder().withCompanyName("Apple").withName("Fiona Kunz")
-            .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withPhone("9482427")
+            .withEmail("lydia@example.com")
+            .withAddress("little tokyo")
+            .withPriority(1)
+            .build();
     public static final Person GEORGE = new PersonBuilder().withCompanyName("Microsoft").withName("George Best")
-            .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street").build();
+            .withPhone("9482442")
+            .withEmail("anna@example.com")
+            .withAddress("4th street")
+            .withPriority(3)
+            .build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -56,11 +89,12 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withCompanyName(VALID_COMPANY_NAME_AMY)
             .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withDateTime(VALID_INTERVIEWTIME_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).withDateTime(VALID_INTERVIEWTIME_AMY).withTags(VALID_TAG_FRIEND)
+            .withProgrammingLanguages("Java").build();
     public static final Person BOB = new PersonBuilder().withCompanyName(VALID_COMPANY_NAME_BOB)
             .withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB).withDateTime(VALID_INTERVIEWTIME_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withProgrammingLanguages("Java").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

@@ -10,9 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Info;
 import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -34,19 +36,23 @@ class JsonAdaptedPerson {
     private final String address;
     private final String dateTime;
     private final String salary;
+    private final String info;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedProgrammingLanguage> programmingLanguages = new ArrayList<>();
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("company name") String companyName, @JsonProperty("name") String name,
-                             @JsonProperty(
-            "phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("dateTime") String dateTime,
-            @JsonProperty("salary") String salary,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address, @JsonProperty("dateTime") String dateTime,
+                             @JsonProperty("salary") String salary, @JsonProperty("info") String info,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("programmingLanguages") List<JsonAdaptedProgrammingLanguage>
+                                         programmingLanguages,
+                             @JsonProperty("priority") String priority) {
         this.companyName = companyName;
         this.name = name;
         this.phone = phone;
@@ -54,9 +60,14 @@ class JsonAdaptedPerson {
         this.address = address;
         this.dateTime = dateTime;
         this.salary = salary;
+        this.info = info;
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        if (programmingLanguages != null) {
+            this.programmingLanguages.addAll(programmingLanguages);
+        }
+        this.priority = priority;
     }
 
     /**
@@ -70,9 +81,14 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         dateTime = source.getDateTime().rawToString();
         salary = source.getSalary().toString();
+        info = source.getInfo().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        programmingLanguages.addAll(source.getProgrammingLanguages().stream()
+                .map(JsonAdaptedProgrammingLanguage::new)
+                .collect(Collectors.toList()));
+        priority = Integer.toString(source.getPriority());
     }
 
     /**
@@ -85,11 +101,15 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
+        final List<ProgrammingLanguage> personProgrammingLanguages = new ArrayList<>();
+        for (JsonAdaptedProgrammingLanguage language : programmingLanguages) {
+            personProgrammingLanguages.add(language.toModelType());
+        }
         if (companyName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     CompanyName.class.getSimpleName()));
         }
-        if (!CompanyName.isValidName(companyName)) {
+        if (!CompanyName.isValidCompanyName(companyName)) {
             throw new IllegalValueException(CompanyName.MESSAGE_CONSTRAINTS);
         }
         final CompanyName modelCompanyName = new CompanyName(companyName);
@@ -140,11 +160,26 @@ class JsonAdaptedPerson {
         if (!Salary.isValidSalary(salary)) {
             throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
         }
+
         final Salary modelSalary = new Salary(salary);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelCompanyName, modelName, modelPhone, modelEmail, modelAddress, modelDateTime,
-                modelSalary, modelTags);
-    }
+        final Info modelInfo = new Info(info);
 
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        final Set<ProgrammingLanguage> modelProgrammingLanguages = new HashSet<>(personProgrammingLanguages);
+
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Priority"));
+        }
+
+        if (!Person.isValidPriority(priority)) {
+            throw new IllegalValueException("Priority level should be between 1 and 3");
+        }
+
+        final int modelPriority = Integer.parseInt(priority);
+
+        return new Person(modelCompanyName, modelName, modelPhone, modelEmail, modelAddress, modelDateTime,
+                modelSalary, modelInfo, modelTags, modelProgrammingLanguages, modelPriority);
+    }
 }

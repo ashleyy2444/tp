@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,15 +26,20 @@ public class Person {
     // Data fields
     private final Address address;
     private final Salary salary;
+    private final Info info;
     private final Set<Tag> tags = new HashSet<>();
     private final InterviewTime dateTime;
-
+    private final Set<ProgrammingLanguage> programmingLanguages = new HashSet<>();
+    private final Integer priority; // default priority level
+    private final JobDifficulty jobDifficulty;
     /**
      * Every field must be present and not null.
      */
+
     public Person(
             CompanyName companyName, Name name, Phone phone, Email email, Address address,
-            InterviewTime dateTime, Salary salary, Set<Tag> tags) {
+            InterviewTime dateTime, Salary salary, Info info, Set<Tag> tags,
+            Set<ProgrammingLanguage> programmingLanguages, Integer priority) {
         requireAllNonNull(name, phone, email, address, salary, tags);
         this.companyName = companyName;
         this.name = name;
@@ -42,7 +48,11 @@ public class Person {
         this.address = address;
         this.dateTime = dateTime;
         this.salary = salary;
+        this.info = info;
         this.tags.addAll(tags);
+        this.programmingLanguages.addAll(programmingLanguages);
+        this.priority = priority;
+        this.jobDifficulty = new JobDifficulty(companyName, salary);
     }
     public CompanyName getCompanyName() {
         return companyName;
@@ -69,6 +79,23 @@ public class Person {
     public Salary getSalary() {
         return salary;
     }
+    public Info getInfo() {
+        return info;
+    }
+    public Integer getPriority() {
+        return priority;
+    }
+    public JobDifficulty getJobDifficulty() {
+        return jobDifficulty;
+    }
+
+    /**
+     * Returns true if a given string is a valid priority level.
+     */
+    public static boolean isValidPriority(String test) {
+        String validRegex = "^[0-4]$";
+        return test.matches(validRegex);
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -76,6 +103,16 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable set of programming languages.
+     * This set cannot be modified and any attempt to do so will result in an {@code UnsupportedOperationException}.
+     *
+     * @return An immutable set of programming languages.
+     */
+    public Set<ProgrammingLanguage> getProgrammingLanguages() {
+        return Collections.unmodifiableSet(programmingLanguages);
     }
 
     /**
@@ -112,13 +149,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && programmingLanguages.equals(otherPerson.programmingLanguages);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(companyName, name, phone, email, address, tags, dateTime);
+        return Objects.hash(companyName, name, phone, email, address, tags, dateTime, programmingLanguages);
     }
 
     @Override
@@ -131,7 +169,10 @@ public class Person {
                 .add("address", address)
                 .add("interview-time", dateTime)
                 .add("salary", salary)
+                .add("info", info)
                 .add("tags", tags)
+                .add("programming-languages", programmingLanguages)
+                .add("priority", priority)
                 .toString();
     }
 

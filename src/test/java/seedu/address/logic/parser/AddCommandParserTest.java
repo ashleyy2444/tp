@@ -21,6 +21,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.PROGRAMMING_LANG_DESC_DEFAULT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -44,6 +45,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -61,14 +63,16 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_NAME_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + INTERVIEWTIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + INTERVIEWTIME_DESC_BOB + TAG_DESC_FRIEND + PROGRAMMING_LANG_DESC_DEFAULT,
+                new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, COMPANY_NAME_DESC_BOB
                 + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INTERVIEWTIME_DESC_BOB
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PROGRAMMING_LANG_DESC_DEFAULT,
+                new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -155,7 +159,8 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
                 COMPANY_NAME_DESC_AMY + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                        + ADDRESS_DESC_AMY + INTERVIEWTIME_DESC_AMY, new AddCommand(expectedPerson));
+                        + ADDRESS_DESC_AMY + INTERVIEWTIME_DESC_AMY + PROGRAMMING_LANG_DESC_DEFAULT,
+                new AddCommand(expectedPerson));
     }
 
     @Test
@@ -187,7 +192,7 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid company name
         assertParseFailure(parser, INVALID_COMPANY_NAME_DESC + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, CompanyName.MESSAGE_CONSTRAINTS);
 
         // invalid name
         assertParseFailure(parser, COMPANY_NAME_DESC_BOB + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -218,5 +223,19 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + COMPANY_NAME_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_duplicatePrefixes_failure() {
+        assertParseFailure(parser, COMPANY_NAME_DESC_AMY + COMPANY_NAME_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY_NAME));
+
+    }
+
+    @Test
+    public void parse_nonEmptyPreamble_failure() {
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + COMPANY_NAME_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddCommand.MESSAGE_USAGE));
     }
 }

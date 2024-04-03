@@ -224,25 +224,110 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
 
-**Aspect: How undo & redo executes:**
+### \[Proposed\] Sorting contact list
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+This feature allows users to sort their addressbook based on various information, namely, name, company
+name, interview time, salary and priority. This feature leverages on the built-in `ObservableList` provided by JavaFX.
+The sorting is done by creating classes that implements the Comparator<T> interface.
+* `PersonCompanyNameComparator.java`
+* `PersonInterviewTimeComparator.java`
+* `PersonNameComparator.java`
+* `PersonPriorityComparator.java`
+* `PersonSalaryComparator.java`
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+These comparators are referenced in the `SortCommandParser`. In the `SortCommandParser` each comparator will be assigned
+a static integer based on the CLI Syntax from the userInput. The string is that parsed and assigned an integer from 
+**1 - 4** which are pre-assigned to a comparator.
 
-_{more aspects and alternatives to be added}_
+#### Overview of SortCommand
+![sort_overview_2.png](images%2Fsort_overview_2.png)<br>
+Based on the image above:
+* Step 1: User inputs `sort pri/` which calls the `execute()` function in the `LogicManager` object.
+  * `pri/` is an added CLI Syntax to refer to priority which is an added attribute to `Person` class.
+* Step 2: `LogicManager` calls the `parseCommand()` function in `AddressBookParser` object which interprets the `sort`
+<br> command word and creates a `SortCommandParser` object.
+* Step 3: The `SortCommandParser` object then parses `pri/` and create the `SortCommand` object.
+  * `SortCommand` constructor takes in an **Integer**  and `SortCommandParser` already pre-assigns `pri/` to 0.
+* Step 4: `LogicManager` then executes the command.
+* Step 5: `SortCommand` will call `updateSortedPersonList()` from the `Model` object which has a reference to the
+`AddressBook` which contains the `UniquePersonList` object. The `UniquePersonList` then sorts it based on the
+comparator.
+
+### \[Proposed\] Job Difficulty Feature
+![job_difficulty_class](images/JobDifficultyDiagram.png)
+#### Overview
+The job difficulty feature allows program auto calculate a difficulty score for a job 
+based on the company name and salary. 
+This feature leverages on the local storage of 
+famous company names and their job difficulty levels.  
+
+#### Class Structure
+The `JobDifficulty` class is responsible for calculating the 
+job difficulty score. It uses the `CompanyName` and `Salary` classes 
+to retrieve the necessary information.
+
+#### Method Details
+`JobDifficulty(CompanyName companyName, Salary salary)` <br>
+This is the constructor for the JobDifficulty class. 
+It takes in a CompanyName object and a Salary object. 
+It retrieves the difficulty level of the company and adds 
+it to the salary to calculate the job difficulty score.
+
+`getDifficulty()` <br>
+This method returns the calculated job difficulty score
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Filtering of list by tag, salary range, and programming languages feature
+The proposed feature will allow users to filter their lists according to the tags, salary range and programming 
+language.
+#### Proposed Implementation
+The `FindCommand` class will be changed into a  class which will call the `FindNameCommand`, `FindTagCommand`, 
+`FindSalaryRangeCommand` and `FindProgrammingLanguageCommand` Command classes when executed. 
+
+**Command Format:**
+- FindNameCommand: `Find n/NAME`
+- FindTagCommand: `Find t/TAG`
+- FindSalaryRangeCommand: `Find s/SALARY_RANGE`
+- FindProgrammingLanguageCommand: `Find pl/PROGRAMMING_LANGUAGE`
+
+**Process:**
+1. FindCommand class will determine the specific FindCommand Command class (FindNameCommand, FindTagCommand, etc.) 
+   to call (n/, t/, etc.)
+2. The specific FindCommandClass will check if their respective categories (names, tags, etc.) in the contact 
+   list contain the keyword
+3. Return the list of contacts which contain the keyword
+
+
+
+
+
+
+
+
+#### Design considerations:
+
+**Aspect: How filter executes:**
+
+* **Alternative 1:** Filter from the list of names and salary range.
+    * Pros:
+      - Provides filtering based on two different criteria, enhancing flexibility for users.
+      - Utilizes a straightforward approach by focusing on essential attributes like names and salary range.
+    * Cons:
+      - Does not cover all relevant aspects of contacts, leading to potential oversight in filtering results.
+
+
+* **Alternative 2:** Filter from the list of tags and programming languages.
+    * Pros:
+      - Offers filtering based on distinct criteria, allowing users to refine search results more precisely.
+      - Utilises efficient data structures like sets for handling tags and programming languages, potentially
+          enhancing performance.
+    * Cons:
+      - Complexity may increase due to handling multiple filtering criteria simultaneously, potentially leading to
+          longer implementation time and increased risk of errors.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -283,6 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Computer science job seeker | add contact information of interviewer / company | contact the interviewer / company                                  |
 | `* * *`  | Computer science job seeker | add salary range                                 | check the salary range of the job                                  |
 | `* * *`  | Computer science job seeker | add company name                                 | check which company the job is from                                |
+| `* * *`  | Computer science job seeker | add extra info about the company                 | recall the extra information about each of the companies           |                   |
 | `* * *`  | Computer science job seeker | add interview time                               | check what is the interview time                                   |
 | `* *`    | Computer science job seeker | add programming language(s) related to the job   | identify which programming language(s) is/are required for the job |
 | `* *`    | Computer science job seeker | add job responsibilities                         | check what are the job responsibilities for the job                |
@@ -354,8 +440,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the salary or salary range info to their address book.
 2. User inputs the 'add' command with the salary detail in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the salary information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the salary information for the contact and displays a success message.
 
       Use case ends.
 
@@ -374,8 +460,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the company’s name info to their address book.
 2. User inputs the 'add' command with the company’s name in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the company’s name information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the company’s name information for the contact and displays a success message.
 
       Use case ends.
 
@@ -394,8 +480,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The user decides to add a new contact with the programming language  info to their address book.
 2. User inputs the 'add' command with the programming language detail in the correct format.
-3. System validates the salary format and range.
-4. System adds or updates the programming language information for the contact and displays a success message.
+3. CCBot validates the salary format and range.
+4. CCBot adds or updates the programming language information for the contact and displays a success message.
 
       Use case ends.
 
@@ -407,6 +493,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 ---
+
+**Use case: Add extra info about the company to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with extra company info to their address book.
+2. User inputs the 'add' command with the extra information detail in the correct format.
+3. CCBot validates the input details.
+4. CCBot adds or updates the extra information for the contact and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. If the  extra information detail is invalid:
+    * 3a1. CCBot shows an error message indicating the validation failure and an error message about the format or character limit.
+
+      Use case resumes at step 2.
+
+---
+
+
 
 
 ### Non-Functional Requirements

@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.FilterProgrammingLanguageCommandParser.createLanguages;
+import static seedu.address.logic.parser.FilterTagCommandParser.createTags;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -19,12 +22,21 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FilterProgrammingLanguageCommand;
+import seedu.address.logic.commands.FilterSalaryCommand;
+import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.language.ProgrammingLanguageContainsKeywordsPredicate;
+import seedu.address.model.person.NameOrCompanyNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SalaryContainsKeywordsPredicate;
+import seedu.address.model.person.SalaryRange;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -74,7 +86,36 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new NameOrCompanyNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filter_salary() throws Exception {
+        List<String> keywords = Arrays.asList("2000", "9000-10000", "4000");
+        FilterSalaryCommand command = (FilterSalaryCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_SALARY
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("2000"),
+                new SalaryRange("9000-10000"), new SalaryRange("4000")))), command);
+    }
+    @Test
+    public void parseCommand_filter_tag() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FilterTagCommand command = (FilterTagCommand) parser.parseCommand(
+                FilterTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterTagCommand(new TagContainsKeywordsPredicate(
+                createTags("foo", "bar", "baz"))), command);
+    }
+
+    @Test
+    public void parseCommand_filter_programmingLanguage() throws Exception {
+        List<String> languages = Arrays.asList("Java", "C++", "Python");
+        FilterProgrammingLanguageCommand command = (FilterProgrammingLanguageCommand) parser.parseCommand(
+                FilterProgrammingLanguageCommand.COMMAND_WORD + " " + languages.stream()
+                        .collect(Collectors.joining(" ")));
+        assertEquals(new FilterProgrammingLanguageCommand(
+                new ProgrammingLanguageContainsKeywordsPredicate(
+                        createLanguages(languages.toArray(new String[0])))), command);
     }
 
     @Test
@@ -87,6 +128,12 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " pri/") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " pri/") instanceof SortCommand);
     }
 
     @Test

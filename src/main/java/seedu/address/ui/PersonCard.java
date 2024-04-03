@@ -45,8 +45,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label salary;
     @FXML
+    private Label info;
+    @FXML
+    private Label jobDifficulty;
+    @FXML
     private FlowPane tags;
-
+    @FXML
+    private FlowPane programmingLanguages;
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -61,8 +66,32 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         dateTime.setText("Interview Time: " + person.getDateTime().toString());
         salary.setText("Salary: " + person.getSalary().toString() + "$");
+        info.setText(person.getInfo().value);
+        jobDifficulty.setText("Predict Job Difficulty: " + person.getJobDifficulty().toString() + "%");
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getProgrammingLanguages().stream()
+                .sorted(Comparator.comparing(pl -> pl.languageName))
+                .forEach(pl -> programmingLanguages.getChildren().add(
+                        new Label("Programming Languages: " + pl.languageName)));
+        updateCardColor(person);
+    }
+    private void updateCardColor(Person person) {
+        String styleClass;
+        switch (person.getPriority()) {
+        case 0:
+            styleClass = "priorityHigh";
+            break;
+        case 1:
+            styleClass = "priorityMedium";
+            break;
+        case 2:
+            styleClass = "priorityLow";
+            break;
+        default:
+            styleClass = "priorityDefault";
+        }
+        cardPane.getStyleClass().add(styleClass);
     }
 }

@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+
 /**
  * Represents a Person's salary in the address book.
  */
@@ -86,6 +87,7 @@ public class Salary {
         return true;
     }
 
+
     @Override
     public String toString() {
         if (isRange) {
@@ -105,5 +107,27 @@ public class Salary {
 
     public boolean isRange() {
         return isRange;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Salary)) {
+            return false;
+        }
+
+        if (isRange != ((Salary) other).isRange) {
+            return false;
+        }
+
+        if (isRange) {
+            return salary1 == ((Salary) other).salary1 && salary2 == ((Salary) other).salary2;
+        } else {
+            return salary1 == ((Salary) other).salary1;
+        }
     }
 }

@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -24,9 +27,11 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Info;
 import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -52,7 +57,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_INTERVIEWTIME + "INTERVIEW-TIME] "
             + "[" + PREFIX_SALARY + "SALARY] "
+            + "[" + PREFIX_INFO + "INFO] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_PROGRAMMING_LANGUAGE + "PROGRAMMING-LANGUAGE]...\n"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -110,11 +118,15 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         InterviewTime updatedDateTime = editPersonDescriptor.getDateTime().orElse(personToEdit.getDateTime());
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
+        Info updatedInfo = editPersonDescriptor.getInfo().orElse(personToEdit.getInfo());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
+        Set<ProgrammingLanguage> updatedProgrammingLanguages = editPersonDescriptor.getProgrammingLanguages()
+                .orElse(personToEdit.getProgrammingLanguages());
+        int updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
         return new Person(
                 updatedCompanyName, updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedDateTime, updatedSalary, updatedTags);
+                updatedAddress, updatedDateTime, updatedSalary, updatedInfo,
+                updatedTags, updatedProgrammingLanguages, updatedPriority);
     }
 
     @Override
@@ -129,6 +141,12 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
+        System.out.println("EditCommand equals");
+        System.out.println("index: " + index + " other index: " + ((EditCommand) other).index);
+        System.out.println("editPersonDescriptor: " + editPersonDescriptor + " other editPersonDescriptor: "
+                + ((EditCommand) other).editPersonDescriptor);
+        System.out.println(index.equals(otherEditCommand.index));
+        System.out.println(editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor));
         return index.equals(otherEditCommand.index)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
@@ -153,7 +171,10 @@ public class EditCommand extends Command {
         private Address address;
         private InterviewTime dateTime;
         private Salary salary;
+        private Info info;
         private Set<Tag> tags;
+        private Set<ProgrammingLanguage> programmingLanguages;
+        private Integer priority;
 
         public EditPersonDescriptor() {}
 
@@ -169,14 +190,18 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setDateTime(toCopy.dateTime);
             setSalary(toCopy.salary);
+            setInfo(toCopy.info);
             setTags(toCopy.tags);
+            setProgrammingLanguages(toCopy.programmingLanguages);
+            setPriority(toCopy.priority);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateTime, salary, tags);
+            return CollectionUtil.isAnyNonNull(companyName, name, phone, email, address, dateTime, salary, info, tags,
+                    programmingLanguages, priority);
         }
         public void setCompanyName(CompanyName companyName) {
             this.companyName = companyName;
@@ -232,6 +257,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(salary);
         }
 
+        public void setInfo(Info info) {
+            this.info = info; }
+
+        public Optional<Info> getInfo() {
+            return Optional.ofNullable(info); }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -248,6 +279,33 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+
+        /**
+         * Sets {@code programmingLanguages} to this object's {@code programmingLanguages}.
+         * A defensive copy of {@code programmingLanguages} is used internally.
+         */
+        public void setProgrammingLanguages(Set<ProgrammingLanguage> programmingLanguages) {
+            this.programmingLanguages = (programmingLanguages != null) ? new HashSet<>(programmingLanguages) : null;
+        }
+
+        /**
+         * Returns an unmodifiable programmingLanguages set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code programmingLanguages} is null.
+         */
+        public Optional<Set<ProgrammingLanguage>> getProgrammingLanguages() {
+            return (programmingLanguages != null) ? Optional.of(Collections
+                    .unmodifiableSet(programmingLanguages)) : Optional.empty();
+        }
+
+        public void setPriority(Integer priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Integer> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
 
         @Override
         public boolean equals(Object other) {
@@ -268,7 +326,10 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(dateTime, otherEditPersonDescriptor.dateTime)
                     && Objects.equals(salary, otherEditPersonDescriptor.salary)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(info, otherEditPersonDescriptor.info)
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(programmingLanguages, otherEditPersonDescriptor.programmingLanguages)
+                    && Objects.equals(priority, otherEditPersonDescriptor.priority);
         }
 
         @Override
@@ -281,7 +342,10 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("dateTime", dateTime)
                     .add("salary", salary)
+                    .add("info", info)
                     .add("tags", tags)
+                    .add("programmingLanguages", programmingLanguages)
+                    .add("priority", priority)
                     .toString();
         }
 

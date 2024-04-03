@@ -3,9 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.language.ProgrammingLanguage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Info;
 import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -25,6 +27,8 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_INTERVIEWTIME = "121220221400";
     public static final String DEFAULT_SALARY = "0";
+    public static final String DEFAULT_INFO = "";
+    public static final int DEFAULT_PRIORITY = 2;
 
     private CompanyName companyName;
     private Name name;
@@ -33,8 +37,10 @@ public class PersonBuilder {
     private Address address;
     private InterviewTime dateTime;
     private Salary salary;
+    private Info info;
     private Set<Tag> tags;
-
+    private Set<ProgrammingLanguage> programmingLanguages;
+    private int priority;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -46,7 +52,10 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         dateTime = new InterviewTime(DEFAULT_INTERVIEWTIME);
         salary = new Salary(DEFAULT_SALARY);
+        info = new Info(DEFAULT_INFO);
         tags = new HashSet<>();
+        programmingLanguages = new HashSet<>();
+        priority = DEFAULT_PRIORITY;
     }
 
     /**
@@ -60,7 +69,10 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         dateTime = personToCopy.getDateTime();
         salary = personToCopy.getSalary();
+        info = personToCopy.getInfo();
         tags = new HashSet<>(personToCopy.getTags());
+        programmingLanguages = new HashSet<>(personToCopy.getProgrammingLanguages());
+        priority = personToCopy.getPriority();
     }
 
     /**
@@ -104,6 +116,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Info} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withInfo(String info) {
+        this.info = new Info(info);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -129,8 +149,32 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code programmingLanguages} into a {@code Set<ProgrammingLanguage>} and
+     * sets it to the {@code Person} that we are building.
+     * @param programmingLanguages The programming languages to be set.
+     * @return The updated {@code PersonBuilder} object.
+     */
+    public PersonBuilder withProgrammingLanguages(String... programmingLanguages) {
+        this.programmingLanguages = SampleDataUtil.getProgrammingLanguageSet(programmingLanguages);
+        return this;
+    }
+
+    /**
+     * Sets the {@code priority} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriority(int priority) {
+        this.priority = priority;
+        return this;
+    }
+
+    /**
+     * Builds and returns a {@code Person} object with the current attributes set in this {@code PersonBuilder}.
+     * @return The {@code Person} object constructed with the current attributes set in this builder.
+     */
     public Person build() {
-        return new Person(companyName, name, phone, email, address, dateTime, salary, tags);
+        return new Person(companyName, name, phone, email, address, dateTime, salary, info, tags,
+                programmingLanguages, priority);
     }
 
 }
