@@ -70,9 +70,9 @@ public class InterviewTime {
                 : "InterviewTime range cannot cannot contain more than 1 null Object";
         LocalDateTime after = range.get(0) == null ? null : range.get(0).getDateTime();
         LocalDateTime before = range.get(1) == null ? null : range.get(1).getDateTime();
-        if (before != null) {
+        if (after == null) {
             return this.dateTime.isBefore(before);
-        } else if (after != null) {
+        } else if (before == null) {
             return this.dateTime.isAfter(after);
         } else {
             return this.dateTime.isBefore(before) && this.dateTime.isAfter(after);
