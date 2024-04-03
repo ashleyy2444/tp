@@ -12,7 +12,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FilterTagCommand object
  */
 public class FilterTagCommandParser implements Parser<FilterTagCommand> {
 
