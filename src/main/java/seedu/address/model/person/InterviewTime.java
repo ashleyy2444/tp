@@ -18,7 +18,10 @@ public class InterviewTime {
     public static final String REGEX_DD = "(0[1-9]|[1-2][0-9]|3[01])";
     public static final String REGEX_MM = "(0[1-9]|1[0-2])";
     public static final String REGEX_HHMM = "^([0-1][0-9]|2[0-3])[0-5][0-9]$";
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm"); //set format
+    public static final String INTERVIEW_TIME_FORMAT = "ddMMyyyyHHmm";
+    public static final String EXAMPLE_INTERVIEW_TIME_FORMAT_1 = "020520240800";
+    public static final String EXAMPLE_INTERVIEW_TIME_FORMAT_2 = "030820242300";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(INTERVIEW_TIME_FORMAT); //set format
 
     public final LocalDateTime dateTime;
 

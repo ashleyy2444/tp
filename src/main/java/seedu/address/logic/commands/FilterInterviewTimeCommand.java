@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.InterviewTimeContainsKeywordsPredicate;
 
 
@@ -19,9 +20,16 @@ public class FilterInterviewTimeCommand extends FilterCommand {
             + "the specified salary and displays them as a list with index numbers.\n"
             + "Parameters: INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...\n"
             + "Example:\n"
-            + "- " + COMMAND_WORD + "before/020220241100"
-            + "- " + COMMAND_WORD + "after/020220241100"
-            + "- " + COMMAND_WORD + "from/020220241100 to/020520241100";
+            + "- " + COMMAND_WORD + "before/020220241100\n"
+            + "- " + COMMAND_WORD + "after/020220241100\n"
+            + "- " + COMMAND_WORD + "from/020220241100-020520241100";
+    public static final String WRONG_INTERVIEW_TIME_RANGE_MESSAGE = "INTERVIEW_TIME_RANGE should be in the form of:\n"
+            + "before/INTERVIEW_TIME\nor\n"
+            + "after/INTERVIEW_TIME\nor\n"
+            + "from/INTERVIEW_TIME-INTERVIEW_TIME\n"
+            + "where INTERVIEW_TIME is in the form: " + InterviewTime.INTERVIEW_TIME_FORMAT
+            + "\n Example: from/" + InterviewTime.EXAMPLE_INTERVIEW_TIME_FORMAT_1 + "-"
+            + InterviewTime.EXAMPLE_INTERVIEW_TIME_FORMAT_2;
 
     private final InterviewTimeContainsKeywordsPredicate predicate;
 
