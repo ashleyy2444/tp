@@ -19,5 +19,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRIORITY = new Prefix("pri/");
     public static final Prefix PREFIX_RESUME = new Prefix("resume");
     public static final Prefix PREFIX_EDUCATION = new Prefix("edu/");
+    public static final Prefix PREFIX_JOB_DIFFICULTY = new Prefix("jd/");
 
 }

@@ -6,10 +6,11 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import org.junit.jupiter.api.Test;
 
-public class PersonCompanyNameComparatorTest {
+public class PersonJobDifficultyComparatorTest {
+
     @Test
     public void checkOrder() {
-        PersonCompanyNameComparator comparator = new PersonCompanyNameComparator(false);
+        PersonJobDifficultyComparator comparator = new PersonJobDifficultyComparator(false);
         //test more than
         assertTrue(comparator.compare(ALICE, BENSON) >= 1);
         //test equals
@@ -20,7 +21,7 @@ public class PersonCompanyNameComparatorTest {
 
     @Test
     public void checkReverseOrder() {
-        PersonCompanyNameComparator comparator = new PersonCompanyNameComparator(true);
+        PersonJobDifficultyComparator comparator = new PersonJobDifficultyComparator(true);
         //test more than
         assertTrue(comparator.compare(ALICE, BENSON) <= -1);
         //test equals
@@ -28,5 +29,4 @@ public class PersonCompanyNameComparatorTest {
         //test less than
         assertTrue(comparator.compare(BENSON, ALICE) >= 1);
     }
-
 }
