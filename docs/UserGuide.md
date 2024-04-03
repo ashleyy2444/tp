@@ -196,3 +196,11 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+## CLI Syntax Summary
+
+Character | Explaination, Examples
+----------|------------------
+**n/**|Name of the contact
+**cn/**|The company name
+**tt/**|The time of the interview
