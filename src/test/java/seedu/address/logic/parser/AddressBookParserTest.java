@@ -33,7 +33,7 @@ import seedu.address.model.person.NameOrCompanyNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 import seedu.address.model.person.SalaryRange;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;

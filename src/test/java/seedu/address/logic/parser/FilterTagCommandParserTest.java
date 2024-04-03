@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 
 public class FilterTagCommandParserTest {

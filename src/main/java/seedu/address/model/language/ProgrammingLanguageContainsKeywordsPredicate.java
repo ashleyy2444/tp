@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.language;
 
 import static java.util.Objects.requireNonNull;
 
@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.language.ProgrammingLanguage;
+import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Tag} matches any of the keywords given.

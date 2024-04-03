@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.ProgrammingLanguageContainsKeywordsPredicate;
+import seedu.address.model.language.ProgrammingLanguageContainsKeywordsPredicate;
 
 /**
  * Filters and lists all persons in address book whose programming language contains any of the argument keywords.

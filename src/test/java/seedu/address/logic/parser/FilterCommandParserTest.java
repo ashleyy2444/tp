@@ -18,7 +18,7 @@ import seedu.address.logic.commands.FilterSalaryCommand;
 import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 import seedu.address.model.person.SalaryRange;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 
 public class FilterCommandParserTest {
