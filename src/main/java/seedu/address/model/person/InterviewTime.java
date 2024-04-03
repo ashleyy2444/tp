@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -57,6 +58,25 @@ public class InterviewTime {
 
     public String rawToString() {
         return dateTime.format(formatter);
+    }
+
+    /**
+     * Returns true if {@code this.dateTime} is within the range provided.
+     * @param range A List containing two {@code InterviewTime}.
+     */
+    public boolean isWithinInterviewTimeRange(List<InterviewTime> range) {
+        assert range.size() == 2 : "InterviewTime range should be of size 2";
+        assert !(range.get(0) == null && range.get(1) == null)
+                : "InterviewTime range cannot cannot contain more than 1 null Object";
+        LocalDateTime after = range.get(0) == null ? null : range.get(0).getDateTime();
+        LocalDateTime before = range.get(1) == null ? null : range.get(1).getDateTime();
+        if (before != null) {
+            return this.dateTime.isBefore(before);
+        } else if (after != null) {
+            return this.dateTime.isAfter(after);
+        } else {
+            return this.dateTime.isBefore(before) && this.dateTime.isAfter(after);
+        }
     }
 
     @Override

@@ -19,9 +19,8 @@ public class InterviewTimeContainsKeywordsPredicate implements Predicate<Person>
 
     @Override
     public boolean test(Person person) {
-        return true;
-        //        return keywords.stream()
-        //                .anyMatch(salaryRange -> salaryRange.isWithinSalaryRange(person.getSalary()));
+        return keywords.stream()
+                .anyMatch(interviewTimeRange -> person.getDateTime().isWithinInterviewTimeRange(interviewTimeRange));
     }
 
     @Override
@@ -41,6 +40,7 @@ public class InterviewTimeContainsKeywordsPredicate implements Predicate<Person>
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("salaries", keywords).toString();
+        return new ToStringBuilder(this)
+                .add("interviewTimes", keywords).toString();
     }
 }
