@@ -26,12 +26,23 @@ public class PersonInterviewTimeComparatorTest {
 
     @Test
     public void checkOrder() {
-        PersonInterviewTimeComparator comparator = new PersonInterviewTimeComparator();
+        PersonInterviewTimeComparator comparator = new PersonInterviewTimeComparator(false);
         //test earlier than
         assertTrue(comparator.compare(ALICE, BENSON) <= -1);
         //test equals
         assertTrue(comparator.compare(ALICE, ALICE) == 0);
         //test later than
         assertTrue(comparator.compare(BENSON, ALICE) >= 1);
+    }
+
+    @Test
+    public void checkReverseOrder() {
+        PersonInterviewTimeComparator comparator = new PersonInterviewTimeComparator(true);
+        //test earlier than
+        assertTrue(comparator.compare(ALICE, BENSON) >= 1);
+        //test equals
+        assertTrue(comparator.compare(ALICE, ALICE) == 0);
+        //test later than
+        assertTrue(comparator.compare(BENSON, ALICE) <= -1);
     }
 }

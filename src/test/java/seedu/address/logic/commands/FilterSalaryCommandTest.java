@@ -35,24 +35,24 @@ public class FilterSalaryCommandTest {
         SalaryContainsKeywordsPredicate secondPredicate =
                 new SalaryContainsKeywordsPredicate(Collections.singletonList(new SalaryRange("2000-5000")));
 
-        FilterSalaryCommand findSalaryFirstCommand = new FilterSalaryCommand(firstPredicate);
-        FilterSalaryCommand findSalarySecondCommand = new FilterSalaryCommand(secondPredicate);
+        FilterSalaryCommand filterSalaryFirstCommand = new FilterSalaryCommand(firstPredicate);
+        FilterSalaryCommand filterSalarySecondCommand = new FilterSalaryCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findSalaryFirstCommand.equals(findSalaryFirstCommand));
+        assertTrue(filterSalaryFirstCommand.equals(filterSalaryFirstCommand));
 
         // same values -> returns true
         FilterSalaryCommand findSalaryFirstCommandCopy = new FilterSalaryCommand(firstPredicate);
-        assertTrue(findSalaryFirstCommand.equals(findSalaryFirstCommandCopy));
+        assertTrue(filterSalaryFirstCommand.equals(findSalaryFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(findSalaryFirstCommand.equals(1));
+        assertFalse(filterSalaryFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findSalaryFirstCommand.equals(null));
+        assertFalse(filterSalaryFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(findSalaryFirstCommand.equals(findSalarySecondCommand));
+        assertFalse(filterSalaryFirstCommand.equals(filterSalarySecondCommand));
     }
 
 
@@ -81,9 +81,9 @@ public class FilterSalaryCommandTest {
     public void toStringMethod() {
         SalaryContainsKeywordsPredicate predicate =
                 new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("5000")));
-        FilterSalaryCommand findSalaryCommand = new FilterSalaryCommand(predicate);
+        FilterSalaryCommand filterSalaryCommand = new FilterSalaryCommand(predicate);
         String expected = FilterSalaryCommand.class.getCanonicalName() + "{salary=" + predicate + "}";
-        assertEquals(expected, findSalaryCommand.toString());
+        assertEquals(expected, filterSalaryCommand.toString());
     }
 
     /**

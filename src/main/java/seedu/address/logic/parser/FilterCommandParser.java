@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,13 +25,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_SALARY, PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE);
-        if (!onlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE)
-            || !argMultimap.getPreamble().isEmpty()) {
+                        args, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME, PREFIX_PROGRAMMING_LANGUAGE);
+        if (!exactlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME,
+                PREFIX_PROGRAMMING_LANGUAGE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME,
+                PREFIX_PROGRAMMING_LANGUAGE);
 
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             return new FilterSalaryCommandParser().parse(argMultimap.getValue(PREFIX_SALARY).get());
@@ -40,7 +42,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             return new FilterProgrammingLanguageCommandParser().parse(argMultimap.getValue(PREFIX_PROGRAMMING_LANGUAGE)
                     .get());
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            return new FilterInterviewTimeCommandParser().parse(argMultimap.getValue(PREFIX_INTERVIEWTIME).get());
         }
     }
 
@@ -48,7 +50,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * Returns true if at least one of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean onlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean exactlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         long count = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
                 .count();

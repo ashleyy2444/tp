@@ -7,12 +7,12 @@ import java.util.List;
 
 import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.TagContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FilterTagCommand object
  */
 public class FilterTagCommandParser implements Parser<FilterTagCommand> {
 

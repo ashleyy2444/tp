@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.SalaryRange;
+import seedu.address.model.person.user.Education;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,6 +55,21 @@ public class ParserUtil {
             throw new ParseException(CompanyName.MESSAGE_CONSTRAINTS);
         }
         return new CompanyName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Education parseEducation(String education) throws ParseException {
+        requireNonNull(education);
+        String trimmedEducation = education.trim();
+        if (!Education.isValidEducation(trimmedEducation)) {
+            throw new ParseException(Education.MESSAGE_CONSTRAINTS);
+        }
+        return new Education(education);
     }
 
     /**
