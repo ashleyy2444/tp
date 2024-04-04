@@ -89,6 +89,12 @@ public class PersonCard extends UiPart<Region> {
         case 2:
             styleClass = "priorityLow";
             break;
+        case 3:
+            styleClass = "priorityLower";
+            break;
+        case 4:
+            styleClass = "priorityLowest";
+            break;
         default:
             styleClass = "priorityDefault";
         }
