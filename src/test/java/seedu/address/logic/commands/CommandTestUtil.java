@@ -52,6 +52,10 @@ public class CommandTestUtil {
     public static final String VALID_PROGRAMMING_LANG_JAVA = "Java";
     public static final String VALID_PRIORITY_AMY = "2";
     public static final String VALID_PRIORITY_BOB = "2";
+    public static final String VALID_SALARY_RANGE_MAX = "<4000";
+    public static final String VALID_SALARY_RANGE_MIN = ">5000";
+    public static final String VALID_SALARY_RANGE = "1000-3000";
+
     public static final String COMPANY_NAME_DESC_AMY = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_AMY;
     public static final String COMPANY_NAME_DESC_BOB = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;

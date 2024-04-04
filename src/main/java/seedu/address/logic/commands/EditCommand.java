@@ -200,7 +200,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateTime, salary, info, tags,
+            return CollectionUtil.isAnyNonNull(companyName, name, phone, email, address, dateTime, salary, info, tags,
                     programmingLanguages, priority);
         }
         public void setCompanyName(CompanyName companyName) {
