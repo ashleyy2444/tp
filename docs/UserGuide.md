@@ -27,8 +27,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
+   * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
+     i/remote work s/5000 pl/Java t/friends t/referral pri/2` : 
+     Adds a contact named `John Doe` to the Address Book.
+     
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -65,7 +67,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -76,16 +78,22 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/INTERVIEW-TIME i/INFO 
+        [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY)0-4)] …​`
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
+i/Birthday: 12 May 2001 s/5000 pl/Java t/friends t/owesMoney pri/2`
+* `add cn/ Amazon n/Betsy Crowe p/81234567 e/betsycrowe@example.com a/Newgate Prison tt/121220241200
+i/Remote work s/4000 pl/Python t/criminal pri/4`
+
 ### Adding a resume: `resume`
+
 Adds a resume to the addressbook.
 
 Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION a/ADDRESS`
@@ -93,6 +101,7 @@ Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY
 Examples:
 * `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++`
 * `resume cn/Apple n/Amy Birch p/87654321 e/amy@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -116,25 +125,118 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name / company name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names / company names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Only name and company name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
+* `find John` returns `John` and `John Doe`
+* `find google` returns `google` and `Google`
+* `find mary tiktok` returns `Mary Lee` and `Tiktok`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Locating persons by various categories: `filter`
+
+Filters contact list based on tags, interview times, salary range, or programming languages.
+
+#### Filter by tag: `filter t/`
+
+Format: `filter t/TAG [MORE TAGS]...`
+
+* The search is case-sensitive.
+* Only the tags of each of the contacts are searched.
+* Persons matching at least one tag will be returned.
+
+Examples:
+* `filter t/manager` returns any persons with a tag, `manager`
+* `filter t/manager HR` returns any persons with either of the tags, `manager` or `HR`.
+
+#### Filter by interview times: `filter tt/`
+
+Format: `filter tt/INTERVIEW_TIME_RANGE [MORE INTERVIEW_TIME_RANGE]...`
+
+* Only the interview times of each of the contacts are searched.
+* Persons with interview times within the range provided will be returned.
+* Valid `INTERVIEW_TIME_RANGE` includes:
+  * `before/INTERVIEWTIME`
+  * `after/INTERVIEWTIME`
+  * `from/INTERVIEWTIME-INTERVIEWTIME`
+
+Examples:
+* `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan 
+  2020, 1200am `(010120200000)` or persons with interview times within 1 Jan 2022, 1200am `(010120220000)` and 1 Jan 
+  2023, 1200am `(010120230000)`.
+* `filter tt/after/010120220000` returns persons with interview times after 1 Jan 2022, 1200am `(010120220000)`.
+
+#### Filter by salaries: `filter s/`
+
+Format: `filter s/SALARY_RANGE [MORE SALARY_RANGE]...`
+
+* Only the salaries of each of the contacts are searched.
+* Persons with salaries within the range provided will be returned.
+* Valid `SALARY_RANGE` includes:
+  * Valid `SALARY` 
+  * `>=INTEGER`
+  * `<=INTEGER`
+
+    where `INTEGER` is a number between 0 and 2147483647.
+
+Examples:
+* `filter s/5000` returns persons with salaries of $5000.
+* `filter s/2000-5000 >=7000` returns persons with salaries that contain any number from $2000 to $5000 or with 
+  salaries more than or equals to $7000.
+
+#### Filter by programming language: `filter pl/`
+
+Format `filter pl/PROGRAMMING_LANGUAGE [MORE PROGRAMMING_LANGUAGE]...`
+
+* The search is case-insensitive.
+* Only the programming language of each of the contacts are searched.
+* Persons matching at least one programming language will be returned.
+
+Examples:
+* `filter pl/Java` returns any persons with a programming language, `java`.
+* `filter pl/python C` returns any persons with either of the programming languages, `python` or `c`.
+
+### Sorting the person list : `sort`
+
+Sorts the person list by the specified field.
+
+Format: `sort [rev/] KEYWORD`
+
+* Sorts the person list by the specified `KEYWORD`.
+* The `KEYWORD` must be one of the following: `n/` (name), `cn/` (company name),`tt/` (interview time), `s/` (salary), `pri/` (priority).
+* The `rev/` prefix can be added to sort in reverse order. (Optional)
+* The sorting is not case-insensitive.
+* The sort command defaults to alphabetical sorting for names and company names.
+* The sort command defaults to chronological sorting for interview times.
+* The sort command defaults to sort from largest to smallest for salary.
+* The sort command defaults to sort from the highest priority to the lowest priority for priority.
+
+Examples:
+* `sort n/` sorts the person list by name in alphabetical order.
+* `sort rev/ s/` sorts the person list by salary in descending order.
+* `sort tt/` sorts the person list by interview time in chronological order.
+* `sort rev/ pri/` sorts the person list by priority in descending order.
+* `sort cn/` sorts the person list by company name in alphabetical order.
+* `sort rev/ cn/` sorts the person list by company name in reverse alphabetical order.
+* `sort rev/ tt/` sorts the person list by interview time in reverse chronological order.
+
+### Deleting a person/persons: `delete`
+
+Deletes the contact list based index or tags.
+
+#### Delete by index: `delete`
 
 Deletes the specified person from the address book.
 
@@ -147,6 +249,18 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+#### Delete by tag: `delete t/`
+
+Format: `delete t/TAG [MORE TAGS]...`
+
+* The search is case-insensitive.
+* Only the tags of each of the contacts are deleted.
+* Persons matching at least one tag will be deleted.
+
+Examples:
+* `delete t/manager` deletes any persons with a tag, `manager`
+* `delete t/manager HR` deletes any persons with either of the tags, `manager` or `HR`.
 
 ### Clearing all entries : `clear`
 
@@ -172,10 +286,6 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
