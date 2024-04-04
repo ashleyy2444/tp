@@ -30,7 +30,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
      i/remote work s/5000 pl/Java t/friends t/referral pri/2` : 
      Adds a contact named `John Doe` to the Address Book.
-
+     
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -67,7 +67,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -134,6 +134,61 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Locating persons by various categories: `filter`
+
+Filters contact list based on tags, interview times, salary range, or programming languages.
+
+#### Filter by tag: `filter t/`
+
+Format: `filter t/TAG [MORE TAGS]...`
+
+* The search is case-sensitive.
+* Only the tags of each of the contacts are searched.
+* Persons matching at least one tag will be returned.
+
+Examples:
+* `filter t/manager` returns any persons with a tag, `manager`
+* `filter t/manager HR` returns any persons with either of the tags, `manager` or `HR`.
+
+#### Filter by interview times: `filter tt/`
+
+Format: `filter tt/INTERVIEW_TIME_RANGE [MORE INTERVIEW_TIME_RANGE]...`
+
+* Only the interview times of each of the contacts are searched.
+* Persons with interview times within the range provided will be returned.
+* Valid `INTERVIEW_TIME_RANGE` includes:
+  * `before/INTERVIEWTIME`
+  * `after/INTERVIEWTIME`
+  * `from/INTERVIEWTIME-INTERVIEWTIME`
+
+Examples:
+* `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan 
+  2020, 1200am `(010120200000)` or persons with interview times within 1 Jan 2022, 1200am `(010120220000)` and 1 Jan 
+  2023, 1200am `(010120230000)`.
+* `filter tt/after/010120220000` returns persons with interview times after 1 Jan 2022, 1200am `(010120220000)`.
+
+#### Filter by salaries: `filter s/`
+
+Format: `filter s/SALARY_RANGE [MORE SALARY_RANGE]...`
+
+* Only the salaries of each of the contacts are searched.
+* Persons with salaries within the range provided will be returned.
+* Valid `SALARY_RANGE` includes:
+  * Valid `SALARY` 
+  * `>=INTEGER`
+  * `<=INTEGER`
+
+    where `INTEGER` is a number between 0 and 2147483647.
+
+Examples:
+* `filter s/5000` returns persons with salaries of $5000.
+* `filter s/2000-5000 >=7000` returns persons with salaries that contain any number from $2000 to $5000 or with 
+  salaries more than or equals to $7000.
+
+#### Filter by tag: `filter pl/`
+
+Format `filter pl/PROGRAMMING_LANGUAGE [MORE PROGRAMMING_LANGUAGE]...`
 
 ### Deleting a person : `delete`
 
