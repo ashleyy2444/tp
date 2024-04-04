@@ -117,21 +117,23 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name / company name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names / company names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Only name and company name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
+* `find John` returns `John` and `John Doe`
+* `find google` returns `google` and `Google`
+* `find mary tiktok` returns `Mary Lee` and `Tiktok`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -186,11 +188,47 @@ Examples:
 * `filter s/2000-5000 >=7000` returns persons with salaries that contain any number from $2000 to $5000 or with 
   salaries more than or equals to $7000.
 
-#### Filter by tag: `filter pl/`
+#### Filter by programming language: `filter pl/`
 
 Format `filter pl/PROGRAMMING_LANGUAGE [MORE PROGRAMMING_LANGUAGE]...`
 
-### Deleting a person : `delete`
+* The search is case-insensitive.
+* Only the programming language of each of the contacts are searched.
+* Persons matching at least one programming language will be returned.
+
+Examples:
+* `filter pl/Java` returns any persons with a programming language, `java`.
+* `filter pl/python C` returns any persons with either of the programming languages, `python` or `c`.
+
+### Sorting the person list : `sort`
+
+Sorts the person list by the specified field.
+
+Format: `sort [rev/] KEYWORD`
+
+* Sorts the person list by the specified `KEYWORD`.
+* The `KEYWORD` must be one of the following: `n/` (name), `cn/` (company name),`tt/` (interview time), `s/` (salary), `pri/` (priority).
+* The `rev/` prefix can be added to sort in reverse order. (Optional)
+* The sorting is not case-insensitive.
+* The sort command defaults to alphabetical sorting for names and company names.
+* The sort command defaults to chronological sorting for interview times.
+* The sort command defaults to sort from largest to smallest for salary.
+* The sort command defaults to sort from the highest priority to the lowest priority for priority.
+
+Examples:
+* `sort n/` sorts the person list by name in alphabetical order.
+* `sort rev/ s/` sorts the person list by salary in descending order.
+* `sort tt/` sorts the person list by interview time in chronological order.
+* `sort rev/ pri/` sorts the person list by priority in descending order.
+* `sort cn/` sorts the person list by company name in alphabetical order.
+* `sort rev/ cn/` sorts the person list by company name in reverse alphabetical order.
+* `sort rev/ tt/` sorts the person list by interview time in reverse chronological order.
+
+### Deleting a person/persons: `delete`
+
+Deletes the contact list based index or tags.
+
+#### Delete by index: `delete`
 
 Deletes the specified person from the address book.
 
@@ -203,6 +241,18 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+#### Delete by tag: `delete t/`
+
+Format: `delete t/TAG [MORE TAGS]...`
+
+* The search is case-insensitive.
+* Only the tags of each of the contacts are deleted.
+* Persons matching at least one tag will be deleted.
+
+Examples:
+* `delete t/manager` deletes any persons with a tag, `manager`
+* `delete t/manager HR` deletes any persons with either of the tags, `manager` or `HR`.
 
 ### Clearing all entries : `clear`
 
@@ -228,30 +278,6 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Sorting the person list : `sort`
-
-Sorts the person list by the specified field.
-
-Format: `sort [rev/] KEYWORD`
-
-* Sorts the person list by the specified `KEYWORD`.
-* The `KEYWORD` must be one of the following: `n/` (name), `cn/` (company name),`tt/` (interview time), `s/` (salary), `pri/` (priority).
-* The `rev/` prefix can be added to sort in reverse order. (Optional)
-* The sorting is not case-insensitive.
-* The sort command defaults to alphabetical sorting for names and company names.
-* The sort command defaults to chronological sorting for interview times.
-* The sort command defaults to sort from largest to smallest for salary.
-* The sort command defaults to sort from the highest priority to the lowest priority for priority.
-
-Examples:
-* `sort n/` sorts the person list by name in alphabetical order.
-* `sort rev/ s/` sorts the person list by salary in descending order.
-* `sort tt/` sorts the person list by interview time in chronological order.
-* `sort rev/ pri/` sorts the person list by priority in descending order.
-* `sort cn/` sorts the person list by company name in alphabetical order.
-* `sort rev/ cn/` sorts the person list by company name in reverse alphabetical order.
-* `sort rev/ tt/` sorts the person list by interview time in reverse chronological order.
 
 --------------------------------------------------------------------------------------------------------------------
 
