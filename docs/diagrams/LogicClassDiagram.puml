@@ -40,9 +40,14 @@ LogicManager -right->"1" ParserClasses
 ParserClasses ..> XYZCommand : <<create>>
 
 AddCommand -up-|> Command
+ClearCommand -up-|> Command
 DeleteCommand -up-|> Command
 EditCommand -up-|> Command
+ExitCommand -up-|> Command
 FindCommand -up-|> Command
+HelpCommand -up-|> Command
+ListCommand -up-|> Command
+SortCommand -up-|> Command
 LogicManager .left.> Command : <<call>>
 
 LogicManager --> Model
