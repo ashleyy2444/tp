@@ -1,20 +1,16 @@
-package seedu.address.model.person;
+package seedu.address.model.tag;
 
 import static seedu.address.logic.parser.FilterTagCommandParser.createTags;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TagContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
-
-
 
 public class TagContainsKeywordsPredicateTest {
 
@@ -73,12 +69,11 @@ public class TagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void toStringMethod() throws ParseException {
-        List<Tag> keywords = createTags("keyword1", "keyword2");
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(keywords);
+    public void toStringMethodOverride() {
+        List<Tag> tags = Arrays.asList(new Tag("tag1"), new Tag("tag2"));
+        TagContainsKeywordsPredicate instance = new TagContainsKeywordsPredicate(tags);
 
-        String expected = TagContainsKeywordsPredicate.class.getCanonicalName() + "{tags="
-                + keywords.stream().collect(Collectors.toList()) + "}";
-        Assertions.assertEquals(expected, predicate.toString());
+        String expected = "[tag1], [tag2]";
+        Assertions.assertEquals(expected, instance.toString());
     }
 }
