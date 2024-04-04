@@ -47,7 +47,7 @@ public class FilterCommandParserTest {
         String args = "";
         assert args.length() == 0;
         assertParseFailure(parser, args, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-        }
+    }
 
     @Test
     public void parse_validArgs_returnsFilterSalaryCommand() {
