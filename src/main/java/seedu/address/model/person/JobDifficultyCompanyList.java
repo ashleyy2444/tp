@@ -78,6 +78,30 @@ public class JobDifficultyCompanyList {
             put("dbs bank", 65);
             put("ocbc", 65);
             put("uob", 65);
+            put("ncs", 55);
+            put("jtc", 55);
+            put("jtc corporation", 55);
+            put("temasek", 70);
+            put("temasek holdings", 70);
+            put("st engineering", 55);
+            put("st", 55);
+            put("gic", 70);
+            put("deloitte", 70);
+            put("bnp paribas", 55);
+            put("dsta", 60);
+            put("smrt", 50);
+            put("micron", 50);
+            put("micron technology", 50);
+            put("phillip", 55);
+            put("phillip securities", 55);
+            put("singhealth", 50);
+            put("jp morgan", 70);
+            put("bank of america", 65);
+            put("cognizant", 60);
+            put("pricewaterhouseCoopers", 70);
+            put("pwc", 70);
+            put("govtech", 60);
+            put("meta", 70);
         }
     };
 
