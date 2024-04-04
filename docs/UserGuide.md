@@ -174,9 +174,29 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Sorting the person list : `sort`
 
-_Details coming soon ..._
+Sorts the person list by the specified field.
+
+Format: `sort [rev/] KEYWORD`
+
+* Sorts the person list by the specified `KEYWORD`.
+* The `KEYWORD` must be one of the following: `n/` (name), `cn/` (company name),`tt/` (interview time), `s/` (salary), `pri/` (priority).
+* The `rev/` prefix can be added to sort in reverse order. (Optional)
+* The sorting is not case-insensitive.
+* The sort command defaults to alphabetical sorting for names and company names.
+* The sort command defaults to chronological sorting for interview times.
+* The sort command defaults to sort from largest to smallest for salary.
+* The sort command defaults to sort from the highest priority to the lowest priority for priority.
+
+Examples:
+* `sort n/` sorts the person list by name in alphabetical order.
+* `sort rev/ s/` sorts the person list by salary in descending order.
+* `sort tt/` sorts the person list by interview time in chronological order.
+* `sort rev/ pri/` sorts the person list by priority in descending order.
+* `sort cn/` sorts the person list by company name in alphabetical order.
+* `sort rev/ cn/` sorts the person list by company name in reverse alphabetical order.
+* `sort rev/ tt/` sorts the person list by interview time in reverse chronological order.
 
 --------------------------------------------------------------------------------------------------------------------
 
