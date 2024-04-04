@@ -11,9 +11,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="800.0" minWidth="600.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="800.0" minWidth="600.0" onCloseRequest="#handleExit" title="CCBot" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/ccbot_logo_1.png" />
   </icons>
   <scene>
     <Scene>
@@ -23,13 +24,16 @@
             <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+      <VBox styleClass="background">
+        <MenuBar fx:id="menuBar" styleClass="background" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Resume">
+            <MenuItem fx:id="resumeMenuItem" mnemonicParsing="false" onAction="#handleResume" text="Resume"/>
           </Menu>
         </MenuBar>
 
@@ -39,7 +43,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder"  minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>

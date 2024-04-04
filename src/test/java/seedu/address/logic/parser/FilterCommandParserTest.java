@@ -22,8 +22,8 @@ import seedu.address.model.person.InterviewTime;
 import seedu.address.model.person.InterviewTimeContainsKeywordsPredicate;
 import seedu.address.model.person.SalaryContainsKeywordsPredicate;
 import seedu.address.model.person.SalaryRange;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 public class FilterCommandParserTest {
     private FilterCommandParser parser = new FilterCommandParser();

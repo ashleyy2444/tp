@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -24,18 +25,22 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME);
-        if (!exactlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME)
-            || !argMultimap.getPreamble().isEmpty()) {
+                        args, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME, PREFIX_PROGRAMMING_LANGUAGE);
+        if (!exactlyOnePrefixPresent(argMultimap, PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME,
+                PREFIX_PROGRAMMING_LANGUAGE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SALARY, PREFIX_TAG, PREFIX_INTERVIEWTIME,
+                PREFIX_PROGRAMMING_LANGUAGE);
 
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
             return new FilterSalaryCommandParser().parse(argMultimap.getValue(PREFIX_SALARY).get());
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             return new FilterTagCommandParser().parse(argMultimap.getValue(PREFIX_TAG).get());
+        } else if (argMultimap.getValue(PREFIX_PROGRAMMING_LANGUAGE).isPresent()) {
+            return new FilterProgrammingLanguageCommandParser().parse(argMultimap.getValue(PREFIX_PROGRAMMING_LANGUAGE)
+                    .get());
         } else {
             return new FilterInterviewTimeCommandParser().parse(argMultimap.getValue(PREFIX_INTERVIEWTIME).get());
         }
