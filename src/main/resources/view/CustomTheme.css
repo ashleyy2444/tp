@@ -352,15 +352,23 @@
 }
 
 #cardPane.priorityHigh {
-    -fx-background-color: red;
+    -fx-background-color: #E11F1F;
 }
 
 #cardPane.priorityMedium {
-    -fx-background-color: brown;
+    -fx-background-color: #E18D1F;
 }
 
 #cardPane.priorityLow {
-    -fx-background-color: green;
+    -fx-background-color: #159584;
+}
+
+#cardPane.priorityLower {
+    -fx-background-color: #1550C5;
+}
+
+#cardPane.priorityLowest {
+    -fx-background-color: #8A15C5;
 }
 
 #cardPane.priorityDefault {
