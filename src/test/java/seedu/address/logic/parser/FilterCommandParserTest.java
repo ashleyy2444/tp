@@ -43,12 +43,10 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_EmptyArgs_throwsParseException() {
+    public void parse_emptyArgs_throwsParseException() {
         String args = "";
         assert args.length() == 0;
-        assertParseFailure(parser, args,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        FilterCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, args, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
     @Test
