@@ -27,9 +27,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named 
-     `John Doe` to the Address Book.
-
+   * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
+     i/remote work s/5000 pl/Java t/friends t/referral pri/2` : 
+     Adds a contact named `John Doe` to the Address Book.
+     
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -77,15 +78,21 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/INTERVIEW-TIME i/INFO 
+        [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY)0-4)] …​`
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
+i/Birthday: 12 May 2001 s/5000 pl/Java t/friends t/owesMoney pri/2`
+
+
+* `add cn/ Amazon n/Betsy Crowe p/81234567 e/betsycrowe@example.com a/Newgate Prison tt/121220241200
+i/Remote work s/4000 pl/Python t/criminal pri/4`
 
 ### Listing all persons : `list`
 
@@ -222,9 +229,29 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Sorting the person list : `sort`
 
-_Details coming soon ..._
+Sorts the person list by the specified field.
+
+Format: `sort [rev/] KEYWORD`
+
+* Sorts the person list by the specified `KEYWORD`.
+* The `KEYWORD` must be one of the following: `n/` (name), `cn/` (company name),`tt/` (interview time), `s/` (salary), `pri/` (priority).
+* The `rev/` prefix can be added to sort in reverse order. (Optional)
+* The sorting is not case-insensitive.
+* The sort command defaults to alphabetical sorting for names and company names.
+* The sort command defaults to chronological sorting for interview times.
+* The sort command defaults to sort from largest to smallest for salary.
+* The sort command defaults to sort from the highest priority to the lowest priority for priority.
+
+Examples:
+* `sort n/` sorts the person list by name in alphabetical order.
+* `sort rev/ s/` sorts the person list by salary in descending order.
+* `sort tt/` sorts the person list by interview time in chronological order.
+* `sort rev/ pri/` sorts the person list by priority in descending order.
+* `sort cn/` sorts the person list by company name in alphabetical order.
+* `sort rev/ cn/` sorts the person list by company name in reverse alphabetical order.
+* `sort rev/ tt/` sorts the person list by interview time in reverse chronological order.
 
 --------------------------------------------------------------------------------------------------------------------
 

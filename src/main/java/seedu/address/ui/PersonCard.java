@@ -52,7 +52,6 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane programmingLanguages;
-
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -76,5 +75,29 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(pl -> pl.languageName))
                 .forEach(pl -> programmingLanguages.getChildren().add(
                         new Label("Programming Languages: " + pl.languageName)));
+        updateCardColor(person);
+    }
+    private void updateCardColor(Person person) {
+        String styleClass;
+        switch (person.getPriority()) {
+        case 0:
+            styleClass = "priorityHigh";
+            break;
+        case 1:
+            styleClass = "priorityMedium";
+            break;
+        case 2:
+            styleClass = "priorityLow";
+            break;
+        case 3:
+            styleClass = "priorityLower";
+            break;
+        case 4:
+            styleClass = "priorityLowest";
+            break;
+        default:
+            styleClass = "priorityDefault";
+        }
+        cardPane.getStyleClass().add(styleClass);
     }
 }

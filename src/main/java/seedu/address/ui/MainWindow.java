@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ResumeWindow resumeWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        resumeWindow = new ResumeWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -163,6 +165,19 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Opens the resume window
+     */
+    @FXML
+    public void handleResume() {
+        if (!resumeWindow.isShowing()) {
+            resumeWindow = new ResumeWindow();
+            resumeWindow.show();
+        } else {
+            resumeWindow.focus();
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -180,6 +195,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowResume()) {
+                handleResume();
             }
 
             if (commandResult.isExit()) {
