@@ -350,3 +350,19 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.personListCard.priorityHigh {
+    -fx-background-color: red;
+}
+
+.personListCard.priorityMedium {
+    -fx-background-color: yellow;
+}
+
+.personListCard.priorityLow {
+    -fx-background-color: green;
+}
+
+.personListCard.priorityDefault {
+    -fx-background-color: grey;
+}
