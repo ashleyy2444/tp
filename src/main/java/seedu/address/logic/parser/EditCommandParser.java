@@ -46,7 +46,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE, PREFIX_PRIORITY);
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {

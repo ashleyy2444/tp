@@ -89,10 +89,18 @@ A person can have any number of tags (including 0)
 Examples:
 * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
 i/Birthday: 12 May 2001 s/5000 pl/Java t/friends t/owesMoney pri/2`
-
-
 * `add cn/ Amazon n/Betsy Crowe p/81234567 e/betsycrowe@example.com a/Newgate Prison tt/121220241200
 i/Remote work s/4000 pl/Python t/criminal pri/4`
+
+### Adding a resume: `resume`
+
+Adds a resume to the addressbook.
+
+Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION a/ADDRESS`
+
+Examples:
+* `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++`
+* `resume cn/Apple n/Amy Birch p/87654321 e/amy@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25`
 
 ### Listing all persons : `list`
 
@@ -305,3 +313,21 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Sort** | `sort [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`
+**Resume**|`resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `
+
+## CLI Syntax Summary
+
+Character | Explaination, Examples
+----------|------------------
+**n/**|Name of the contact
+**cn/**|The company name
+**tt/**|The time of the interview
+**s/**|The salary
+**a/**|The place of residence
+**e/**|The email address
+**i/**|Any additional info
+**pri/**|Priority of the job
+**edu/**|Education level
+**pl/**|Programming languages
+**jd/**|The job difficulty
