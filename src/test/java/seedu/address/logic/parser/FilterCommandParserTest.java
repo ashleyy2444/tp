@@ -43,6 +43,15 @@ public class FilterCommandParserTest {
     }
 
     @Test
+    public void parse_EmptyArgs_throwsParseException() {
+        String args = "";
+        assert args.length() == 0;
+        assertParseFailure(parser, args,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FilterCommand.MESSAGE_USAGE));
+        }
+
+    @Test
     public void parse_validArgs_returnsFilterSalaryCommand() {
         FilterCommand expected =
                 new FilterSalaryCommand(new SalaryContainsKeywordsPredicate(Arrays.asList(new SalaryRange("2000"),
