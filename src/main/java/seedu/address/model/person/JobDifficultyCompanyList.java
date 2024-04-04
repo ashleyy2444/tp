@@ -102,6 +102,22 @@ public class JobDifficultyCompanyList {
             put("pwc", 70);
             put("govtech", 60);
             put("meta", 70);
+            put("cpf", 55);
+            put("imda", 60);
+            put("mas", 65);
+            put("kpmg", 70);
+            put("ey", 65);
+            put("ernst & young", 65);
+            put("tesla", 60);
+            put("razer", 50);
+            put("m1", 50);
+            put("singapore airlines", 55);
+            put("sia", 55);
+            put("synapxe", 55);
+            put("comarch", 55);
+            put("intel", 55);
+            put("intel corporation", 55);
+            put("seagate", 55);
         }
     };
 
