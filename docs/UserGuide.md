@@ -78,8 +78,8 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS tt/INTERVIEW-TIME i/INFO 
-        [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY)0-4)] …​`
+Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] 
+        [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)] …​`
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -112,15 +112,16 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] [i/INFO]
+[s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
+* When editing tags and info, the existing tags and info of the person will be removed i.e adding of tags and info are 
+  not cumulative.
+  * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+  * You can remove all the person’s info by typing `i/` without specifying any info after it.
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
@@ -151,7 +152,7 @@ Filters contact list based on tags, interview times, salary range, or programmin
 
 #### Filter by tag: `filter t/`
 
-Format: `filter t/TAG [MORE TAGS]...`
+Format: `filter t/TAG [MORE_TAGS]...`
 
 * The search is case-sensitive.
 * Only the tags of each of the contacts are searched.
@@ -163,7 +164,7 @@ Examples:
 
 #### Filter by interview times: `filter tt/`
 
-Format: `filter tt/INTERVIEW_TIME_RANGE [MORE INTERVIEW_TIME_RANGE]...`
+Format: `filter tt/INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...`
 
 * Only the interview times of each of the contacts are searched.
 * Persons with interview times within the range provided will be returned.
@@ -180,7 +181,7 @@ Examples:
 
 #### Filter by salaries: `filter s/`
 
-Format: `filter s/SALARY_RANGE [MORE SALARY_RANGE]...`
+Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
 
 * Only the salaries of each of the contacts are searched.
 * Persons with salaries within the range provided will be returned.
@@ -194,11 +195,11 @@ Format: `filter s/SALARY_RANGE [MORE SALARY_RANGE]...`
 Examples:
 * `filter s/5000` returns persons with salaries of $5000.
 * `filter s/2000-5000 >=7000` returns persons with salaries that contain any number from $2000 to $5000 or with 
-  salaries more than or equals to $7000.
+  salaries more than or equals to $7000. (e.g. persons with salaries `3000-6000`, `4000`, `8000-20900` are returned).
 
 #### Filter by programming language: `filter pl/`
 
-Format `filter pl/PROGRAMMING_LANGUAGE [MORE PROGRAMMING_LANGUAGE]...`
+Format `filter pl/PROGRAMMING_LANGUAGE [MORE_PROGRAMMING_LANGUAGE]...`
 
 * The search is case-insensitive.
 * Only the programming language of each of the contacts are searched.
@@ -252,7 +253,7 @@ Examples:
 
 #### Delete by tag: `delete t/`
 
-Format: `delete t/TAG [MORE TAGS]...`
+Format: `delete t/TAG [MORE_TAGS]...`
 
 * The search is case-insensitive.
 * Only the tags of each of the contacts are deleted.
@@ -306,14 +307,15 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter**| `filter t/TAG [MORE TAGS]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [MORE INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [MORE SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [MORE PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C`
 **List** | `list`
 **Help** | `help`
-**Sort** | `sort [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`
+**Sort** | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`
 **Resume**|`resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `
 
 ## CLI Syntax Summary
