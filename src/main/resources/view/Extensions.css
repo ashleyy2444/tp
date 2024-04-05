@@ -31,6 +31,16 @@
     -fx-background-color: green;
 }
 
+.personListCard.priorityLower {
+    -fx-background-color: yellow;
+}
+
+.personListCard.priorityLowest {
+    -fx-background-color: gold;
+}
+
 .personListCard.priorityDefault {
     -fx-background-color: grey;
 }
+
+

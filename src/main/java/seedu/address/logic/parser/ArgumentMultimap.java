@@ -75,4 +75,8 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    public int getSize() {
+        return argMultimap.size();
+    }
 }
