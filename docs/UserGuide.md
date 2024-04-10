@@ -335,4 +335,4 @@ Character | Explaination, Examples
 **pri/**|Priority of the job
 **edu/**|Education level
 **pl/**|Programming languages
-**jd/**|The job difficulty
+**jd/**|The job difficulty (only for `sort` command)
