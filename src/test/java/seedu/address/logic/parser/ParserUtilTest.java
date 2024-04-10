@@ -237,4 +237,30 @@ public class ParserUtilTest {
             assertTrue(result.contains(new ProgrammingLanguage(language)));
         }
     }
+
+    @Test
+    public void parsePriority_invalidArgs_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriority("6"));
+    }
+
+    @Test
+    public void parsePriority_validArgs_returnsPriority() throws ParseException {
+        assertEquals(1, ParserUtil.parsePriority("1"));
+    }
+
+    @Test
+    public void parsePriority_invalidArgs2_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriority("-1"));
+    }
+
+    @Test
+    public void parsePriority_validArgs2_returnsPriority() throws ParseException {
+        assertEquals(0, ParserUtil.parsePriority("0"));
+    }
+
+    @Test
+    public void parsePriority_invalidArgs3_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriority("xx"));
+    }
+
 }

@@ -43,6 +43,30 @@ contact management tasks done faster than traditional GUI apps.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Priority
+>From 0-4 our program has 5 priorities. The lower the value, the higher the priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #ff0000;"></span>
+
+**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority. 
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #E18D1F;"></span>
+
+**<span style="color:#E18D1F;">1 - Medium Priority</span>** - This is the second highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #159584;"></span>
+
+**<span style="color:#159584;">2 - Low Priority</span>** - This is the third highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #1550C5;"></span>
+
+**<span style="color:#1550C5;">3 - Very Low Priority</span>** - This is the fourth highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #8A15C5;"></span>
+
+**<span style="color:#8A15C5;">4 - Lowest Priority</span>** - This is the lowest priority.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
