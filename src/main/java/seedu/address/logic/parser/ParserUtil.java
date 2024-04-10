@@ -255,10 +255,17 @@ public class ParserUtil {
      * @return An integer parsed from the input string.
      * @throws ParseException if the given {@code priority} is invalid.
      */
-    public static int parsePriority(String priority) throws ParseException {
+    public static Integer parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
-        return Integer.parseInt(trimmedPriority);
+        if (!trimmedPriority.matches("\\d+")) {
+            throw new ParseException("Priority should be a number between 0 and 4.");
+        }
+        int priorityValue = Integer.parseInt(trimmedPriority);
+        if (priorityValue < 0 || priorityValue > 4) {
+            throw new ParseException("Priority should be a number between 0 and 4.");
+        }
+        return priorityValue;
     }
 
     /**
