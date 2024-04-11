@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Salary {
     public static final String MESSAGE_CONSTRAINTS = "Salaries should only contain numbers, with range [0, 4294967295] "
-            + "or two pure digital numbers with ‘-’ in between. "
-            + "Numbers can vary from large to small or from small to large. "
-            + "Both digital numbers should be within the range [0, 4294967295]";
+            + "or two pure digital numbers with '-' in between. "
+            + "There's no space on either side of '-'."
+            + "Both digital numbers should be within the range [0, 2147483647]";
     public static final String VALIDATION_REGEX = "^(\\d{1,10})(-\\d{1,10})?$";
     public static final int UPPERBOUND = 2147483647;
     public static final int LOWERBOUND = 0;
