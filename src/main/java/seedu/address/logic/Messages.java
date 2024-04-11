@@ -37,7 +37,10 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append("Company name: ")
+                .append(person.getCompanyName())
+                .append("; Name: ")
+                .append(person.getName())
                 .append("; Phone: ")
                 .append(person.getPhone())
                 .append("; Email: ")
@@ -49,6 +52,7 @@ public class Messages {
                 .append("; Salary: ")
                 .append(person.getSalary())
                 .append("$")
+                .append("; Info: ")
                 .append(person.getInfo())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
