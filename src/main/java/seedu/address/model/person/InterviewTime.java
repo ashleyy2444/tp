@@ -75,8 +75,13 @@ public class InterviewTime {
         } else if (before == null) {
             return this.dateTime.isAfter(after);
         } else {
-            return this.dateTime.isBefore(before) && this.dateTime.isAfter(after);
+            return (this.dateTime.isBefore(before) || this.dateTime.isEqual(before))
+                    && (this.dateTime.isAfter(after) || this.dateTime.isEqual(after));
         }
+    }
+
+    public boolean isBefore(InterviewTime date) {
+        return this.dateTime.isBefore(date.getDateTime());
     }
 
     @Override
