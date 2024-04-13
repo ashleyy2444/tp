@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Career Connect Bot (CCBot) is a **desktop app for managing job interview contacts, optimized for use via a Command Line 
-Interface** 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CCBot can get your 
+Career Connect Bot (CCBot) is a **desktop app for managing job interview contacts, optimized for use via a Command Line
+Interface**
+(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CCBot can get your
 contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -31,9 +31,9 @@ contact management tasks done faster than traditional GUI apps.
    * `list` : Lists all contacts.
 
    * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
-     i/remote work s/5000 pl/Java t/friends t/referral pri/2` : 
+     i/remote work s/5000 pl/Java t/friends t/referral pri/2` :
      Adds a contact named `John Doe` to the Address Book.
-     
+
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -48,7 +48,7 @@ contact management tasks done faster than traditional GUI apps.
 
 <span style="display: inline-block; width: 20px; height:  20px; background-color: #ff0000;"></span>
 
-**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority. 
+**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority.
 
 <span style="display: inline-block; width: 20px; height:  20px; background-color: #E18D1F;"></span>
 
@@ -105,7 +105,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] 
+Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO]
         [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)] …​`
 
 
@@ -167,7 +167,7 @@ Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRE
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags and info, the existing tags and info of the person will be removed i.e adding of tags and info are 
+* When editing tags and info, the existing tags and info of the person will be removed i.e adding of tags and info are
   not cumulative.
   * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
   * You can remove all the person’s info by typing `i/` without specifying any info after it.
@@ -236,8 +236,8 @@ Format: `filter tt/INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...`
   * `from/INTERVIEWTIME-INTERVIEWTIME`
 
 Examples:
-* `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan 
-  2020, 1200am `(010120200000)` or persons with interview times within 1 Jan 2022, 1200am `(010120220000)` and 1 Jan 
+* `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan
+  2020, 1200am `(010120200000)` or persons with interview times within 1 Jan 2022, 1200am `(010120220000)` and 1 Jan
   2023, 1200am `(010120230000)`.
 * `filter tt/after/010120220000` returns persons with interview times after 1 Jan 2022, 1200am `(010120220000)`.
 
@@ -248,7 +248,7 @@ Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
 * Only the salaries of each of the contacts are searched.
 * Persons with salaries within the range provided will be returned.
 * Valid `SALARY_RANGE` includes:
-  * Valid `SALARY` 
+  * Valid `SALARY`
   * `>=INTEGER`
   * `<=INTEGER`
 
@@ -256,7 +256,7 @@ Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
 
 Examples:
 * `filter s/5000` returns persons with salaries of $5000.
-* `filter s/2000-5000 >=7000` returns persons with salaries that contain any number from $2000 to $5000 or with 
+* `filter s/2000-5000 >=7000` returns persons with salaries that contain any number from $2000 to $5000 or with
   salaries more than or equals to $7000. (e.g. persons with salaries `3000-6000`, `4000`, `8000-20900` are returned).
 
 #### Filter by programming language: `filter pl/`
@@ -372,34 +372,34 @@ This value cannot be modified or added by the `edit` or `add` commands.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Filter**| `filter t/TAG [MORE TAGS]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [MORE INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [MORE SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [MORE PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C`
-**List** | `list`
-**Help** | `help`
-**Sort** | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`
-**Resume**|`resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                           |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                                               |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Edit**   | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                          |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                                 |
+| **Filter** | `filter t/TAG [MORE TAGS]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [MORE INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [MORE SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [MORE PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C` |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Sort**   | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`                                                                                                                                                                                                                                                        |
+| **Resume** | `resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `                                                                                                                                                                                                    |
 
 ## CLI Syntax Summary
 
-Character | Explaination, Examples
-----------|------------------
-**n/**|Name of the contact
-**cn/**|The company name
-**tt/**|The time of the interview
-**s/**|The salary
-**a/**|The place of residence
-**e/**|The email address
-**i/**|Any additional info
-**pri/**|Priority of the job
-**edu/**|Education level
-**pl/**|Programming languages
-**jd/**|The job difficulty (only for `sort` command)
+| Character | Explaination, Examples                       |
+|-----------|----------------------------------------------|
+| **n/**    | Name of the contact                          |
+| **cn/**   | The company name                             |
+| **tt/**   | The time of the interview                    |
+| **s/**    | The salary                                   |
+| **a/**    | The place of residence                       |
+| **e/**    | The email address                            |
+| **i/**    | Any additional info                          |
+| **pri/**  | Priority of the job                          |
+| **edu/**  | Education level                              |
+| **pl/**   | Programming languages                        |
+| **jd/**   | The job difficulty (only for `sort` command) |
 
 ## Constraints Summary
 | Field                | Constraint                                                                                               |
