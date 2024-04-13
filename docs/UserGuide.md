@@ -119,6 +119,19 @@ i/Birthday: 12 May 2001 s/5000 pl/Java t/friends t/owesMoney pri/2`
 * `add cn/ Amazon n/Betsy Crowe p/81234567 e/betsycrowe@example.com a/Newgate Prison tt/121220241200
 i/Remote work s/4000 pl/Python t/criminal pri/4`
 
+#### Constraint
+* The `COMPANY_NAME` should be less than 100 chracters, and it should not be blank.
+* The `NAME` should only contain alphanumeric characters and spaces, and it should not be blank.
+* The `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long.
+* The `EMAIL` should be a valid email address.
+* The `ADDRESS` can take any values, and it should not be blank.
+* The `SALARY` should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].
+* The `PROGRAMMING_LANGUAGE` should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.
+* The `TAG` should be alphanumeric.
+* The `PRIORITY` should be a number between 0 and 4.
+* The `INTERVIEW_TIME` should be in the format `ddMMyyyyHHmm`.
+* The `INFO` can take any values, and it should not be blank.
+
 ### Adding a resume: `resume`
 
 Adds a resume to the addressbook.
@@ -128,6 +141,15 @@ Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY
 Examples:
 * `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++`
 * `resume cn/Apple n/Amy Birch p/87654321 e/amy@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25`
+
+#### Constraint
+* The `COMPANY_NAME` should be less than 100 chracters, and it should not be blank.
+* The `NAME` should only contain alphanumeric characters and spaces, and it should not be blank.
+* The `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long.
+* The `EMAIL` should be a valid email address.
+* The `ADDRESS` can take any values, and it should not be blank.
+* The `SALARY` should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].
+* The `EDUCATION` should only contain alphanumeric characters and spaces, and it should not be blank.
 
 ### Listing all persons : `list`
 
@@ -152,6 +174,19 @@ Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRE
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+#### Constraint
+* The `COMPANY_NAME` should be less than 100 chracters, and it should not be blank.
+* The `NAME` should only contain alphanumeric characters and spaces, and it should not be blank.
+* The `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long.
+* The `EMAIL` should be a valid email address.
+* The `ADDRESS` can take any values, and it should not be blank.
+* The `SALARY` should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].
+* The `PROGRAMMING_LANGUAGE` should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.
+* The `TAG` should be alphanumeric.
+* The `PRIORITY` should be a number between 0 and 4.
+* The `INTERVIEW_TIME` should be in the format `ddMMyyyyHHmm`.
+* The `INFO` can take any values, and it should not be blank.
 
 ### Locating persons by name / company name: `find`
 
@@ -365,3 +400,19 @@ Character | Explaination, Examples
 **edu/**|Education level
 **pl/**|Programming languages
 **jd/**|The job difficulty (only for `sort` command)
+
+## Constraints Summary
+| Field                | Constraint                                                                                               |
+|----------------------|----------------------------------------------------------------------------------------------------------|
+| `COMPANY_NAME`       | Should be less than 100 characters, and it should not be blank.                                          |
+| `NAME`               | Should only contain alphanumeric characters and spaces, and it should not be blank.                       |
+| `PHONE_NUMBER`       | Should only contain numbers, and it should be at least 3 digits long.                                    |
+| `EMAIL`              | Should be a valid email address.                                                                         |
+| `ADDRESS`            | Can take any values, and it should not be blank.                                                         |
+| `SALARY`             | Should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647]. |
+| `PROGRAMMING_LANGUAGE` | Should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters. |
+| `TAG`                | Should be alphanumeric.                                                                                  |
+| `PRIORITY`           | Should be a number between 0 and 4.                                                                      |
+| `INTERVIEW_TIME`     | Should be in the format `ddMMyyyyHHmm`.                                                                  |
+| `INFO`               | Can take any values, and it should not be blank.                                                         |
+| `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                      |
