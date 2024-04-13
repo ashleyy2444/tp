@@ -416,3 +416,4 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | `INTERVIEW_TIME`     | Should be in the format `ddMMyyyyHHmm`.                                                                  |
 | `INFO`               | Can take any values, and it should not be blank.                                                         |
 | `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                      |
+
