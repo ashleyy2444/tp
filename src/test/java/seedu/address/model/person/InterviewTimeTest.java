@@ -29,6 +29,8 @@ public class InterviewTimeTest {
         InterviewTime dateTimeAfterRange = new InterviewTime("121120271400");
         InterviewTime dateTimeBeforeRange = new InterviewTime("121120201400");
         InterviewTime dateTimeInRange = new InterviewTime("121120231400");
+        InterviewTime dateTimeEqualAfterDate = new InterviewTime("011120231400");
+        InterviewTime dateTimeEqualBeforeDate = new InterviewTime("121220240300");
 
         // Interview time ranges
         List<InterviewTime> wrongSize = Arrays.asList(null, null, null);
@@ -62,6 +64,10 @@ public class InterviewTimeTest {
         assertTrue(dateTimeAfterRange.isWithinInterviewTimeRange(validAfter));
         assertTrue(dateTimeBeforeRange.isWithinInterviewTimeRange(validBefore));
         assertTrue(dateTimeInRange.isWithinInterviewTimeRange(validRange));
+        assertTrue(dateTimeEqualAfterDate.isWithinInterviewTimeRange(validRange));
+        assertTrue(dateTimeEqualBeforeDate.isWithinInterviewTimeRange(validRange));
+
+
 
     }
     @Test
