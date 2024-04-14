@@ -283,7 +283,7 @@ Examples:
 * `sort rev/ cn/` sorts the person list by company name in reverse alphabetical order.
 * `sort rev/ tt/` sorts the person list by interview time in reverse chronological order.
 
-### Deleting a person/persons: `delete` {#delete}
+### Deleting a person/persons: `delete` 
 
 Deletes the contact list based index or tags.
 
@@ -321,7 +321,7 @@ Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Extraneous parameters for `clear` will be ignored. (e.g. `clear 1` is interpreted as `clear`)
-If you only want to clear **some** and **not all** entries from the address book, refer to [delete](#delete). 
+If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((#deleting-a-personpersons-delete)). 
 </div>
 
 ### Exiting the program : `exit`  
