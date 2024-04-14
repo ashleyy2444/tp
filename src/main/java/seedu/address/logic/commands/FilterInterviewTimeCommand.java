@@ -25,11 +25,13 @@ public class FilterInterviewTimeCommand extends FilterCommand {
             + "- from/INTERVIEW_TIME-INTERVIEW_TIME\n"
             + "Example:\n"
             + "- " + COMMAND_WORD + "before/020220241100 after/020220251100 from/030420240800-020520241100";
-    public static final String WRONG_INTERVIEW_TIME_RANGE_MESSAGE = "INTERVIEW_TIME_RANGE should be in the form of:\n"
-            + "before/INTERVIEW_TIME\nor\n"
-            + "after/INTERVIEW_TIME\nor\n"
-            + "from/INTERVIEW_TIME-INTERVIEW_TIME\n"
-            + "where INTERVIEW_TIME is in the form: " + InterviewTime.INTERVIEW_TIME_FORMAT
+    public static final String WRONG_INTERVIEW_TIME_RANGE_MESSAGE = "For INTERVIEW_TIME_RANGE starting with from/ :\n"
+            + " Format: from/INTERVIEW_TIME-INTERVIEW_TIME\n"
+            + " where:\n"
+            + "    1) There are no white spaces before and after '-'\n"
+            + "    2) The first INTERVIEW_TIME provided should be chronologically before or equal to the second "
+            + "INTERVIEW_TIME\n"
+            + "    3) INTERVIEW_TIME is in the form: " + InterviewTime.INTERVIEW_TIME_FORMAT
             + "\n Example: from/" + InterviewTime.EXAMPLE_INTERVIEW_TIME_FORMAT_1 + "-"
             + InterviewTime.EXAMPLE_INTERVIEW_TIME_FORMAT_2;
 

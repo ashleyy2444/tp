@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's salary in the address book.
  */
 public class Salary {
-    public static final String MESSAGE_CONSTRAINTS = "Salaries should only contain numbers, with range [0, 4294967295] "
+    public static final String MESSAGE_CONSTRAINTS = "Salaries should only contain numbers, with range [0, 2147483647] "
             + "or two pure digital numbers with '-' in between. "
             + "There's no space on either side of '-'."
             + "Both digital numbers should be within the range [0, 2147483647]";

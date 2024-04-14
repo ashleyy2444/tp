@@ -24,6 +24,8 @@ Class Phone
 Class Salary
 Class Tag
 Class ProgammingLanguage
+Class JobDifficulty
+Class Priority
 
 Class I #FFFFFF
 }
@@ -50,6 +52,8 @@ Person *--> Info
 Person *--> CompanyName
 Person *--> Salary
 Person *--> InterviewTime
+Person *--> JobDifficulty
+Person *--> Priority
 Person *--> "*" Tag
 Person *-right-> "*" ProgammingLanguage
 
