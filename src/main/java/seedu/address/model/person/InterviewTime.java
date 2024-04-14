@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
@@ -34,8 +33,7 @@ public class InterviewTime {
     public InterviewTime(String dateTime) {
         if (dateTime == null) {
             this.dateTime = null;
-        }
-        else {
+        } else {
             checkArgument(isValidInterviewTime(dateTime), MESSAGE_CONSTRAINTS);
             this.dateTime = LocalDateTime.parse(dateTime, formatter); //set format
         }
@@ -49,13 +47,11 @@ public class InterviewTime {
     public static boolean isValidInterviewTime(String test) {
         if (test == null) {
             return true;
-        }
-        else {
+        } else {
             try {
                 LocalDateTime.parse(test, formatter);
                 return true;
-            }
-            catch (DateTimeParseException e) {
+            } catch (DateTimeParseException e) {
                 return false;
             }
         }
@@ -97,8 +93,7 @@ public class InterviewTime {
     public String toString() {
         if (dateTime == null) {
             return "No Interviews set";
-        }
-        else {
+        } else {
             DateTimeFormatter beautify = DateTimeFormatter.ofPattern("MMMM dd, yyyy hh:mm a", Locale.ENGLISH);
             return dateTime.format(beautify);
         }
@@ -116,8 +111,8 @@ public class InterviewTime {
         }
 
         InterviewTime otherDateTime = (InterviewTime) other;
-        return (dateTime == null && otherDateTime.dateTime == null) ||
-                (dateTime != null && dateTime.equals(otherDateTime.dateTime));
+        return (dateTime == null && otherDateTime.dateTime == null)
+                || (dateTime != null && dateTime.equals(otherDateTime.dateTime));
     }
 
     @Override

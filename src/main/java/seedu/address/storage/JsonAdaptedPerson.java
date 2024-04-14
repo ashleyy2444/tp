@@ -81,8 +81,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         if (source.getDateTime() == null) {
             dateTime = null;
-        }
-        else {
+        } else {
             dateTime = source.getDateTime().rawToString();
         }
         salary = source.getSalary().toString();

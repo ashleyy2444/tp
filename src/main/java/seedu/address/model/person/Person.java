@@ -47,7 +47,6 @@ public class Person {
         this.email = email;
         this.address = address;
         this.dateTime = dateTime;
-        System.out.println("REACHED HERE");
         this.salary = salary;
         this.info = info;
         this.tags.addAll(tags);

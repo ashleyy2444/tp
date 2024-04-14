@@ -156,8 +156,7 @@ public class ParserUtil {
     public static InterviewTime parseInterviewTime(String dateTime) throws ParseException {
         if (dateTime == null) {
             return new InterviewTime(null);
-        }
-        else {
+        } else {
             String trimmedDateTime = dateTime.trim();
             if (!InterviewTime.isValidInterviewTime(trimmedDateTime)) {
                 throw new ParseException(InterviewTime.MESSAGE_CONSTRAINTS);
