@@ -15,7 +15,7 @@ public class InterviewTime {
 
     public static final String MESSAGE_CONSTRAINTS = "Error thrown, date and time format may be wrong. Check UG.";
 
-    public static final String REGEX_YYYY = "\\d{4}";
+    public static final String REGEX_YYYY = "\"([1-9]\\\\d{3}|0\\\\d{3})\"";
     public static final String REGEX_DD = "(0[1-9]|[1-2][0-9]|3[01])";
     public static final String REGEX_MM = "(0[1-9]|1[0-2])";
     public static final String REGEX_HHMM = "^([0-1][0-9]|2[0-3])[0-5][0-9]$";

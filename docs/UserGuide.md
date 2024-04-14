@@ -67,7 +67,21 @@ contact management tasks done faster than traditional GUI apps.
 **<span style="color:#8A15C5;">4 - Lowest Priority</span>** - This is the lowest priority.
 
 --------------------------------------------------------------------------------------------------------------------
+## Date and Time
+> Your CCBot uses date and time to better help you manage your interviews. This section contains all the details on how
+> your CCBot interprets date and time.
 
+* ### Format : `ddMMyyyyHHmm`
+  * `dd` - refers to the day and the acceptable range is from **01** to **31**
+  * `MM` - refers to the month and the acceptable range is from **01** to **12**
+  * `yy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**
+  * `HH` - refers to the hour and the acceptable range is from **00** to **23**
+  * `mm` - refers to the minutes and the acceptable range is from **00** to **59** 
+* ### Examples:
+  * `121220221400` is interpreted as **December 12, 2022 4:00 PM**
+  * `010100010000` is interpreted as **January 01, 0001 12:00 AM** 
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -402,18 +416,18 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | **jd/**   | The job difficulty (only for `sort` command) |
 
 ## Constraints Summary
-| Field                | Constraint                                                                                               |
-|----------------------|----------------------------------------------------------------------------------------------------------|
-| `COMPANY_NAME`       | Should be less than 100 characters, and it should not be blank.                                          |
-| `NAME`               | Should only contain alphanumeric characters and spaces, and it should not be blank.                       |
-| `PHONE_NUMBER`       | Should only contain numbers, and it should be at least 3 digits long.                                    |
-| `EMAIL`              | Should be a valid email address.                                                                         |
-| `ADDRESS`            | Can take any values, and it should not be blank.                                                         |
-| `SALARY`             | Should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647]. |
-| `PROGRAMMING_LANGUAGE` | Should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters. |
-| `TAG`                | Should be alphanumeric.                                                                                  |
-| `PRIORITY`           | Should be a number between 0 and 4.                                                                      |
-| `INTERVIEW_TIME`     | Should be in the format `ddMMyyyyHHmm`.                                                                  |
-| `INFO`               | Can take any values, and it should not be blank.                                                         |
-| `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                      |
+| Field                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `COMPANY_NAME`       | Should be less than 100 characters, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `NAME`               | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `PHONE_NUMBER`       | Should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `EMAIL`              | Should be a valid email address.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `ADDRESS`            | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `SALARY`             | Should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].                                                                                                                                                                                                                                                                                                           |
+| `PROGRAMMING_LANGUAGE` | Should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.                                                                                                                                                                                                                                                                                                                                                                      |
+| `TAG`                | Should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `PRIORITY`           | Should be a number between 0 and 4.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `INTERVIEW_TIME`     | Should be in the format `ddMMyyyyHHmm`.<br/>* `dd` - refers to the day and the acceptable range is from **01** to **31**<br/> * `MM` - refers to the month and the acceptable range is from **01** to **12**<br/>* `yy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**<br/> * `HH` - refers to the hour and the acceptable range is from **00** to **23**<br/> * `mm` - refers to the minutes and the acceptable range is from **00** to **59** |
+| `INFO`               | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                 |
 
