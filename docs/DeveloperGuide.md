@@ -155,77 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-
-### \[Proposed\] Sorting contact list
+### Sorting contact list
 
 This feature allows users to sort their addressbook based on various information, namely, name, company
 name, interview time, salary and priority. This feature leverages on the built-in `ObservableList` provided by JavaFX.
@@ -254,7 +184,7 @@ Based on the image above:
 `AddressBook` which contains the `UniquePersonList` object. The `UniquePersonList` then sorts it based on the
 comparator.
 
-### \[Proposed\] Job Difficulty Feature
+### Job Difficulty Feature
 ![job_difficulty_class](images/JobDifficultyDiagram.png)
 #### Overview
 The job difficulty feature allows program auto calculate a difficulty score for a job 
@@ -277,57 +207,22 @@ it to the salary to calculate the job difficulty score.
 `getDifficulty()` <br>
 This method returns the calculated job difficulty score
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+### Filtering of list by interview time, tags, salary range, and programming languages feature
+This feature allows users to filter their lists according to the interview time range, tags, salary range 
+and programming language.
 
-### \[Proposed\] Filtering of list by tag, salary range, and programming languages feature
-The proposed feature will allow users to filter their lists according to the tags, salary range and programming 
-language.
-#### Proposed Implementation
-The `FindCommand` class will be changed into a  class which will call the `FindNameCommand`, `FindTagCommand`, 
-`FindSalaryRangeCommand` and `FindProgrammingLanguageCommand` Command classes when executed. 
+#### Implementation
+The `FilterCommand` class is an abstract class inherited by concrete classes, `FilterInterviewTimeCommand`, 
+`FilterTagCommand`, `FilterSalaryCommand` and `FilterProgrammingLanguageCommand` which will filter the list 
+according to their respective categories. 
 
-**Command Format:**
-- FindNameCommand: `Find n/NAME`
-- FindTagCommand: `Find t/TAG`
-- FindSalaryRangeCommand: `Find s/SALARY_RANGE`
-- FindProgrammingLanguageCommand: `Find pl/PROGRAMMING_LANGUAGE`
 
 **Process:**
-1. FindCommand class will determine the specific FindCommand Command class (FindNameCommand, FindTagCommand, etc.) 
-   to call (n/, t/, etc.)
-2. The specific FindCommandClass will check if their respective categories (names, tags, etc.) in the contact 
-   list contain the keyword
+1. FilterCommandParser class will determine a concrete subclass of FilterCommand to be returned.
+2. The concrete FilterCommandClass will check if their respective categories (interview times, tags, etc.) in the 
+   contact list contain the keyword
 3. Return the list of contacts which contain the keyword
-
-
-
-
-
-
-
-
-#### Design considerations:
-
-**Aspect: How filter executes:**
-
-* **Alternative 1:** Filter from the list of names and salary range.
-    * Pros:
-      - Provides filtering based on two different criteria, enhancing flexibility for users.
-      - Utilizes a straightforward approach by focusing on essential attributes like names and salary range.
-    * Cons:
-      - Does not cover all relevant aspects of contacts, leading to potential oversight in filtering results.
-
-
-* **Alternative 2:** Filter from the list of tags and programming languages.
-    * Pros:
-      - Offers filtering based on distinct criteria, allowing users to refine search results more precisely.
-      - Utilises efficient data structures like sets for handling tags and programming languages, potentially
-          enhancing performance.
-    * Cons:
-      - Complexity may increase due to handling multiple filtering criteria simultaneously, potentially leading to
-          longer implementation time and increased risk of errors.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -533,6 +428,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Computer Science job seeker** : Student / Unemployed / Working adult seeking employment opportunities in the field of Computer Science
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others 
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+1. **Allow `filter` command to filter the contact list based on a combination of categories**: The current `filter` 
+   command only allows the contact list to be filtered based on one specific category such as tags, salary range etc 
+   and this may not be useful for users with a very huge number of contacts as filtering by only one category may still
+   return a long list. It is also not convenient for users who want to find contacts more specifically. We plan to 
+   allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return 
+   contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
 
 --------------------------------------------------------------------------------------------------------------------
 
