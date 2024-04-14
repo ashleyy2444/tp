@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.FilterProgrammingLanguageCommandParser.createLanguages;
-import static seedu.address.logic.parser.FilterTagCommandParser.createTags;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +22,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.language.ProgrammingLanguageContainsKeywordsPredicate;
-import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterProgrammingLanguageCommand}.
@@ -82,9 +83,12 @@ public class FilterProgrammingLanguageCommandTest {
 
     @Test
     public void toStringMethod() throws ParseException {
-        ProgrammingLanguageContainsKeywordsPredicate predicate = new ProgrammingLanguageContainsKeywordsPredicate(createLanguages("Java"));
-        FilterProgrammingLanguageCommand filterProgrammingLanguageCommand = new FilterProgrammingLanguageCommand(predicate);
-        String expected = FilterProgrammingLanguageCommand.class.getCanonicalName() + "{programming_language=" + predicate + "}";
+        ProgrammingLanguageContainsKeywordsPredicate predicate = new ProgrammingLanguageContainsKeywordsPredicate(
+                createLanguages("Java"));
+        FilterProgrammingLanguageCommand filterProgrammingLanguageCommand =
+                new FilterProgrammingLanguageCommand(predicate);
+        String expected = FilterProgrammingLanguageCommand.class.getCanonicalName()
+                + "{programming_language=" + predicate + "}";
         assertEquals(expected, filterProgrammingLanguageCommand.toString());
     }
 
