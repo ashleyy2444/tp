@@ -149,10 +149,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        if (dateTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    InterviewTime.class.getSimpleName()));
-        }
         if (!InterviewTime.isValidInterviewTime(dateTime)) {
             throw new IllegalValueException(InterviewTime.MESSAGE_CONSTRAINTS);
         }

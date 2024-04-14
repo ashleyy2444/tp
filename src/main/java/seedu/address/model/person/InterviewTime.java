@@ -62,7 +62,7 @@ public class InterviewTime {
     }
 
     public String rawToString() {
-        return dateTime == null ? "" : dateTime.format(formatter);
+        return dateTime == null ? null : dateTime.format(formatter);
     }
 
     /**
