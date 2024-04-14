@@ -79,7 +79,12 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        dateTime = source.getDateTime().rawToString();
+        if (source.getDateTime() == null) {
+            dateTime = null;
+        }
+        else {
+            dateTime = source.getDateTime().rawToString();
+        }
         salary = source.getSalary().toString();
         info = source.getInfo().value;
         tags.addAll(source.getTags().stream()

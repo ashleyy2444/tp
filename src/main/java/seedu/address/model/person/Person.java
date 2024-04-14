@@ -47,6 +47,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.dateTime = dateTime;
+        System.out.println("REACHED HERE");
         this.salary = salary;
         this.info = info;
         this.tags.addAll(tags);
@@ -156,7 +157,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(companyName, name, phone, email, address, tags, dateTime, programmingLanguages);
+        return Objects.hash(companyName, name, phone, email, address, tags, programmingLanguages);
     }
 
     @Override

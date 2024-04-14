@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,9 +32,13 @@ public class InterviewTime {
      * @param dateTime input
      */
     public InterviewTime(String dateTime) {
-        requireNonNull(dateTime);
-        checkArgument(isValidInterviewTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.dateTime = LocalDateTime.parse(dateTime, formatter); //set format
+        if (dateTime == null) {
+            this.dateTime = null;
+        }
+        else {
+            checkArgument(isValidInterviewTime(dateTime), MESSAGE_CONSTRAINTS);
+            this.dateTime = LocalDateTime.parse(dateTime, formatter); //set format
+        }
     }
 
     /**
@@ -42,14 +47,18 @@ public class InterviewTime {
      * @return true if correct format, false otherwise
      */
     public static boolean isValidInterviewTime(String test) {
-        if (test.length() != 12) {
-            return false;
-        } else {
-            if (!test.substring(0, 2).matches(REGEX_DD) | !test.substring(2, 4).matches(REGEX_MM)) {
+        if (test == null) {
+            return true;
+        }
+        else {
+            try {
+                LocalDateTime.parse(test, formatter);
+                return true;
+            }
+            catch (DateTimeParseException e) {
                 return false;
             }
         }
-        return true;
     }
 
     public LocalDateTime getDateTime() {
@@ -57,7 +66,7 @@ public class InterviewTime {
     }
 
     public String rawToString() {
-        return dateTime.format(formatter);
+        return dateTime == null ? "" : dateTime.format(formatter);
     }
 
     /**
@@ -81,8 +90,13 @@ public class InterviewTime {
 
     @Override
     public String toString() {
-        DateTimeFormatter beautify = DateTimeFormatter.ofPattern("MMMM dd, yyyy hh:mm a", Locale.ENGLISH);
-        return dateTime.format(beautify);
+        if (dateTime == null) {
+            return "No Interviews set";
+        }
+        else {
+            DateTimeFormatter beautify = DateTimeFormatter.ofPattern("MMMM dd, yyyy hh:mm a", Locale.ENGLISH);
+            return dateTime.format(beautify);
+        }
     }
 
     @Override
@@ -97,12 +111,13 @@ public class InterviewTime {
         }
 
         InterviewTime otherDateTime = (InterviewTime) other;
-        return dateTime.equals(otherDateTime.dateTime);
+        return (dateTime == null && otherDateTime.dateTime == null) ||
+                (dateTime != null && dateTime.equals(otherDateTime.dateTime));
     }
 
     @Override
     public int hashCode() {
-        return dateTime.hashCode();
+        return dateTime == null ? 0 : dateTime.hashCode();
     }
 
 
