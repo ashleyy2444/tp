@@ -206,7 +206,7 @@ Examples:
 * `find google` returns `google` and `Google`
 * `find mary tiktok` returns `Mary Lee` and `Tiktok`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/FindExample.png)
 
 ### Locating persons by various categories: `filter`
 
