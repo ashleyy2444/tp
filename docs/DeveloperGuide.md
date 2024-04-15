@@ -171,7 +171,7 @@ a static integer based on the CLI Syntax from the userInput. The string is that 
 **1 - 4** which are pre-assigned to a comparator.
 
 #### Overview of SortCommand
-![sort_overview_2.png](images%2Fsort_overview_2.png)<br>
+![sort_overview_2.png](images/sortoverview2.png)<br>
 Based on the image above:
 * Step 1: User inputs `sort pri/` which calls the `execute()` function in the `LogicManager` object.
   * `pri/` is an added CLI Syntax to refer to priority which is an added attribute to `Person` class.
