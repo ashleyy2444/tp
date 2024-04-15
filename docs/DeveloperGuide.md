@@ -573,7 +573,7 @@ be confusing for users as they may input the wrong prefix for a command (e.g. in
 instead of in the `resume`command). We plan to allow the error message to throw more specific errors: `Invalid 
 Command Format! edu/ is part of the resume command and not the add command.`
 
-4. **Improve help command functionally by making it easier for CLI users**:
+4. **Improve help command functionality by making it easier for CLI users**:
 Makes it so that the `help` command bring up a tab with the link to the user guide automatically highlighted.
 This allows the user to simply use the keyboard shortcut `ctrl-c` to copy the link to their clipboard, instead of
 having to use the mouse to click the copy button manually. This allows users using the CLI to use the app more 
@@ -615,4 +615,4 @@ to 3000)
 multiple resumes. This can be limiting as users may want to retrieve specific versions of the resume. To make the
 experience more intuitive, we plan to create a separate storage system to allow users to store multiple resumes. For
 instance, calling the `resume` command will create a separate resume to store, instead of overwriting the current 
-resume.
+33resume.
