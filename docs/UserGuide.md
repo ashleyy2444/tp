@@ -12,9 +12,9 @@ contact management tasks done faster than traditional GUI apps.
 ### Key features
 With CCBot, you can keep track and manage your various job applications by:
 * **Filtering and sorting your contact list flexibly**
-* **Predicting the job difficulty of each of the applied jobs**
-* **Adding additional notes about each of the company contacts**
-* **Adding interview times, salary, required skills, and prorities to each of the company contacts**
+* **Predicting the job difficulty of each of your applied job**
+* **Adding additional notes about each of your company contact**
+* **Adding interview times, salary, required skills, and priority to each of your company contact**
 
 _All in one app!_
 
@@ -180,7 +180,7 @@ Format: `list`
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Note:** Extraneous parameters for `list` will be ignored. (e.g. `list 1` is interpreted 
-`list`.) If you want to find a person in contact list, refer to `find` or `filter` features.
+`list`.) If you want to find a person in the contact list, refer to the `find` or `filter` feature.
 </div>
 
 ### Editing a person : `edit`
