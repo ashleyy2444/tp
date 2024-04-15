@@ -346,7 +346,7 @@ Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Extraneous parameters for `clear` will be ignored. (e.g. `clear 1` is interpreted as `clear`)
-If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((#deleting-a-personpersons-delete)). 
+If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((UserGuide.html#deleting-a-personpersons-delete)). 
 </div>
 
 ### Exiting the program : `exit`  
