@@ -49,6 +49,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label jobDifficulty;
     @FXML
+    private Label programmingLanguagesLabel;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane programmingLanguages;
@@ -74,7 +76,7 @@ public class PersonCard extends UiPart<Region> {
         person.getProgrammingLanguages().stream()
                 .sorted(Comparator.comparing(pl -> pl.languageName))
                 .forEach(pl -> programmingLanguages.getChildren().add(
-                        new Label("Programming Languages: " + pl.languageName)));
+                        new Label("[" + pl.languageName + "] ")));
         updateCardColor(person);
     }
     private void updateCardColor(Person person) {
