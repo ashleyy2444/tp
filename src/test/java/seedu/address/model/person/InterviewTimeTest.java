@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -12,8 +13,9 @@ import org.junit.jupiter.api.Test;
 
 public class InterviewTimeTest {
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new InterviewTime(null));
+    public void constructor_null_doesNotThrowException() {
+        InterviewTime interviewTime = new InterviewTime(null);
+        assertNull(interviewTime.getDateTime());
     }
 
     @Test
