@@ -1,12 +1,11 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
@@ -22,6 +21,7 @@ public class DeleteTagCommand extends DeleteAbstractCommand {
             + "Example: " + COMMAND_WORD + " friend";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted all contacts with tag: %1$s";
+    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The following tags do not exist: %1$s";
 
     private final TagContainsKeywordsPredicate tagToDelete;
 
@@ -43,16 +43,25 @@ public class DeleteTagCommand extends DeleteAbstractCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
         List<Tag> tags = tagToDelete.getTags();
-        System.out.println("Deleting all contacts with tag: " + tags);
-        for (Tag tag : tags) {
-            System.out.println(tag);
-            model.getFilteredPersonList().stream()
-                    .filter(person -> person.getTags().contains(tag))
-                    .peek(person -> System.out.println(person))
-                    .forEach(person -> model.deletePerson(person));
+        List<Tag> allTags = model.getAddressBook().getPersonList().stream()
+                .flatMap(person -> person.getTags().stream())
+                .distinct()
+                .collect(Collectors.toList());
+
+        if (!allTags.containsAll(tags)) {
+            List<Tag> nonExistentTags = tags.stream()
+                    .filter(tag -> !allTags.contains(tag))
+                    .collect(Collectors.toList());
+            throw new CommandException(String.format(MESSAGE_TAG_DOES_NOT_EXIST, nonExistentTags));
         }
+
+        List<Person> personsToDelete = model.getFilteredPersonList().stream()
+                .filter(person -> tagToDelete.test(person))
+                .collect(Collectors.toList());
+
+        personsToDelete.forEach(model::deletePerson);
+
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));
     }
 
@@ -62,8 +71,7 @@ public class DeleteTagCommand extends DeleteAbstractCommand {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteTagCommand)) {
             return false;
         }
 
@@ -71,10 +79,4 @@ public class DeleteTagCommand extends DeleteAbstractCommand {
         return tagToDelete.equals(otherDeleteTagCommand.tagToDelete);
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("tagToDelete", tagToDelete)
-                .toString();
-    }
 }
