@@ -19,7 +19,8 @@ public class AddResumeCommandParserTest {
     }
     @Test
     public void parse_duplicatePrefixes_failure() {
-        assertParseFailure(parser, " n/Amy" + " n/Bob" + " a/test" + " p/123" + " e/test",
+        assertParseFailure(parser, " n/Amy" + " n/Bob" + " a/test" + " p/123" + " e/test" + " cn/Google"
+                + " edu/NUS" + " s/3000",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
     }
 }

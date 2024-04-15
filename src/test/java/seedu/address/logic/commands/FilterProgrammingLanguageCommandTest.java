@@ -6,8 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.FilterProgrammingLanguageCommandParser.createLanguages;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -65,6 +70,28 @@ public class FilterProgrammingLanguageCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
+
+    @Test
+    public void execute_multipleKeywords_multiplePersonsFound() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        ProgrammingLanguageContainsKeywordsPredicate predicate = preparePredicate("Java java");
+        FilterProgrammingLanguageCommand command = new FilterProgrammingLanguageCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void toStringMethod() throws ParseException {
+        ProgrammingLanguageContainsKeywordsPredicate predicate = new ProgrammingLanguageContainsKeywordsPredicate(
+                createLanguages("Java"));
+        FilterProgrammingLanguageCommand filterProgrammingLanguageCommand =
+                new FilterProgrammingLanguageCommand(predicate);
+        String expected = FilterProgrammingLanguageCommand.class.getCanonicalName()
+                + "{programming_language=" + predicate + "}";
+        assertEquals(expected, filterProgrammingLanguageCommand.toString());
+    }
+
     /**
      * Parses {@code userInput} into a {@code ProgrammingLanguageContainsKeywordsPredicate}.
      */

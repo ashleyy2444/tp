@@ -36,6 +36,7 @@ public class FindCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        assert 1 == 1;
         if (other == this) {
             return true;
         }

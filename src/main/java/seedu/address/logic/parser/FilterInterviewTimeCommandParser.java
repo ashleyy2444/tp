@@ -67,6 +67,10 @@ public class FilterInterviewTimeCommandParser {
                 for (String interviewTime : range) {
                     rangeTimes.add(ParserUtil.parseInterviewTime(interviewTime));
                 }
+                if (rangeTimes.get(1).isBefore(rangeTimes.get(0))) {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            FilterInterviewTimeCommand.WRONG_INTERVIEW_TIME_RANGE_MESSAGE));
+                }
                 interviewTimes.add(rangeTimes);
             }
         }

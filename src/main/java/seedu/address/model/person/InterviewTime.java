@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,7 +15,7 @@ public class InterviewTime {
 
     public static final String MESSAGE_CONSTRAINTS = "Error thrown, date and time format may be wrong. Check UG.";
 
-    public static final String REGEX_YYYY = "\\d{4}";
+    public static final String REGEX_YYYY = "\"([1-9]\\\\d{3}|0\\\\d{3})\"";
     public static final String REGEX_DD = "(0[1-9]|[1-2][0-9]|3[01])";
     public static final String REGEX_MM = "(0[1-9]|1[0-2])";
     public static final String REGEX_HHMM = "^([0-1][0-9]|2[0-3])[0-5][0-9]$";
@@ -31,9 +31,12 @@ public class InterviewTime {
      * @param dateTime input
      */
     public InterviewTime(String dateTime) {
-        requireNonNull(dateTime);
-        checkArgument(isValidInterviewTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.dateTime = LocalDateTime.parse(dateTime, formatter); //set format
+        if (dateTime == null) {
+            this.dateTime = null;
+        } else {
+            checkArgument(isValidInterviewTime(dateTime), MESSAGE_CONSTRAINTS);
+            this.dateTime = LocalDateTime.parse(dateTime, formatter); //set format
+        }
     }
 
     /**
@@ -42,14 +45,16 @@ public class InterviewTime {
      * @return true if correct format, false otherwise
      */
     public static boolean isValidInterviewTime(String test) {
-        if (test.length() != 12) {
-            return false;
+        if (test == null) {
+            return true;
         } else {
-            if (!test.substring(0, 2).matches(REGEX_DD) | !test.substring(2, 4).matches(REGEX_MM)) {
+            try {
+                LocalDateTime.parse(test, formatter);
+                return true;
+            } catch (DateTimeParseException e) {
                 return false;
             }
         }
-        return true;
     }
 
     public LocalDateTime getDateTime() {
@@ -57,7 +62,7 @@ public class InterviewTime {
     }
 
     public String rawToString() {
-        return dateTime.format(formatter);
+        return dateTime == null ? null : dateTime.format(formatter);
     }
 
     /**
@@ -75,14 +80,23 @@ public class InterviewTime {
         } else if (before == null) {
             return this.dateTime.isAfter(after);
         } else {
-            return this.dateTime.isBefore(before) && this.dateTime.isAfter(after);
+            return (this.dateTime.isBefore(before) || this.dateTime.isEqual(before))
+                    && (this.dateTime.isAfter(after) || this.dateTime.isEqual(after));
         }
+    }
+
+    public boolean isBefore(InterviewTime date) {
+        return this.dateTime.isBefore(date.getDateTime());
     }
 
     @Override
     public String toString() {
-        DateTimeFormatter beautify = DateTimeFormatter.ofPattern("MMMM dd, yyyy hh:mm a", Locale.ENGLISH);
-        return dateTime.format(beautify);
+        if (dateTime == null) {
+            return "No Interviews set";
+        } else {
+            DateTimeFormatter beautify = DateTimeFormatter.ofPattern("MMMM dd, yyyy hh:mm a", Locale.ENGLISH);
+            return dateTime.format(beautify);
+        }
     }
 
     @Override
@@ -97,12 +111,13 @@ public class InterviewTime {
         }
 
         InterviewTime otherDateTime = (InterviewTime) other;
-        return dateTime.equals(otherDateTime.dateTime);
+        return (dateTime == null && otherDateTime.dateTime == null)
+                || (dateTime != null && dateTime.equals(otherDateTime.dateTime));
     }
 
     @Override
     public int hashCode() {
-        return dateTime.hashCode();
+        return dateTime == null ? 0 : dateTime.hashCode();
     }
 
 

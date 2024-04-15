@@ -17,6 +17,10 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         this.tags = tags;
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
     @Override
     public boolean test(Person person) {
         Set<Tag> personTags = person.getTags();
