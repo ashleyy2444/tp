@@ -40,6 +40,4 @@ User *-- "1" Education
 User *-- "1" Email
 User *-- "1" Phone
 User *-- "0..1" ProgrammingLanguage
-
-
 @enduml
