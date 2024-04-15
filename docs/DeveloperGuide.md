@@ -568,10 +568,21 @@ allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG
 contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
 
 3. **Show more specific error messages for our features**: The current `add`, `edit`, `resume`, 
-   `filter`, `find`, `sort`, and `delete` command requires prefixes such as `t/` and `s/` as their parameters. This may 
-   be confusing for users as they may input the wrong prefix for a command (e.g. input `edu/` in `add` command 
-   instead of in the `resume`command). We plan to allow the error message to throw more specific errors: `Invalid 
-   Command Format! edu/ is part of the resume command and not the add command.`
+`filter`, `find`, `sort`, and `delete` command requires prefixes such as `t/` and `s/` as their parameters. This may 
+be confusing for users as they may input the wrong prefix for a command (e.g. input `edu/` in `add` command 
+instead of in the `resume`command). We plan to allow the error message to throw more specific errors: `Invalid 
+Command Format! edu/ is part of the resume command and not the add command.`
+
+6. **Allow `add` command to add contacts with the same name**: The current version of the application restricts the 
+addition of contacts with identical names, assuming that each contact should have a unique name. However, it is not 
+uncommon for people to have the same name, and this restriction can be limiting. We propose to enhance the application 
+to allow multiple contacts with the same name, while ensuring that each contact is uniquely identifiable by other means 
+such as company name, email, or phone number. The updated application will allow the addition of contacts with the same 
+name. To differentiate between contacts with identical names, additional details such as company name, email, or phone 
+number will be used. This approach will maintain the uniqueness of each contact within the application. Adjust the 
+contact validation logic to check for uniqueness based on the combination of name and one or more of the additional 
+identifying details. If a contact with the same name and other identifying details already exists, the application will 
+prompt the user to confirm the addition of the new contact instead of adding it immediately.
 
 7. **Allow `find` command to search contact list with partial name/company name matches**: The existing `find` command 
 focuses on exact matches for names or company names. This limitation can be restrictive, especially when users are 
