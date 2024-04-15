@@ -2,19 +2,20 @@
 layout: page
 title: User Guide
 ---
+### Introduction
 Welcome to CCBot and thank you for choosing CCBot!
+>_"Connecting lives, Connecting careers" ~CCBot_
 
-CareerConnectBot (CCBot) is a **desktop app for managing job interview contacts, optimized for use via a Command Line
-Interface**
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CCBot can get your
-contact management tasks done faster than traditional GUI apps.
+CareerConnectBot (CCBot) is a **desktop app for managing job interview contacts, for you computing professionals!** 
+It is optimized for use via a Command Line Interface** (CLI) ,while still having the benefits of a Graphical User 
+Interface (GUI). If you can type fast, CCBot can get your contact management tasks done faster than traditional GUI apps.
 
 ### Key features
 With CCBot, you can keep track and manage your various job applications by:
 * **Filtering and sorting your contact list flexibly**
 * **Predicting the job difficulty of each of your applied job**
 * **Adding additional notes about each of your company contact**
-* **Adding interview times, salary, required skills, and priority to each of your company contact**
+* **Adding interview times, salary, required technical skills, and priority to each of your company contact**
 
 _All in one app!_
 
@@ -24,7 +25,7 @@ For more details on what CCBot has to offer, check out the [Features](#features)
 This user guide serves as a manual with instructions for downloading, installing, setting up and using CCBot.
 
 Sections of the guide are split into the relevant chapters listed in the [Table Of Contents](#table-of-contents). 
-If you need to look for how to use a specific command, you may skip to the relavant chapter.
+If you need to look for how to use a specific command, you may skip to the relevant chapter.
 
 ## Table of Contents
 * Table of Contents
@@ -37,7 +38,7 @@ If you need to look for how to use a specific command, you may skip to the relav
 
 1. Download the latest `CCBOT.jar` from [here](https://github.com/AY2324S2-CS2103T-T08-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your CCBot.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CCBOT.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -364,15 +365,19 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CCBot data are saved in the hard disk automatically after any command that changes the data. There is no need to save 
+manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+CCBot data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are 
+welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, CCBot will discard all data and start with an empty data 
+file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the CCBot to behave in unexpected ways (e.g., if a value entered is outside of the 
+acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Job difficulty
@@ -385,7 +390,8 @@ This value cannot be modified or added by the `edit` or `add` commands.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
+contains the data of your previous CCBot home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -444,4 +450,4 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `INDEX` | The index **must be a positive integer** 1, 2, 3, …​                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
-
+_Navigate back to [Table Of Contents](#table-of-contents)_
