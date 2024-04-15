@@ -26,7 +26,7 @@ This user guide serves as a manual with instructions for downloading, installing
 Sections of the guide are split into the relevant chapters listed in the [Table Of Contents](#table-of-contents). 
 If you need to look for how to use a specific command, you may skip to the relavant chapter.
 
-* Table of Contents
+## Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -178,8 +178,7 @@ Format: `list`
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Note:** Extraneous parameters for `list` will be ignored. (e.g. `list 1` is interpreted 
-`list`.) If you want to find a person in contact list, refer to  [`find`]
-(#locating-persons-by-name--company-name--find) or [`filter`](#locating-persons-by-various-categories--filter).
+`list`.) If you want to find a person in contact list, refer to `find` or `filter` features.
 </div>
 
 ### Editing a person : `edit`
@@ -246,10 +245,11 @@ Format: `filter tt/INTERVIEW_TIME_RANGE [INTERVIEW_TIME_RANGE]...`
 * Only the interview times of each of the contacts are searched.
 * Persons with interview times within the range provided will be returned.
 * Valid `INTERVIEW_TIME_RANGE` includes:
-  * `before/INTERVIEWTIME`
-  * `after/INTERVIEWTIME`
-  * `from/INTERVIEWTIME-INTERVIEWTIME`
-  * Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs for `INTERVIEWTIME`. 
+  * `before/INTERVIEW_TIME`
+  * `after/INTERVIEW_TIME`
+  * `from/INTERVIEW_TIME-INTERVIEW_TIME`
+  * Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs for 
+    `INTERVIEW_TIME`. 
 
 Examples:
 * `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan
@@ -333,7 +333,7 @@ Examples:
 
 #### Delete by tag: `delete t/`
 
-Format: `delete t/TAG [TAGS]...`
+Format: `delete t/TAG [TAG]...`
 
 * The search is case-insensitive.
 * Only contacts that have the tag are deleted.
@@ -351,7 +351,7 @@ Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Extraneous parameters for `clear` will be ignored. (e.g. `clear 1` is interpreted as `clear`)
-If you only want to clear **some** and **not all** entries from the address book, refer to [delete](#deleting-a-personpersons-delete-). 
+If you only want to clear **some** and **not all** entries from the address book, refer to `delete` feature. 
 </div>
 
 ### Exiting the program : `exit`  
@@ -395,18 +395,18 @@ This value cannot be modified or added by the `edit` or `add` commands.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                           |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                                            |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                                        |
-| **Edit**   | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] <br/>[i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                 |
-| **Find**   | `find KEYWORD [KEYWORDS]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                              |
-| **Filter** | `filter t/TAG [TAGS]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C` |
-| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **Sort**   | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`                                                                                                                                                                                                                                                        |
-| **Resume** | `resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `                                                                                                                                                                                                    |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                     |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                      |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete t/TAG [TAG]...`<br> e.g., `delete t/HR Manager`                                                                                                                                                                                                                                                                                                      |
+| **Edit**   | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] <br/>[i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                           |
+| **Find**   | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                              |
+| **Filter** | `filter t/TAG [TAG]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C` |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Sort**   | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`                                                                                                                                                                                                                                  |
+| **Resume** | `resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `                                                                                                                                                                              |
 
 ## CLI Syntax Summary
 
@@ -435,11 +435,11 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | `ADDRESS`            | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `SALARY`             | Should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].                                                                                                                                                                                                                                                                                                             |
 | `PROGRAMMING_LANGUAGE` | Should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.                                                                                                                                                                                                                                                                                                                                                                        |
-| `TAG`                | Should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `TAG`                | Should be a single alphanumerical word that does not contain spaces.                     <br/><br/>            <br/>                                                                                                                                                                                                                                                                                                                                                                  |
 | `PRIORITY`           | Should be a number between 0 and 4.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `INTERVIEW_TIME`     | Should be in the format `ddMMyyyyHHmm`.<br/>* `dd` - refers to the day and the acceptable range is from **01** to **31**<br/> * `MM` - refers to the month and the acceptable range is from **01** to **12**<br/>* `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**<br/> * `HH` - refers to the hour and the acceptable range is from **00** to **23**<br/> * `mm` - refers to the minutes and the acceptable range is from **00** to **59** |
 | `INFO`               | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `INDEX` | The index **must be a positive integer** 1, 2, 3, …​                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `INDEX` | The index **must be a positive integer** 1, 2, 3, …​                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 
