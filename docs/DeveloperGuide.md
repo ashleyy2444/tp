@@ -70,7 +70,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -278,6 +278,24 @@ specified keywords.
   specified keywords. Retrieves the list of contacts matching the predicate, updates the filtered contact list in the
   model, and returns a command result indicating the number of contacts found.
 
+### Add resume feature
+
+The add resume feature allows user to add their own personal and professional details that would be required in a
+job search. This feature has its own UI, similar to the `Help` feature.
+
+#### Implementation
+This feature introduces a new `User` **singleton** class. The structure is as shown below.
+![UserDiagram.png](images%2FUserDiagram.png)
+The `ResumeWindow` controller, that controls the FXML file that displays the resume, has a reference to the
+User class to retrieve the values of the user, if any.
+
+#### Process:
+1. User inputs `resume...` into UI.
+2. The `UIManager` then calls `LogicManager`
+3. `AddressBookParser` is called.
+4. `AddressBookParser` resets the User's attributes and re-assigns them to the current inputs
+5. `AddResumeCommand` is instantiated and its `execute()` is called to return `CommandResult`
+6. `ResumeWindow` is opened or reopened to show the current values.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -551,5 +569,12 @@ return a long list. It is also not convenient for users who want to find contact
 allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return
 contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
 
-3**Store** the resume such that
+7. **Allow `find` command to search contact list with partial name/company name matches**: The existing `find` command 
+focuses on exact matches for names or company names. This limitation can be restrictive, especially when users are 
+unsure about the complete name or are looking for contacts with names that have common substrings. To provide a more 
+flexible and intuitive search experience, we plan to enhance the find command to support partial matching. The improved 
+find command will enable users to search for contacts using partial names or partial company names. The command will 
+display a list of contacts where the entered term matches any part of the person's name or company name. (e.g. `find j`
+will return contacts with names like "John" and company names like "JPMorgan".)
 
+3**Store** the resume such that

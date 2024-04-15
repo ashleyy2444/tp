@@ -31,7 +31,6 @@ If you need to look for how to use a specific command, you may skip to the relav
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -189,7 +188,7 @@ Format: `list`
 Edits an existing person in the address book.
 
 Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW_TIME] [i/INFO]
-[s/SALARY] [pl/PROGRAMMING_LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]​`
+[s/SALARY] [pl/PROGRAMMING_LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
 * At least one of the optional fields must be provided.
