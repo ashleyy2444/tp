@@ -573,6 +573,12 @@ be confusing for users as they may input the wrong prefix for a command (e.g. in
 instead of in the `resume`command). We plan to allow the error message to throw more specific errors: `Invalid 
 Command Format! edu/ is part of the resume command and not the add command.`
 
+4. **Improve help command functionally by making it easier for CLI users**:
+Makes it so that the `help` command bring up a tab with the link to the user guide automatically highlighted.
+This allows the user to simply use the keyboard shortcut `ctrl-c` to copy the link to their clipboard, instead of
+having to use the mouse to click the copy button manually. This allows users using the CLI to use the app more 
+effectively.
+
 6. **Allow `add` command to add contacts with the same name**: The current version of the application restricts the 
 addition of contacts with identical names, assuming that each contact should have a unique name. However, it is not 
 uncommon for people to have the same name, and this restriction can be limiting. We propose to enhance the application 
