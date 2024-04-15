@@ -30,7 +30,7 @@ public class SortCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_INTERVIEWTIME + "INTERVIEW-TIME] "
             + "[" + PREFIX_SALARY + "SALARY] "
-            + "Example: " + COMMAND_WORD + PREFIX_INTERVIEWTIME;
+            + "Example: " + COMMAND_WORD + " " + PREFIX_INTERVIEWTIME;
 
     public static final String MESSAGE_LIST_SORTED_SUCCESS = "List Sorted";
     private final Integer info;
