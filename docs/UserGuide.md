@@ -41,7 +41,7 @@ If you need to look for how to use a specific command, you may skip to the relev
 1. Copy the file to the folder you want to use as the _home folder_ for your CCBot.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CCBOT.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the picture below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -55,7 +55,9 @@ If you need to look for how to use a specific command, you may skip to the relev
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts. 
+     * Note that this action is irreversible so use it only after trying the above commands to clear the example 
+       contacts.
 
    * `exit` : Exits the app.
 
@@ -182,7 +184,6 @@ _Note: Any extra parameters after `list` will be ignored as it displays the full
 
 Format: `list`
 <div markdown="span" class="alert alert-info">
-
 **:information_source: Note:** Extraneous parameters for `list` will be ignored. (e.g. `list 1` is interpreted 
 `list`.) If you want to find a person in the contact list, refer to the `find` or `filter` feature.
 </div>
@@ -369,7 +370,12 @@ Format: `exit`
 ### Saving the data
 
 CCBot data are saved in the hard disk automatically after any command that changes the data. There is no need to save 
-manually.
+manually. 
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Resumes added will not be saved in the hard disk as of v1.4.
+</div>
+
 
 ### Editing the data file
 
