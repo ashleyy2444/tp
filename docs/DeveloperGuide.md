@@ -573,7 +573,7 @@ be confusing for users as they may input the wrong prefix for a command (e.g. in
 instead of in the `resume`command). We plan to allow the error message to throw more specific errors: `Invalid 
 Command Format! edu/ is part of the resume command and not the add command.`
 
-4. **Improve help command functionally by making it easier for CLI users**:
+4. **Improve help command functionality by making it easier for CLI users**:
 Makes it so that the `help` command bring up a tab with the link to the user guide automatically highlighted.
 This allows the user to simply use the keyboard shortcut `ctrl-c` to copy the link to their clipboard, instead of
 having to use the mouse to click the copy button manually. This allows users using the CLI to use the app more 
@@ -598,4 +598,21 @@ find command will enable users to search for contacts using partial names or par
 display a list of contacts where the entered term matches any part of the person's name or company name. (e.g. `find j`
 will return contacts with names like "John" and company names like "JPMorgan".)
 
-3**Store** the resume such that
+8. **Store the resume such that the user can retrieve it later**. The existing implementation of the program
+does not store the user's resume but only binds it to the current instance of the program. This can be limiting 
+as users would have to re-input their resume everytime they open the application. Even thought it is unlikely that 
+a resume can change as often as a contact in the addressbook. To provide a better user experience, we plan to store the 
+resume and enable the application to read the stored resume, if any, whenever it starts.
+
+9. **Allow user to edit the resume**. The existing implementation of the program, does not allow users to edit the 
+resume. Currently, user would have to call `resume` command and re-input the values if they want to update them. This
+can be limiting as it results in unnecessary inconvenience of having to re-input all the values instead of editing just
+the intended one. To provide a more intuitive experience, we plan to enhance the `edit` command  such that users can
+directly access the current resume and edit the values. (e.g `edit resume s/3000` will update the salary on the resume
+to 3000)
+
+10. **Allow user to store multiple versions of the resume**. The existing implementation does not allow users to store
+multiple resumes. This can be limiting as users may want to retrieve specific versions of the resume. To make the
+experience more intuitive, we plan to create a separate storage system to allow users to store multiple resumes. For
+instance, calling the `resume` command will create a separate resume to store, instead of overwriting the current 
+33resume.
