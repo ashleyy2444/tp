@@ -37,7 +37,7 @@ public class Info {
         if (value.length() == 0) {
             return "No additional info";
         }
-            return value;
+        return value;
     }
 
     @Override
