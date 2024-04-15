@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -12,8 +13,9 @@ import org.junit.jupiter.api.Test;
 
 public class InterviewTimeTest {
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new InterviewTime(null));
+    public void constructor_null_doesNotThrowException() {
+        InterviewTime interviewTime = new InterviewTime(null);
+        assertNull(interviewTime.getDateTime());
     }
 
     @Test
@@ -29,6 +31,8 @@ public class InterviewTimeTest {
         InterviewTime dateTimeAfterRange = new InterviewTime("121120271400");
         InterviewTime dateTimeBeforeRange = new InterviewTime("121120201400");
         InterviewTime dateTimeInRange = new InterviewTime("121120231400");
+        InterviewTime dateTimeEqualAfterDate = new InterviewTime("011120231400");
+        InterviewTime dateTimeEqualBeforeDate = new InterviewTime("121220240300");
 
         // Interview time ranges
         List<InterviewTime> wrongSize = Arrays.asList(null, null, null);
@@ -62,6 +66,10 @@ public class InterviewTimeTest {
         assertTrue(dateTimeAfterRange.isWithinInterviewTimeRange(validAfter));
         assertTrue(dateTimeBeforeRange.isWithinInterviewTimeRange(validBefore));
         assertTrue(dateTimeInRange.isWithinInterviewTimeRange(validRange));
+        assertTrue(dateTimeEqualAfterDate.isWithinInterviewTimeRange(validRange));
+        assertTrue(dateTimeEqualBeforeDate.isWithinInterviewTimeRange(validRange));
+
+
 
     }
     @Test

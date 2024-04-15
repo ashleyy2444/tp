@@ -48,6 +48,8 @@ public class ResumeWindow extends UiPart<Stage> {
     @FXML
     private Button copyButton;
 
+    private Stage currentStage;
+
     /**
      * Creates a new ResumeWindow.
      *
@@ -116,6 +118,10 @@ public class ResumeWindow extends UiPart<Stage> {
         logger.fine("Showing user's resume.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    public void close() {
+        getRoot().close();
     }
 
     /**

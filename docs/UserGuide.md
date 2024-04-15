@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Career Connect Bot (CCBot) is a **desktop app for managing job interview contacts, optimized for use via a Command Line 
-Interface** 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CCBot can get your 
+Career Connect Bot (CCBot) is a **desktop app for managing job interview contacts, optimized for use via a Command Line
+Interface**
+(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CCBot can get your
 contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -31,9 +31,9 @@ contact management tasks done faster than traditional GUI apps.
    * `list` : Lists all contacts.
 
    * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
-     i/remote work s/5000 pl/Java t/friends t/referral pri/2` : 
+     i/remote work s/5000 pl/Java t/friends t/referral pri/2` :
      Adds a contact named `John Doe` to the Address Book.
-     
+
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -48,7 +48,7 @@ contact management tasks done faster than traditional GUI apps.
 
 <span style="display: inline-block; width: 20px; height:  20px; background-color: #ff0000;"></span>
 
-**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority. 
+**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority.
 
 <span style="display: inline-block; width: 20px; height:  20px; background-color: #E18D1F;"></span>
 
@@ -67,7 +67,26 @@ contact management tasks done faster than traditional GUI apps.
 **<span style="color:#8A15C5;">4 - Lowest Priority</span>** - This is the lowest priority.
 
 --------------------------------------------------------------------------------------------------------------------
+## Date and Time
+> Your CCBot uses date and time to better help you manage your interviews. This section contains all the details on how
+> your CCBot interprets date and time.
 
+* ### Format : `ddMMyyyyHHmm`
+  * `dd` - refers to the day and the acceptable range is from **01** to **31**
+  * `MM` - refers to the month and the acceptable range is from **01** to **12**
+  * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**
+  * `HH` - refers to the hour and the acceptable range is from **00** to **23**
+  * `mm` - refers to the minutes and the acceptable range is from **00** to **59** 
+* ### Examples:
+  * `121220221400` is interpreted as **December 12, 2022 4:00 PM**
+  * `010100010000` is interpreted as **January 01, 0001 12:00 AM**
+> #### Handling leap years
+> * Your CCBot uses the ISO-8601 calendar system to handle leap years. This means that giving a leap day on a non-leap 
+> year returns the last valid day of that month.
+> * Example: `290220090000` will give the same output as `280220090000`
+> * For more information, click [here](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html).
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -105,13 +124,29 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] 
-        [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)] …​`
-
+Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO]
+        [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
+
+* `COMPANY_NAME` should be less than 100 characters, and it should not be blank.
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank.
+* `PHONE_NUMBER` Should only contain numbers, and it should be at least 3 digits long.
+* `EMAIL` should be a valid email address, and it should not be blank.
+* `ADDRESS` can take any values, and it should not be blank.
+* `SALARY` should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].
+* `PROGRAMMING_LANGUAGE` should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.
+* `TAG` should be a single alphanumerical word with no spaces.
+* `PRIORITY` should be a number between 0 and 4.
+* `INTERVIEW_TIME` should be in the format `ddMMyyyyHHmm`.
+  * `dd` - refers to the day and the acceptable range is from **01** to **31**<br/> 
+  * `MM` - refers to the month and the acceptable range is from **01** to **12**<br/>
+  * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**<br/> 
+  * `HH` - refers to the hour and the acceptable range is from **00** to **23**<br/> 
+  * `mm` - refers to the minutes and the acceptable range is from **00** to **59**
+* `INFO` can take any values.
 
 Examples:
 * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
@@ -119,15 +154,26 @@ i/Birthday: 12 May 2001 s/5000 pl/Java t/friends t/owesMoney pri/2`
 * `add cn/ Amazon n/Betsy Crowe p/81234567 e/betsycrowe@example.com a/Newgate Prison tt/121220241200
 i/Remote work s/4000 pl/Python t/criminal pri/4`
 
+
 ### Adding a resume: `resume`
 
-Adds a resume to the addressbook.
+Adds a resume.
 
-Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION a/ADDRESS`
+Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION [pl/PROGRAMMING-LANGUAGE]`
+
+* `COMPANY_NAME` should be less than 100 characters, and it should not be blank.
+* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank.
+* `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long.
+* `EMAIL` should be a valid email address.
+* `ADDRESS` can take any values, and it should not be blank.
+* `SALARY` should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].
+* `EDUCATION` should only contain alphanumeric characters and spaces, and it should not be blank.
+* `PROGRAMMING_LANGUAGE` should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.
 
 Examples:
 * `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++`
 * `resume cn/Apple n/Amy Birch p/87654321 e/amy@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25`
+
 
 ### Listing all persons : `list`
 
@@ -140,18 +186,20 @@ Format: `list`
 Edits an existing person in the address book.
 
 Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] [i/INFO]
-[s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]…​`
+[s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags and info, the existing tags and info of the person will be removed i.e adding of tags and info are 
+* When editing tags and info, the existing tags and info of the person will be removed i.e adding of tags and info are
   not cumulative.
   * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
   * You can remove all the person’s info by typing `i/` without specifying any info after it.
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+
 
 ### Locating persons by name / company name: `find`
 
@@ -171,7 +219,7 @@ Examples:
 * `find google` returns `google` and `Google`
 * `find mary tiktok` returns `Mary Lee` and `Tiktok`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/FindExample.png)
 
 ### Locating persons by various categories: `filter`
 
@@ -201,8 +249,8 @@ Format: `filter tt/INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...`
   * `from/INTERVIEWTIME-INTERVIEWTIME`
 
 Examples:
-* `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan 
-  2020, 1200am `(010120200000)` or persons with interview times within 1 Jan 2022, 1200am `(010120220000)` and 1 Jan 
+* `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan
+  2020, 1200am `(010120200000)` or persons with interview times within 1 Jan 2022, 1200am `(010120220000)` and 1 Jan
   2023, 1200am `(010120230000)`.
 * `filter tt/after/010120220000` returns persons with interview times after 1 Jan 2022, 1200am `(010120220000)`.
 
@@ -213,7 +261,7 @@ Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
 * Only the salaries of each of the contacts are searched.
 * Persons with salaries within the range provided will be returned.
 * Valid `SALARY_RANGE` includes:
-  * Valid `SALARY` 
+  * Valid `SALARY`
   * `>=INTEGER`
   * `<=INTEGER`
 
@@ -221,7 +269,7 @@ Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
 
 Examples:
 * `filter s/5000` returns persons with salaries of $5000.
-* `filter s/2000-5000 >=7000` returns persons with salaries that contain any number from $2000 to $5000 or with 
+* `filter s/2000-5000 >=7000` returns persons with salaries that contain any number from $2000 to $5000 or with
   salaries more than or equals to $7000. (e.g. persons with salaries `3000-6000`, `4000`, `8000-20900` are returned).
 
 #### Filter by programming language: `filter pl/`
@@ -260,7 +308,7 @@ Examples:
 * `sort rev/ cn/` sorts the person list by company name in reverse alphabetical order.
 * `sort rev/ tt/` sorts the person list by interview time in reverse chronological order.
 
-### Deleting a person/persons: `delete`
+### Deleting a person/persons: `delete` 
 
 Deletes the contact list based index or tags.
 
@@ -280,23 +328,27 @@ Examples:
 
 #### Delete by tag: `delete t/`
 
-Format: `delete t/TAG [MORE_TAGS]...`
+Format: `delete t/TAG`
 
 * The search is case-insensitive.
-* Only the tags of each of the contacts are deleted.
-* Persons matching at least one tag will be deleted.
+* Only contacts that have the tag are deleted.
+* Persons matching the tag will be deleted.
 
 Examples:
 * `delete t/manager` deletes any persons with a tag, `manager`
-* `delete t/manager HR` deletes any persons with either of the tags, `manager` or `HR`.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears **all** entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Extraneous parameters for `clear` will be ignored. (e.g. `clear 1` is interpreted as `clear`)
+If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((UserGuide.html#deleting-a-personpersons-delete)). 
+</div>
+
+### Exiting the program : `exit`  
 
 Exits the program.
 
@@ -337,31 +389,50 @@ This value cannot be modified or added by the `edit` or `add` commands.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE] [t/TAG] [pri/PRIORITY(0-4)]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Filter**| `filter t/TAG [MORE TAGS]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [MORE INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [MORE SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [MORE PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C`
-**List** | `list`
-**Help** | `help`
-**Sort** | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`
-**Resume**|`resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                           |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                                            |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Edit**   | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] <br/>[i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                 |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                              |
+| **Filter** | `filter t/TAG [MORE_TAGS]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [MORE_PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C` |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Sort**   | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`                                                                                                                                                                                                                                                        |
+| **Resume** | `resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `                                                                                                                                                                                                    |
 
 ## CLI Syntax Summary
 
-Character | Explaination, Examples
-----------|------------------
-**n/**|Name of the contact
-**cn/**|The company name
-**tt/**|The time of the interview
-**s/**|The salary
-**a/**|The place of residence
-**e/**|The email address
-**i/**|Any additional info
-**pri/**|Priority of the job
-**edu/**|Education level
-**pl/**|Programming languages
-**jd/**|The job difficulty (only for `sort` command)
+| Character | Explaination, Examples                       |
+|-----------|----------------------------------------------|
+| **n/**    | Name of the contact                          |
+| **cn/**   | The company name                             |
+| **tt/**   | The time of the interview                    |
+| **s/**    | The salary                                   |
+| **a/**    | The place of residence                       |
+| **e/**    | The email address                            |
+| **i/**    | Any additional info                          |
+| **pri/**  | Priority of the job                          |
+| **edu/**  | Education level                              |
+| **pl/**   | Programming languages                        |
+| **jd/**   | The job difficulty (only for `sort` command) |
+
+## Constraints Summary
+
+| Field                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `COMPANY_NAME`       | Should be less than 100 characters, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `NAME`               | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `PHONE_NUMBER`       | Should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `EMAIL`              | Should be a valid email address.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `ADDRESS`            | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `SALARY`             | Should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].                                                                                                                                                                                                                                                                                                             |
+| `PROGRAMMING_LANGUAGE` | Should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.                                                                                                                                                                                                                                                                                                                                                                        |
+| `TAG`                | Should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `PRIORITY`           | Should be a number between 0 and 4.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `INTERVIEW_TIME`     | Should be in the format `ddMMyyyyHHmm`.<br/>* `dd` - refers to the day and the acceptable range is from **01** to **31**<br/> * `MM` - refers to the month and the acceptable range is from **01** to **12**<br/>* `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**<br/> * `HH` - refers to the hour and the acceptable range is from **00** to **23**<br/> * `mm` - refers to the minutes and the acceptable range is from **00** to **59** |
+| `INFO`               | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+

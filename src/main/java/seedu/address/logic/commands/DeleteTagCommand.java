@@ -2,16 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
  * Command to delete all contacts with a specified tag from the address book.
  */
 public class DeleteTagCommand extends DeleteAbstractCommand {
-    // public static final String COMMAND_WORD = DeleteCommand.COMMAND_WORD + " " + PREFIX_TAG;
     public static final String COMMAND_WORD = "delete t/";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -42,10 +44,15 @@ public class DeleteTagCommand extends DeleteAbstractCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.getFilteredPersonList().stream()
-                .filter(person -> person.getTags().contains(tagToDelete))
-                .forEach(person -> model.deletePerson(person));
-
+        List<Tag> tags = tagToDelete.getTags();
+        System.out.println("Deleting all contacts with tag: " + tags);
+        for (Tag tag : tags) {
+            System.out.println(tag);
+            model.getFilteredPersonList().stream()
+                    .filter(person -> person.getTags().contains(tag))
+                    .peek(person -> System.out.println(person))
+                    .forEach(person -> model.deletePerson(person));
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));
     }
 

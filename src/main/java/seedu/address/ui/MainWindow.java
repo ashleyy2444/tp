@@ -174,6 +174,9 @@ public class MainWindow extends UiPart<Stage> {
             resumeWindow = new ResumeWindow();
             resumeWindow.show();
         } else {
+            resumeWindow.close();
+            resumeWindow = new ResumeWindow();
+            resumeWindow.show();
             resumeWindow.focus();
         }
     }

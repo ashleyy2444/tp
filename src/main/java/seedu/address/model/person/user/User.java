@@ -89,7 +89,18 @@ public class User {
     public void setSkills(Set<ProgrammingLanguage> skills) {
         this.skills.addAll(skills);
     }
-    public static void reset() {
-        user = null;
+
+    /**
+     * Resets the values for User singleton class
+     */
+    public void reset() {
+        this.companyName = null;
+        this.name = null;
+        this.phone = null;
+        this.email = null;
+        this.address = null;
+        this.salary = null;
+        this.education = null;
+        this.skills = new HashSet<>();
     }
 }
