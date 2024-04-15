@@ -204,10 +204,6 @@ Format: `list`
 `list`.) If you want to find a person in contact list, refer to  [`find`]
 (#locating-persons-by-name--company-name--find) or [`filter`](#locating-persons-by-various-categories--filter).
 </div>
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Extraneous parameters for `clear` will be ignored. (e.g. `clear 1` is interpreted as `clear`)
-If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((UserGuide.html#deleting-a-personpersons-delete)). 
-</div>
 
 ### Editing a person : `edit`
 
