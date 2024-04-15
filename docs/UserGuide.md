@@ -131,7 +131,7 @@ Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVI
 A person can have any number of tags (including 0)
 </div>
 
-* Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs.
+* Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs.
 
 Examples:
 * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
@@ -145,7 +145,7 @@ Adds a resume.
 
 Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION [pl/PROGRAMMING-LANGUAGE]...`
 
-* Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs.
+* Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs.
 
 Examples:
 * `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++`
@@ -172,7 +172,7 @@ Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRE
   not cumulative.
   * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
   * You can remove all the person’s info by typing `i/` without specifying any info after it.
-* Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs.
+* Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs.
 * Examples:
   *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
   *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
@@ -225,7 +225,7 @@ Format: `filter tt/INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...`
   * `before/INTERVIEWTIME`
   * `after/INTERVIEWTIME`
   * `from/INTERVIEWTIME-INTERVIEWTIME`
-  * Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs for `INTERVIEWTIME`. 
+  * Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs for `INTERVIEWTIME`. 
 
 Examples:
 * `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan
@@ -240,7 +240,7 @@ Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
 * Only the salaries of each of the contacts are searched.
 * Persons with salaries within the range provided will be returned.
 * Valid `SALARY_RANGE` includes:
-  * [Acceptable values for `SALARY`](#constraints-summary)
+  * [Acceptable values for `SALARY`](#parameter-constraints)
   * `>=INTEGER`
   * `<=INTEGER`
 
@@ -258,7 +258,7 @@ Format `filter pl/PROGRAMMING_LANGUAGE [MORE_PROGRAMMING_LANGUAGE]...`
 * The search is case-insensitive.
 * Only the programming language of each of the contacts are searched.
 * Persons matching at least one programming language will be returned.
-* Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs for `PROGRAMMING_LANGUAGE`.
+* Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs for `PROGRAMMING_LANGUAGE`.
 
 Examples:
 * `filter pl/Java` returns any persons with a programming language, `java`.
@@ -299,6 +299,7 @@ Deletes the specified person from the address book.
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
+  * Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs for `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -313,6 +314,7 @@ Format: `delete t/TAG`
 * The search is case-insensitive.
 * Only contacts that have the tag are deleted.
 * Persons matching the tag will be deleted.
+* Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs for `TAG`.
 
 Examples:
 * `delete t/manager` deletes any persons with a tag, `manager`
@@ -398,7 +400,7 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | **pl/**   | Programming languages                        |
 | **jd/**   | The job difficulty (only for `sort` command) |
 
-## Constraints Summary
+## Parameter Constraints
 
 | Field                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
