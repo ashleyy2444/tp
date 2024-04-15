@@ -174,6 +174,8 @@ Examples:
 
 Shows a list of all persons in the address book.
 
+_Note: Any extra parameters after `list` will be ignored as it displays the full address book._
+
 Format: `list`
 <div markdown="span" class="alert alert-info">
 
