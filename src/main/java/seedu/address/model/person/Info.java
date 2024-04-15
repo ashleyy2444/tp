@@ -12,11 +12,15 @@ public class Info {
      * @param info Information about the person in the address book
      */
     public Info(String info) {
-        value = info;
+        String curr = info.trim();
+        if (curr.length() == 0) {
+            value = "No additional info";
+        } else { value = curr; }
     }
 
+
     public Info() {
-        value = "";
+        value = "No additional info";
     }
 
     public static boolean isValidInfo(String test) {
@@ -29,7 +33,11 @@ public class Info {
 
     @Override
     public String toString() {
-        return value;
+
+        if (value.length() == 0) {
+            return "No additional info";
+        }
+            return value;
     }
 
     @Override
