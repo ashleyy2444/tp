@@ -12,9 +12,9 @@ contact management tasks done faster than traditional GUI apps.
 ### Key features
 With CCBot, you can keep track and manage your various job applications by:
 * **Filtering and sorting your contact list flexibly**
-* **Predicting the job difficulty of each of the applied jobs**
-* **Adding additional notes about each of the company contacts**
-* **Adding interview times, salary, required skills, and prorities to each of the company contacts**
+* **Predicting the job difficulty of each of your applied job**
+* **Adding additional notes about each of your company contact**
+* **Adding interview times, salary, required skills, and priority to each of your company contact**
 
 _All in one app!_
 
@@ -27,10 +27,10 @@ Sections of the guide are split into the relevant chapters listed in the [Table 
 If you need to look for how to use a specific command, you may skip to the relavant chapter.
 
 ## Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -142,8 +142,8 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO]
-        [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]​`
+Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW_TIME] [i/INFO]
+        [s/SALARY] [pl/PROGRAMMING_LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -180,15 +180,15 @@ Format: `list`
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Note:** Extraneous parameters for `list` will be ignored. (e.g. `list 1` is interpreted 
-`list`.) If you want to find a person in contact list, refer to `find` or `filter` features.
+`list`.) If you want to find a person in the contact list, refer to the `find` or `filter` feature.
 </div>
 
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] [i/INFO]
-[s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]​`
+Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW_TIME] [i/INFO]
+[s/SALARY] [pl/PROGRAMMING_LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
 * At least one of the optional fields must be provided.
@@ -397,18 +397,18 @@ This value cannot be modified or added by the `edit` or `add` commands.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                     |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW-TIME] [i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                      |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                              |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete t/TAG [TAG]...`<br> e.g., `delete t/HR Manager`                                                                                                                                                                                                                                                                                                      |
-| **Edit**   | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] <br/>[i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                           |
-| **Find**   | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                              |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                      |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVIEW_TIME] [i/INFO] [s/SALARY] <br/>[pl/PROGRAMMING_LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                  |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete t/TAG [TAG]...`<br> e.g., `delete t/HR Manager`                                                                                                                                                                                                                                                                                                       |
+| **Edit**   | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW_TIME] <br/><br/>[i/INFO] [s/SALARY] [pl/PROGRAMMING_LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                       |
+| **Find**   | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                               |
 | **Filter** | `filter t/TAG [TAG]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C` |
-| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Sort**   | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`                                                                                                                                                                                                                                  |
-| **Resume** | `resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `                                                                                                                                                                              |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Sort**   | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`                                                                                                                                                                                                                                   |
+| **Resume** | `resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `                                                                                                                                                                               |
 
 ## CLI Syntax Summary
 

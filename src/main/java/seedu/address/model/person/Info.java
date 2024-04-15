@@ -15,7 +15,9 @@ public class Info {
         String curr = info.trim();
         if (curr.length() == 0) {
             value = "No additional info";
-        } else { value = curr; }
+        } else {
+            value = curr;
+        }
     }
 
 

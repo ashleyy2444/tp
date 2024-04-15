@@ -70,7 +70,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -278,6 +278,24 @@ specified keywords.
   specified keywords. Retrieves the list of contacts matching the predicate, updates the filtered contact list in the
   model, and returns a command result indicating the number of contacts found.
 
+### Add resume feature
+
+The add resume feature allows user to add their own personal and professional details that would be required in a
+job search. This feature has its own UI, similar to the `Help` feature.
+
+#### Implementation
+This feature introduces a new `User` **singleton** class. The structure is as shown below.
+![UserDiagram.png](images%2FUserDiagram.png)
+The `ResumeWindow` controller, that controls the FXML file that displays the resume, has a reference to the
+User class to retrieve the values of the user, if any.
+
+#### Process:
+1. User inputs `resume...` into UI.
+2. The `UIManager` then calls `LogicManager`
+3. `AddressBookParser` is called.
+4. `AddressBookParser` resets the User's attributes and re-assigns them to the current inputs
+5. `AddResumeCommand` is instantiated and its `execute()` is called to return `CommandResult`
+6. `ResumeWindow` is opened or reopened to show the current values.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -464,8 +482,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 
 
-
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -550,6 +566,12 @@ and this may not be useful for users with a very huge number of contacts as filt
 return a long list. It is also not convenient for users who want to find contacts more specifically. We plan to
 allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return
 contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
+
+3. **Show more specific error messages for our features**: The current `add`, `edit`, `resume`, 
+`filter`, `find`, `sort`, and `delete` command requires prefixes such as `t/` and `s/` as their parameters. This may 
+be confusing for users as they may input the wrong prefix for a command (e.g. input `edu/` in `add` command 
+instead of in the `resume`command). We plan to allow the error message to throw more specific errors: `Invalid 
+Command Format! edu/ is part of the resume command and not the add command.`
 
 6. **Allow `add` command to add contacts with the same name**: The current version of the application restricts the 
 addition of contacts with identical names, assuming that each contact should have a unique name. However, it is not 
