@@ -70,7 +70,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -155,11 +155,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sorting contact list
+### Sorting Contact List
 
-This feature allows users to sort their addressbook based on various information, namely, name, company
+#### Overview of SortCommand
+This feature allows users to sort their addressbook based on various information, namely name, company
 name, interview time, salary and priority. This feature leverages on the built-in `ObservableList` provided by JavaFX.
 The sorting is done by creating classes that implements the Comparator<T> interface.
+
+#### Comparator Classes
 * `PersonCompanyNameComparator.java`
 * `PersonInterviewTimeComparator.java`
 * `PersonNameComparator.java`
@@ -167,63 +170,132 @@ The sorting is done by creating classes that implements the Comparator<T> interf
 * `PersonSalaryComparator.java`
 
 These comparators are referenced in the `SortCommandParser`. In the `SortCommandParser` each comparator will be assigned
-a static integer based on the CLI Syntax from the userInput. The string is that parsed and assigned an integer from 
+a static integer based on the CLI Syntax from the userInput. The string is that parsed and assigned an integer from
 **1 - 4** which are pre-assigned to a comparator.
 
-#### Overview of SortCommand
-![sort_overview_2.png](images/sortoverview2.png)<br>
-Based on the image above:
-* Step 1: User inputs `sort pri/` which calls the `execute()` function in the `LogicManager` object.
-  * `pri/` is an added CLI Syntax to refer to priority which is an added attribute to `Person` class.
-* Step 2: `LogicManager` calls the `parseCommand()` function in `AddressBookParser` object which interprets the `sort`
-<br> command word and creates a `SortCommandParser` object.
-* Step 3: The `SortCommandParser` object then parses `pri/` and create the `SortCommand` object.
-  * `SortCommand` constructor takes in an **Integer**  and `SortCommandParser` already pre-assigns `pri/` to 0.
-* Step 4: `LogicManager` then executes the command.
-* Step 5: `SortCommand` will call `updateSortedPersonList()` from the `Model` object which has a reference to the
-`AddressBook` which contains the `UniquePersonList` object. The `UniquePersonList` then sorts it based on the
-comparator.
+![job_difficulty_class](images/sortoverview2.png)
+
+**Process**:
+1. User inputs `sort pri/`, triggering the `execute()` function in the `LogicManager` object.
+    - `pri/` is a CLI syntax added to refer to priority, an attribute added to the `Person` class.
+2. `LogicManager` invokes the `parseCommand()` function in the `AddressBookParser`, which interprets the
+   `sort` command and creates a `SortCommandParser` object.
+3. The `SortCommandParser` parses `pri/` and creates the `SortCommand` object.
+    - The `SortCommand` constructor accepts an **Integer**, with `SortCommandParser` pre-assigning `pri/` to 0.
+4. `LogicManager` executes the command.
+5. `SortCommand` calls `updateSortedPersonList()` from the `Model` object, which references the
+   `AddressBook` containing the `UniquePersonList`. The `UniquePersonList` sorts based on the assigned comparator.
+
+#### Class Structure
+- `SortCommand` class: Responsible for executing the sort operation based on the specified attribute. Inherits from the
+  `Command` class and utilizes multiple comparator classes to sort contacts based on various attributes.
+
+#### Method Details
+- `SortCommand(Integer info, boolean isInverse)`: Constructor that takes an integer representing the attribute index
+  and a boolean indicating whether to sort in reverse order.
+- `execute(Model model)`: Executes the command to sort the list of contacts in the address book based on the specified
+  attribute. Utilises switch-case statements to select the appropriate comparator and sorts the contacts accordingly.
+- `equals(Object other)`: Overrides the equals method to compare if two `SortCommand` objects are equal based on the
+  attribute index.
 
 ### Job Difficulty Feature
 ![job_difficulty_class](images/JobDifficultyDiagram.png)
-#### Overview
-The job difficulty feature allows program auto calculate a difficulty score for a job 
-based on the company name and salary. 
-This feature leverages on the local storage of 
-famous company names and their job difficulty levels.  
+
+#### Overview of Job Difficulty Feature
+The job difficulty feature calculates a difficulty score for a job based on the company name and salary. It utilises
+the local storage of renowned company names and their job difficulty levels.
 
 #### Class Structure
-The `JobDifficulty` class is responsible for calculating the 
-job difficulty score. It uses the `CompanyName` and `Salary` classes 
-to retrieve the necessary information.
+- `JobDifficulty` class: Responsible for computing the job difficulty score. Utilizes `CompanyName` and `Salary`
+  classes to fetch the necessary information.
 
 #### Method Details
-`JobDifficulty(CompanyName companyName, Salary salary)` <br>
-This is the constructor for the JobDifficulty class. 
-It takes in a CompanyName object and a Salary object. 
-It retrieves the difficulty level of the company and adds 
-it to the salary to calculate the job difficulty score.
+- `JobDifficulty(CompanyName companyName, Salary salary)`: Constructor that takes a `CompanyName` object and a `Salary`
+  object to compute the job difficulty score.
+- `getDifficulty()`: Returns the calculated job difficulty score.
 
-`getDifficulty()` <br>
-This method returns the calculated job difficulty score
+### Filtering of List Feature
 
-
-### Filtering of list by interview time, tags, salary range, and programming languages feature
-This feature allows users to filter their lists according to the interview time range, tags, salary range 
+#### Overview of Filtering List Feature
+This feature allows users to filter their lists according to the interview time range, tags, salary range
 and programming language.
 
 #### Implementation
-The `FilterCommand` class is an abstract class inherited by concrete classes, `FilterInterviewTimeCommand`, 
-`FilterTagCommand`, `FilterSalaryCommand` and `FilterProgrammingLanguageCommand` which will filter the list 
-according to their respective categories. 
-
+- `FilterCommand` class: An abstract class inherited by concrete classes, such as `FilterInterviewTimeCommand`,
+  `FilterTagCommand`, `FilterSalaryCommand`, and `FilterProgrammingLanguageCommand`. These classes filter the list
+  according to their respective categories.
 
 **Process:**
-1. FilterCommandParser class will determine a concrete subclass of FilterCommand to be returned.
-2. The concrete FilterCommandClass will check if their respective categories (interview times, tags, etc.) in the 
-   contact list contain the keyword
-3. Return the list of contacts which contain the keyword
+1. `FilterCommandParser` determines a concrete subclass of `FilterCommand` to return.
+2. The concrete `FilterCommandClass` checks if their respective categories (interview times, tags, etc.) in the contact list contain the keyword.
+3. Returns the list of contacts containing the keyword.
 
+### Deleting Contacts With Same Tag Feature
+![delete_tag_seq_diagram](images/DeleteTagSeqDiagram.png)
+
+#### Overview of DeletingTagCommand
+The `DeleteTagCommand` feature enables users to delete all contacts associated with a specified tag from the address
+book. This feature uses the `TagContainsKeywordsPredicate` class to filter and identify contacts with the specified tag for deletion.
+
+**Process**:
+1. `DeleteTagCommandParser` determines a concrete subclass of `DeleteTagCommand` to return.
+2. The concrete `DeleteTagCommand` class retrieves the list of tags to be deleted from the
+   `TagContainsKeywordsPredicate`.
+4. Filters the contacts in the address book based on these tags.
+5. Deletes the filtered contacts from the address book model.
+
+#### Class Structure
+- `DeleteTagCommand` class: Responsible for executing the delete operation based on the specified tag. Inherits from
+  the `DeleteAbstractCommand` class and utilizes the `TagContainsKeywordsPredicate` class to filter contacts.
+
+#### Method Details
+- `DeleteTagCommand(TagContainsKeywordsPredicate tagToDelete)`: Constructor that takes a `TagContainsKeywordsPredicate`
+  object representing the tag to be deleted.
+- `execute(Model model)`: Executes the command to delete all contacts with the specified tag from the address book.
+  Retrieves the list of tags to be deleted, filters the contacts based on these tags, and deletes them from the model.
+
+### Finding Contact Name by Company Name Feature
+
+#### Overview of FindCommand
+The `FindCommand` feature allows users to search and list all persons in the address book whose name or company name
+contains any of the specified keywords. This feature employs the `NameOrCompanyNameContainsKeywordsPredicate` class to
+filter and identify contacts based on their names or company names.
+
+**Process**:
+1. `FindCommandParser` determines a concrete subclass of `FindCommand` to return.
+2. The concrete `FindCommand` class checks if the names or company names of contacts in the address book contain the
+specified keywords. 
+3. It returns the list of contacts whose names or company names contain the keyword.
+
+#### Class Structure
+- `FindCommand` class: Responsible for executing the find operation based on the specified keywords. Inherits from the
+  `Command` class and utilizes the `NameOrCompanyNameContainsKeywordsPredicate` class to filter contacts.
+
+#### Method Details
+- `FindCommand(NameOrCompanyNameContainsKeywordsPredicate predicate)`: Constructor that takes a
+  `NameOrCompanyNameContainsKeywordsPredicate` object representing the keywords to search for.
+- `execute(Model model)`: Executes the command to find and list all contacts whose names or company names contain the
+  specified keywords. Retrieves the list of contacts matching the predicate, updates the filtered contact list in the
+  model, and returns a command result indicating the number of contacts found.
+
+### Add resume feature
+
+The add resume feature allows user to add their own personal and professional details that would be required in a
+job search. This feature has its own UI, similar to the `Help` feature.
+
+#### Implementation
+This feature introduces a new `User` **singleton** class. The structure is as shown below.
+![UserDiagram.png](images%2FUserDiagram.png)
+The `ResumeWindow` controller, that controls the FXML file that displays the resume, has a reference to the
+User class to retrieve the values of the user, if any.
+
+#### Process:
+1. User inputs `resume...` into UI.
+2. The `UIManager` then calls `LogicManager`
+3. `AddressBookParser` is called.
+4. `AddressBookParser` resets the User's attributes and re-assigns them to the current inputs
+5. `AddResumeCommand` is instantiated and its `execute()` is called to return `CommandResult`
+6. `ResumeWindow` is opened or reopened to show the current values.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -410,8 +482,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 
 
-
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -485,11 +555,41 @@ testers are expected to do more *exploratory* testing.
 ## **Appendix: Planned Enhancements**
 
 Team size: 5
-1. **Allow `filter` command to filter the contact list based on a combination of categories**: The current `filter`
-   command only allows the contact list to be filtered based on one specific category such as tags, salary range etc
-   and this may not be useful for users with a very huge number of contacts as filtering by only one category may still
-   return a long list. It is also not convenient for users who want to find contacts more specifically. We plan to
-   allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return
-   contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
-2. **Store** the resume such that
+1. **Have an error message show up when the data file is corrupted on startup**: The current address book simply starts
+up with an empty list when the data in the json file is corrupted or has an invalid format. The current implementation
+has a logger warning shown in the developer console, but not the app itself. We plan have an error message show up on
+results display after startup of the app when the data is corrupted.
 
+2. **Allow `filter` command to filter the contact list based on a combination of categories**: The current `filter`
+command only allows the contact list to be filtered based on one specific category such as tags, salary range etc
+and this may not be useful for users with a very huge number of contacts as filtering by only one category may still
+return a long list. It is also not convenient for users who want to find contacts more specifically. We plan to
+allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return
+contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
+
+3. **Show more specific error messages for our features**: The current `add`, `edit`, `resume`, 
+`filter`, `find`, `sort`, and `delete` command requires prefixes such as `t/` and `s/` as their parameters. This may 
+be confusing for users as they may input the wrong prefix for a command (e.g. input `edu/` in `add` command 
+instead of in the `resume`command). We plan to allow the error message to throw more specific errors: `Invalid 
+Command Format! edu/ is part of the resume command and not the add command.`
+
+6. **Allow `add` command to add contacts with the same name**: The current version of the application restricts the 
+addition of contacts with identical names, assuming that each contact should have a unique name. However, it is not 
+uncommon for people to have the same name, and this restriction can be limiting. We propose to enhance the application 
+to allow multiple contacts with the same name, while ensuring that each contact is uniquely identifiable by other means 
+such as company name, email, or phone number. The updated application will allow the addition of contacts with the same 
+name. To differentiate between contacts with identical names, additional details such as company name, email, or phone 
+number will be used. This approach will maintain the uniqueness of each contact within the application. Adjust the 
+contact validation logic to check for uniqueness based on the combination of name and one or more of the additional 
+identifying details. If a contact with the same name and other identifying details already exists, the application will 
+prompt the user to confirm the addition of the new contact instead of adding it immediately.
+
+7. **Allow `find` command to search contact list with partial name/company name matches**: The existing `find` command 
+focuses on exact matches for names or company names. This limitation can be restrictive, especially when users are 
+unsure about the complete name or are looking for contacts with names that have common substrings. To provide a more 
+flexible and intuitive search experience, we plan to enhance the find command to support partial matching. The improved 
+find command will enable users to search for contacts using partial names or partial company names. The command will 
+display a list of contacts where the entered term matches any part of the person's name or company name. (e.g. `find j`
+will return contacts with names like "John" and company names like "JPMorgan".)
+
+3**Store** the resume such that
