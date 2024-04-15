@@ -579,7 +579,7 @@ This allows the user to simply use the keyboard shortcut `ctrl-c` to copy the li
 having to use the mouse to click the copy button manually. This allows users using the CLI to use the app more 
 effectively.
 
-6. **Allow `add` command to add contacts with the same name**: The current version of the application restricts the 
+5. **Allow `add` command to add contacts with the same name**: The current version of the application restricts the 
 addition of contacts with identical names, assuming that each contact should have a unique name. However, it is not 
 uncommon for people to have the same name, and this restriction can be limiting. We propose to enhance the application 
 to allow multiple contacts with the same name, while ensuring that each contact is uniquely identifiable by other means 
@@ -590,7 +590,8 @@ contact validation logic to check for uniqueness based on the combination of nam
 identifying details. If a contact with the same name and other identifying details already exists, the application will 
 prompt the user to confirm the addition of the new contact instead of adding it immediately.
 
-7. **Allow `find` command to search contact list with partial name/company name matches**: The existing `find` command 
+6. **Allow `find` command to search contact list with partial name/company name matches**: The existing `find` 
+command 
 focuses on exact matches for names or company names. This limitation can be restrictive, especially when users are 
 unsure about the complete name or are looking for contacts with names that have common substrings. To provide a more 
 flexible and intuitive search experience, we plan to enhance the find command to support partial matching. The improved 
@@ -598,21 +599,27 @@ find command will enable users to search for contacts using partial names or par
 display a list of contacts where the entered term matches any part of the person's name or company name. (e.g. `find j`
 will return contacts with names like "John" and company names like "JPMorgan".)
 
-8. **Store the resume such that the user can retrieve it later**. The existing implementation of the program
+7. **Store the resume such that the user can retrieve it later**. The existing implementation of the program
 does not store the user's resume but only binds it to the current instance of the program. This can be limiting 
 as users would have to re-input their resume everytime they open the application. Even thought it is unlikely that 
 a resume can change as often as a contact in the addressbook. To provide a better user experience, we plan to store the 
 resume and enable the application to read the stored resume, if any, whenever it starts.
 
-9. **Allow user to edit the resume**. The existing implementation of the program, does not allow users to edit the 
+8. **Allow user to edit the resume**. The existing implementation of the program, does not allow users to edit the 
 resume. Currently, user would have to call `resume` command and re-input the values if they want to update them. This
 can be limiting as it results in unnecessary inconvenience of having to re-input all the values instead of editing just
 the intended one. To provide a more intuitive experience, we plan to enhance the `edit` command  such that users can
 directly access the current resume and edit the values. (e.g `edit resume s/3000` will update the salary on the resume
 to 3000)
 
-10. **Allow user to store multiple versions of the resume**. The existing implementation does not allow users to store
+9. **Allow user to store multiple versions of the resume**. The existing implementation does not allow users to store
 multiple resumes. This can be limiting as users may want to retrieve specific versions of the resume. To make the
 experience more intuitive, we plan to create a separate storage system to allow users to store multiple resumes. For
 instance, calling the `resume` command will create a separate resume to store, instead of overwriting the current 
-33resume.
+resume.
+
+10. **Ask for confirmation from users when `delete` and `clear` command is executed**: The current implementation 
+    allows users to clear and delete contacts from the contact list. Users may accidentally delete important 
+    contacts or misunderstand the function of the commands. Hence, we plan to show a warning to tell them that `delete` 
+    will cause the contact to be deleted permanently and that `clear` will clear the whole list permanently and 
+    thereafter ask for a confirmation to exceute the commands.
