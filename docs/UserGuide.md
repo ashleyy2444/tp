@@ -2,19 +2,20 @@
 layout: page
 title: User Guide
 ---
+### Introduction
 Welcome to CCBot and thank you for choosing CCBot!
+>_"Connecting lives, Connecting careers" ~CCBot_
 
-CareerConnectBot (CCBot) is a **desktop app for managing job interview contacts, optimized for use via a Command Line
-Interface**
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CCBot can get your
-contact management tasks done faster than traditional GUI apps.
+CareerConnectBot (CCBot) is a **desktop app for managing job interview contacts, for you computing professionals!** 
+It is optimized for use via a Command Line Interface** (CLI) ,while still having the benefits of a Graphical User 
+Interface (GUI). If you can type fast, CCBot can get your contact management tasks done faster than traditional GUI apps.
 
 ### Key features
 With CCBot, you can keep track and manage your various job applications by:
 * **Filtering and sorting your contact list flexibly**
 * **Predicting the job difficulty of each of your applied job**
 * **Adding additional notes about each of your company contact**
-* **Adding interview times, salary, required skills, and priority to each of your company contact**
+* **Adding interview times, salary, required technical skills, and priority to each of your company contact**
 
 _All in one app!_
 
@@ -24,7 +25,7 @@ For more details on what CCBot has to offer, check out the [Features](#features)
 This user guide serves as a manual with instructions for downloading, installing, setting up and using CCBot.
 
 Sections of the guide are split into the relevant chapters listed in the [Table Of Contents](#table-of-contents). 
-If you need to look for how to use a specific command, you may skip to the relavant chapter.
+If you need to look for how to use a specific command, you may skip to the relevant chapter.
 
 ## Table of Contents
 * Table of Contents
@@ -444,4 +445,4 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `INDEX` | The index **must be a positive integer** 1, 2, 3, …​                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
-
+_Navigate back to [Table Of Contents](#table-of-contents)_
