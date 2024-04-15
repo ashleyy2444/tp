@@ -482,8 +482,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 
 
-
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -568,6 +566,12 @@ and this may not be useful for users with a very huge number of contacts as filt
 return a long list. It is also not convenient for users who want to find contacts more specifically. We plan to
 allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return
 contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
+
+3. **Show more specific error messages for our features**: The current `add`, `edit`, `resume`, 
+   `filter`, `find`, `sort`, and `delete` command requires prefixes such as `t/` and `s/` as their parameters. This may 
+   be confusing for users as they may input the wrong prefix for a command (e.g. input `edu/` in `add` command 
+   instead of in the `resume`command). We plan to allow the error message to throw more specific errors: `Invalid 
+   Command Format! edu/ is part of the resume command and not the add command.`
 
 7. **Allow `find` command to search contact list with partial name/company name matches**: The existing `find` command 
 focuses on exact matches for names or company names. This limitation can be restrictive, especially when users are 
