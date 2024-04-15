@@ -492,4 +492,11 @@ Team size: 5
    allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return
    contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
 2. **Store** the resume such that
+7. **Allow `find` command to search contact list with partial name/company name matches**: The existing `find` command 
+focuses on exact matches for names or company names. This limitation can be restrictive, especially when users are 
+unsure about the complete name or are looking for contacts with names that have common substrings. To provide a more 
+flexible and intuitive search experience, we plan to enhance the find command to support partial matching. The improved 
+find command will enable users to search for contacts using partial names or partial company names. The command will 
+display a list of contacts where the entered term matches any part of the person's name or company name. (e.g. `find j`
+will return contacts with names like "John" and company names like "JPMorgan".)
 
