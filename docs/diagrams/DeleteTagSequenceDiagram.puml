@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteTagCommandParser" as DeleteTagCommandParser LOGIC_COLOR
+participant "d:DeleteTagCommand" as DeleteTagCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete t/friend")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("delete t/friend")
+activate AddressBookParser
+
+create DeleteTagCommandParser
+AddressBookParser -> DeleteTagCommandParser
+activate DeleteTagCommandParser
+
+DeleteTagCommandParser --> AddressBookParser
+deactivate DeleteTagCommandParser
+
+AddressBookParser -> DeleteTagCommandParser : parse("friend")
+activate DeleteTagCommandParser
+
+create DeleteTagCommand
+DeleteTagCommandParser -> DeleteTagCommand
+activate DeleteTagCommand
+
+DeleteTagCommand --> DeleteTagCommandParser :
+deactivate DeleteTagCommand
+
+DeleteTagCommandParser --> AddressBookParser : d
+deactivate DeleteTagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteTagCommandParser -[hidden]-> AddressBookParser
+destroy DeleteTagCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteTagCommand : execute(m)
+activate DeleteTagCommand
+
+DeleteTagCommand -> Model : deletePerson(tag)
+activate Model
+
+Model --> DeleteTagCommand
+deactivate Model
+
+create CommandResult
+DeleteTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteTagCommand
+deactivate CommandResult
+
+DeleteTagCommand --> LogicManager : r
+deactivate DeleteTagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
