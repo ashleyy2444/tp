@@ -5,10 +5,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,6 +27,14 @@ public class AddResumeCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Resume added";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds your resume to the address book. "
+            + "Parameters: \n"
+            + PREFIX_COMPANY_NAME + "COMPANY NAME \n"
+            + PREFIX_NAME + "NAME \n"
+            + PREFIX_PHONE + "PHONE \n"
+            + PREFIX_EMAIL + "EMAIL \n"
+            + PREFIX_ADDRESS + "ADDRESS \n"
+            + PREFIX_SALARY + "SALARY \n"
+            + "[" + PREFIX_PROGRAMMING_LANGUAGE + "PROGRAMMING-LANGUAGE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY_NAME + "Google "
             + PREFIX_NAME + "John Doe "
