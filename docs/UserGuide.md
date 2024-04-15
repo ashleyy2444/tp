@@ -27,6 +27,7 @@ Sections of the guide are split into the relevant chapters listed in the [Table 
 If you need to look for how to use a specific command, you may skip to the relavant chapter.
 
 ## Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
