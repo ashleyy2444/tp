@@ -232,6 +232,8 @@ according to their respective categories.
 
 ### Deleting Contacts With Same Tag Feature
 
+
+
 #### Overview of DeletingTagCommand
 The `DeleteTagCommand` feature enables users to delete all contacts associated with a specified tag from the address 
 book. This feature uses the `TagContainsKeywordsPredicate` class to filter and identify contacts with the specified tag for deletion.
@@ -270,9 +272,9 @@ specified keywords. It returns the list of contacts whose names or company names
 `Command` class and utilizes the `NameOrCompanyNameContainsKeywordsPredicate` class to filter contacts.
 
 #### Method Details
-- FindCommand(NameOrCompanyNameContainsKeywordsPredicate predicate): Constructor that takes a 
-NameOrCompanyNameContainsKeywordsPredicate object representing the keywords to search for.
-- execute(Model model): Executes the command to find and list all contacts whose names or company names contain the 
+- `FindCommand(NameOrCompanyNameContainsKeywordsPredicate predicate)`: Constructor that takes a 
+`NameOrCompanyNameContainsKeywordsPredicate` object representing the keywords to search for.
+- `execute(Model model)`: Executes the command to find and list all contacts whose names or company names contain the 
 specified keywords. Retrieves the list of contacts matching the predicate, updates the filtered contact list in the 
 model, and returns a command result indicating the number of contacts found.
 
