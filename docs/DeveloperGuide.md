@@ -70,7 +70,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -224,6 +224,24 @@ according to their respective categories.
    contact list contain the keyword
 3. Return the list of contacts which contain the keyword
 
+### Add resume feature
+
+The add resume feature allows user to add their own personal and professional details that would be required in a
+job search. This feature has its own UI, similar to the `Help` feature.
+
+#### Implementation
+This feature introduces a new `User` **singleton** class. The structure is as shown below.
+![UserDiagram.png](images%2FUserDiagram.png)
+The `ResumeWindow` controller, that controls the FXML file that displays the resume, has a reference to the
+User class to retrieve the values of the user, if any.
+
+#### Process:
+1. User inputs `resume...` into UI.
+2. The `UIManager` then calls `LogicManager`
+3. `AddressBookParser` is called.
+4. `AddressBookParser` resets the User's attributes and re-assigns them to the current inputs
+5. `AddResumeCommand` is instantiated and its `execute()` is called to return `CommandResult`
+6. `ResumeWindow` is opened or reopened to show the current values.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

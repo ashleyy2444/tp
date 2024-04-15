@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class User
+
+class Salary {
+  -salary : int
+}
+
+class CompanyName {
+  -companyName : String
+}
+
+class Name {
+    -name : String
+}
+
+class Address {
+    -address : String
+}
+
+class Education {
+    -education : String
+}
+
+class Email {
+    -email : String
+}
+class Phone {
+    -phone : String
+}
+class ProgrammingLanguage {
+}
+
+User *-- "1" CompanyName
+User *-- "1" Salary
+User *-- "1" Name
+User *-- "1" Address
+User *-- "1" Education
+User *-- "1" Email
+User *-- "1" Phone
+User *-- "0..1" ProgrammingLanguage
+
+
+@enduml
