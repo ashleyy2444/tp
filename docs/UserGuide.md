@@ -7,7 +7,7 @@ Welcome to CCBot and thank you for choosing CCBot!
 >_"Connecting lives, Connecting careers" ~CCBot_
 
 CareerConnectBot (CCBot) is a **desktop app for managing job interview contacts, for you computing professionals!** 
-It is optimized for use via a Command Line Interface** (CLI) ,while still having the benefits of a Graphical User 
+**It is optimized for use via a Command Line Interface** (CLI) ,while still having the benefits of a Graphical User 
 Interface (GUI). If you can type fast, CCBot can get your contact management tasks done faster than traditional GUI apps.
 
 ### Key features
@@ -62,50 +62,7 @@ If you need to look for how to use a specific command, you may skip to the relev
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Priority
->From 0-4 our program has 5 priorities. The lower the value, the higher the priority.
 
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #ff0000;"></span>
-
-**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority.
-
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #E18D1F;"></span>
-
-**<span style="color:#E18D1F;">1 - Medium Priority</span>** - This is the second highest priority.
-
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #159584;"></span>
-
-**<span style="color:#159584;">2 - Low Priority</span>** - This is the third highest priority.
-
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #1550C5;"></span>
-
-**<span style="color:#1550C5;">3 - Very Low Priority</span>** - This is the fourth highest priority.
-
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #8A15C5;"></span>
-
-**<span style="color:#8A15C5;">4 - Lowest Priority</span>** - This is the lowest priority.
-
---------------------------------------------------------------------------------------------------------------------
-## Date and Time
-> Your CCBot uses date and time to better help you manage your interviews. This section contains all the details on how
-> your CCBot interprets date and time.
-
-* ### Format : `ddMMyyyyHHmm`
-  * `dd` - refers to the day and the acceptable range is from **01** to **31**
-  * `MM` - refers to the month and the acceptable range is from **01** to **12**
-  * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**
-  * `HH` - refers to the hour and the acceptable range is from **00** to **23**
-  * `mm` - refers to the minutes and the acceptable range is from **00** to **59** 
-* ### Examples:
-  * `121220221400` is interpreted as **December 12, 2022 4:00 PM**
-  * `010100010000` is interpreted as **January 01, 0001 12:00 AM**
-> #### Handling leap years
-> * Your CCBot uses the ISO-8601 calendar system to handle leap years. This means that giving a leap day on a non-leap 
-> year returns the last valid day of that month.
-> * Example: `290220090000` will give the same output as `280220090000`
-> * For more information, click [here](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html).
-
---------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -129,6 +86,51 @@ If you need to look for how to use a specific command, you may skip to the relev
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
+
+### Priority
+>From 0-4 our program has 5 priorities. The lower the value, the higher the priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #ff0000;"></span>
+
+**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #E18D1F;"></span>
+
+**<span style="color:#E18D1F;">1 - Medium Priority</span>** - This is the second highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #159584;"></span>
+
+**<span style="color:#159584;">2 - Low Priority</span>** - This is the third highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #1550C5;"></span>
+
+**<span style="color:#1550C5;">3 - Very Low Priority</span>** - This is the fourth highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #8A15C5;"></span>
+
+**<span style="color:#8A15C5;">4 - Lowest Priority</span>** - This is the lowest priority.
+
+--------------------------------------------------------------------------------------------------------------------
+### Date and Time
+> Your CCBot uses date and time to better help you manage your interviews. This section contains all the details on how
+> your CCBot interprets date and time.
+
+* ### Format : `ddMMyyyyHHmm`
+    * `dd` - refers to the day and the acceptable range is from **01** to **31**
+    * `MM` - refers to the month and the acceptable range is from **01** to **12**
+    * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**
+    * `HH` - refers to the hour and the acceptable range is from **00** to **23**
+    * `mm` - refers to the minutes and the acceptable range is from **00** to **59**
+* ### Examples:
+    * `121220221400` is interpreted as **December 12, 2022 4:00 PM**
+    * `010100010000` is interpreted as **January 01, 0001 12:00 AM**
+> #### Handling leap years
+> * Your CCBot uses the ISO-8601 calendar system to handle leap years. This means that giving a leap day on a non-leap
+    > year returns the last valid day of that month.
+> * Example: `290220090000` will give the same output as `280220090000`
+> * For more information, click [here](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html).
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Viewing help : `help`
 
