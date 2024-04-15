@@ -157,7 +157,7 @@ i/Remote work s/4000 pl/Python t/criminal pri/4`
 
 ### Adding a resume: `resume`
 
-Adds a resume to the addressbook.
+Adds a resume.
 
 Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION [pl/PROGRAMMING-LANGUAGE]`
 
