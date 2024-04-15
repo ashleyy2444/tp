@@ -72,6 +72,6 @@ public class ProgrammingLanguage {
      */
     @Override
     public String toString() {
-        return "[Programming Language: " + languageName + "]";
+        return "[" + languageName + "]";
     }
 }
