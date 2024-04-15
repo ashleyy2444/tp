@@ -38,7 +38,7 @@ If you need to look for how to use a specific command, you may skip to the relev
 
 1. Download the latest `CCBOT.jar` from [here](https://github.com/AY2324S2-CS2103T-T08-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your CCBot.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CCBOT.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -365,15 +365,19 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CCBot data are saved in the hard disk automatically after any command that changes the data. There is no need to save 
+manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+CCBot data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are 
+welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, CCBot will discard all data and start with an empty data 
+file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the CCBot to behave in unexpected ways (e.g., if a value entered is outside of the 
+acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Job difficulty
@@ -386,7 +390,8 @@ This value cannot be modified or added by the `edit` or `add` commands.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
+contains the data of your previous CCBot home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
