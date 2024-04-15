@@ -2,11 +2,29 @@
 layout: page
 title: User Guide
 ---
+Welcome to CCBot and thank you for choosing CCBot!
 
-Career Connect Bot (CCBot) is a **desktop app for managing job interview contacts, optimized for use via a Command Line
+CareerConnectBot (CCBot) is a **desktop app for managing job interview contacts, optimized for use via a Command Line
 Interface**
 (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CCBot can get your
 contact management tasks done faster than traditional GUI apps.
+
+### Key features
+With CCBot, you can keep track and manage your various job applications by:
+* **Filtering and sorting your contact list flexibly**
+* **Predicting the job difficulty of each of the applied jobs**
+* **Adding additional notes about each of the company contacts**
+* **Adding interview times, salary, required skills, and prorities to each of the company contacts**
+
+_All in one app!_
+
+For more details on what CCBot has to offer, check out the [Features](#features) section below!
+
+## About
+This user guide serves as a manual with instructions for downloading, installing, setting up and using CCBot.
+
+Sections of the guide are split into the relevant chapters listed in the [Table Of Contents](#table-of-contents). 
+If you need to look for how to use a specific command, you may skip to the relavant chapter.
 
 * Table of Contents
 {:toc}
@@ -180,6 +198,16 @@ Examples:
 Shows a list of all persons in the address book.
 
 Format: `list`
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Note:** Extraneous parameters for `list` will be ignored. (e.g. `list 1` is interpreted 
+`list`.) If you want to find a person in contact list, refer to  [`find`]
+(#locating-persons-by-name--company-name--find) or [`filter`](#locating-persons-by-various-categories--filter).
+</div>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Extraneous parameters for `clear` will be ignored. (e.g. `clear 1` is interpreted as `clear`)
+If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((UserGuide.html#deleting-a-personpersons-delete)). 
+</div>
 
 ### Editing a person : `edit`
 
@@ -205,7 +233,7 @@ Examples:
 
 Finds persons whose names / company names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -227,7 +255,7 @@ Filters contact list based on tags, interview times, salary range, or programmin
 
 #### Filter by tag: `filter t/`
 
-Format: `filter t/TAG [MORE_TAGS]...`
+Format: `filter t/TAG [TAGS]...`
 
 * The search is case-sensitive.
 * Only the tags of each of the contacts are searched.
@@ -239,7 +267,7 @@ Examples:
 
 #### Filter by interview times: `filter tt/`
 
-Format: `filter tt/INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...`
+Format: `filter tt/INTERVIEW_TIME_RANGE [INTERVIEW_TIME_RANGE]...`
 
 * Only the interview times of each of the contacts are searched.
 * Persons with interview times within the range provided will be returned.
@@ -256,7 +284,7 @@ Examples:
 
 #### Filter by salaries: `filter s/`
 
-Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
+Format: `filter s/SALARY_RANGE [SALARY_RANGE]...`
 
 * Only the salaries of each of the contacts are searched.
 * Persons with salaries within the range provided will be returned.
@@ -265,7 +293,7 @@ Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
   * `>=INTEGER`
   * `<=INTEGER`
 
-    where `INTEGER` is a number between 0 and 2147483647.
+    where `INTEGER` is a number inclusive of and within 0 and 2147483647.
 
 Examples:
 * `filter s/5000` returns persons with salaries of $5000.
@@ -274,7 +302,7 @@ Examples:
 
 #### Filter by programming language: `filter pl/`
 
-Format `filter pl/PROGRAMMING_LANGUAGE [MORE_PROGRAMMING_LANGUAGE]...`
+Format `filter pl/PROGRAMMING_LANGUAGE [PROGRAMMING_LANGUAGE]...`
 
 * The search is case-insensitive.
 * Only the programming language of each of the contacts are searched.
@@ -328,7 +356,7 @@ Examples:
 
 #### Delete by tag: `delete t/`
 
-Format: `delete t/TAG [MORE_TAGS]...`
+Format: `delete t/TAG [TAGS]...`
 
 * The search is case-insensitive.
 * Only the tags of each of the contacts are deleted.
@@ -396,8 +424,8 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                                        |
 | **Edit**   | `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] <br/>[i/INFO] [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                 |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                              |
-| **Filter** | `filter t/TAG [MORE_TAGS]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [MORE_PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C` |
+| **Find**   | `find KEYWORD [KEYWORDS]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                              |
+| **Filter** | `filter t/TAG [TAGS]...`<br> e.g., `filter t/manager HR`<br> `filter tt/INTERVIEW_TIME_RANGE [INTERVIEW_TIME_RANGE]...`<br> e.g., `filter tt/before/010120200000 from/010120220000-010120230000 after/010120220000`<br> `filter s/SALARY_RANGE [SALARY_RANGE]...`<br> e.g., `filter s/2000-5000 >=7000` <br> `filter pl/PROGRAMMING_LANGUAGE [PROGRAMMING_LANGUAGE]...`<br> e.g., `filter pl/python C` |
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **Sort**   | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`                                                                                                                                                                                                                                                        |
@@ -419,7 +447,7 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | **pl/**   | Programming languages                        |
 | **jd/**   | The job difficulty (only for `sort` command) |
 
-## Constraints Summary
+## Parameters Constraints
 
 | Field                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
