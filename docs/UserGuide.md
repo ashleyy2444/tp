@@ -157,9 +157,9 @@ i/Remote work s/4000 pl/Python t/criminal pri/4`
 
 ### Adding a resume: `resume`
 
-Adds a resume to the addressbook.
+Adds a resume.
 
-Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION`
+Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION [pl/PROGRAMMING-LANGUAGE]`
 
 * `COMPANY_NAME` should be less than 100 characters, and it should not be blank.
 * `NAME` should only contain alphanumeric characters and spaces, and it should not be blank.
@@ -168,6 +168,7 @@ Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY
 * `ADDRESS` can take any values, and it should not be blank.
 * `SALARY` should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].
 * `EDUCATION` should only contain alphanumeric characters and spaces, and it should not be blank.
+* `PROGRAMMING_LANGUAGE` should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.
 
 Examples:
 * `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++`
@@ -345,7 +346,7 @@ Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Extraneous parameters for `clear` will be ignored. (e.g. `clear 1` is interpreted as `clear`)
-If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((#deleting-a-personpersons-delete)). 
+If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((UserGuide.html#deleting-a-personpersons-delete)). 
 </div>
 
 ### Exiting the program : `exit`  

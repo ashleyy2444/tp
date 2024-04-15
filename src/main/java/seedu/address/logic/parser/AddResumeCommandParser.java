@@ -40,8 +40,8 @@ public class AddResumeCommandParser implements Parser<AddResumeCommand> {
                         args, PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_SALARY, PREFIX_EDUCATION, PREFIX_PROGRAMMING_LANGUAGE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_PHONE, PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_COMPANY_NAME, PREFIX_SALARY, PREFIX_EDUCATION) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddResumeCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
@@ -57,6 +57,7 @@ public class AddResumeCommandParser implements Parser<AddResumeCommand> {
                 .getAllValues(PREFIX_PROGRAMMING_LANGUAGE));
 
         User user = User.getInstance();
+        user.reset();
         user.setCompanyName(companyName);
         user.setName(name);
         user.setPhone(phone);
