@@ -328,15 +328,14 @@ Examples:
 
 #### Delete by tag: `delete t/`
 
-Format: `delete t/TAG [MORE_TAGS]...`
+Format: `delete t/TAG`
 
 * The search is case-insensitive.
-* Only the tags of each of the contacts are deleted.
-* Persons matching at least one tag will be deleted.
+* Only contacts that have the tag are deleted.
+* Persons matching the tag will be deleted.
 
 Examples:
 * `delete t/manager` deletes any persons with a tag, `manager`
-* `delete t/manager HR` deletes any persons with either of the tags, `manager` or `HR`.
 
 ### Clearing all entries : `clear`
 
