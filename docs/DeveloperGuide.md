@@ -231,7 +231,7 @@ and programming language.
 3. Returns the list of contacts containing the keyword.
 
 ### Deleting Contacts With Same Tag Feature
-![delete_tag_seq_diagram](images/DeleteTagSequenceDiagram.png)
+![delete_tag_seq_diagram](images/DeleteTagSeqDiagram.png)
 
 #### Overview of DeletingTagCommand
 The `DeleteTagCommand` feature enables users to delete all contacts associated with a specified tag from the address
@@ -262,9 +262,10 @@ contains any of the specified keywords. This feature employs the `NameOrCompanyN
 filter and identify contacts based on their names or company names.
 
 **Process**:
-`FindCommandParser` determines a concrete subclass of `FindCommand` to return.
-The concrete `FindCommand` class checks if the names or company names of contacts in the address book contain the
-specified keywords. It returns the list of contacts whose names or company names contain the keyword.
+1. `FindCommandParser` determines a concrete subclass of `FindCommand` to return.
+2. The concrete `FindCommand` class checks if the names or company names of contacts in the address book contain the
+specified keywords. 
+3. It returns the list of contacts whose names or company names contain the keyword.
 
 #### Class Structure
 - `FindCommand` class: Responsible for executing the find operation based on the specified keywords. Inherits from the
