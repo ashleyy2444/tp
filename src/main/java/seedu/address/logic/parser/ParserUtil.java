@@ -154,12 +154,15 @@ public class ParserUtil {
      * @throws ParseException if invalid format
      */
     public static InterviewTime parseInterviewTime(String dateTime) throws ParseException {
-        requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim();
-        if (!InterviewTime.isValidInterviewTime(trimmedDateTime)) {
-            throw new ParseException(InterviewTime.MESSAGE_CONSTRAINTS);
+        if (dateTime == null) {
+            return new InterviewTime(null);
+        } else {
+            String trimmedDateTime = dateTime.trim();
+            if (!InterviewTime.isValidInterviewTime(trimmedDateTime)) {
+                throw new ParseException(InterviewTime.MESSAGE_CONSTRAINTS);
+            }
+            return new InterviewTime(trimmedDateTime);
         }
-        return new InterviewTime(trimmedDateTime);
     }
 
     /**
