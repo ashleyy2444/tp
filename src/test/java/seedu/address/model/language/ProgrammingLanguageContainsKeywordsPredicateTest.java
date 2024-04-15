@@ -78,7 +78,7 @@ public class ProgrammingLanguageContainsKeywordsPredicateTest {
         ProgrammingLanguageContainsKeywordsPredicate predicate =
                 new ProgrammingLanguageContainsKeywordsPredicate(languages);
         String expected = ProgrammingLanguageContainsKeywordsPredicate.class.getCanonicalName()
-                + "{programming_language=[[Programming Language: Java]]}";
+                + "{programming_language=[[Java]]}";
         Assertions.assertEquals(expected, predicate.toString());
     }
 }

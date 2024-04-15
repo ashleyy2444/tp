@@ -12,7 +12,7 @@ public class InfoTest {
     public void emptyConstructorTest() {
         // empty info constructor
         Info info = new Info();
-        assertEquals("", info.value);
+        assertEquals("No additional info", info.value);
     }
 
     @Test
