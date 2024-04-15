@@ -485,11 +485,10 @@ testers are expected to do more *exploratory* testing.
 ## **Appendix: Planned Enhancements**
 
 Team size: 5
-1. **Allow `filter` command to filter the contact list based on a combination of categories**: The current `filter`
-   command only allows the contact list to be filtered based on one specific category such as tags, salary range etc
-   and this may not be useful for users with a very huge number of contacts as filtering by only one category may still
-   return a long list. It is also not convenient for users who want to find contacts more specifically. We plan to
-   allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return
-   contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
+1. **Have an error message show up when the data file is corrupted on startup**: The current address book simply starts
+up with an empty list when the data in the json file is corrupted or has an invalid format. The current implementation
+has a logger warning shown in the developer console, but not the app itself. We plan have an error message show up on
+results display after startup of the app when the data is corrupted.
+
 2. **Store** the resume such that
 
