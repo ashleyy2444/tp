@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ashley Chua Xin Ru
 
-<img src="images/ashleyy2444.png" width="200px">
+<img src="images/ashley1.png" width="200px">
 
 [[github](http://github.com/ashleyy2444)]
 [[portfolio](team/ashley.md)]
