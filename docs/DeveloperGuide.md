@@ -430,17 +430,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others 
 
 --------------------------------------------------------------------------------------------------------------------
-## **Appendix: Planned Enhancements**
-
-Team size: 5
-1. **Allow `filter` command to filter the contact list based on a combination of categories**: The current `filter` 
-   command only allows the contact list to be filtered based on one specific category such as tags, salary range etc 
-   and this may not be useful for users with a very huge number of contacts as filtering by only one category may still
-   return a long list. It is also not convenient for users who want to find contacts more specifically. We plan to 
-   allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return 
-   contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
@@ -492,3 +481,15 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+1. **Allow `filter` command to filter the contact list based on a combination of categories**: The current `filter`
+   command only allows the contact list to be filtered based on one specific category such as tags, salary range etc
+   and this may not be useful for users with a very huge number of contacts as filtering by only one category may still
+   return a long list. It is also not convenient for users who want to find contacts more specifically. We plan to
+   allow `filter` to filter the contact list more specifically. (e.g. `filter t/TAG s/SALARY_RANGE` will return
+   contacts with matching `TAG` and `SALARY_RANGE` that falls within what is specified)
+2. **Store** the resume such that
+
