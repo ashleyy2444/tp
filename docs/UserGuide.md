@@ -7,7 +7,7 @@ Welcome to CCBot and thank you for choosing CCBot!
 >_"Connecting lives, Connecting careers" ~CCBot_
 
 CareerConnectBot (CCBot) is a **desktop app for managing job interview contacts, for you computing professionals!** 
-It is optimized for use via a Command Line Interface** (CLI) ,while still having the benefits of a Graphical User 
+**It is optimized for use via a Command Line Interface** (CLI) ,while still having the benefits of a Graphical User 
 Interface (GUI). If you can type fast, CCBot can get your contact management tasks done faster than traditional GUI apps.
 
 ### Key features
@@ -41,7 +41,7 @@ If you need to look for how to use a specific command, you may skip to the relev
 1. Copy the file to the folder you want to use as the _home folder_ for your CCBot.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CCBOT.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the picture below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -55,57 +55,16 @@ If you need to look for how to use a specific command, you may skip to the relev
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts. 
+     * Note that this action is irreversible so use it only after trying the above commands to clear the example 
+       contacts.
 
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Priority
->From 0-4 our program has 5 priorities. The lower the value, the higher the priority.
 
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #ff0000;"></span>
-
-**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority.
-
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #E18D1F;"></span>
-
-**<span style="color:#E18D1F;">1 - Medium Priority</span>** - This is the second highest priority.
-
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #159584;"></span>
-
-**<span style="color:#159584;">2 - Low Priority</span>** - This is the third highest priority.
-
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #1550C5;"></span>
-
-**<span style="color:#1550C5;">3 - Very Low Priority</span>** - This is the fourth highest priority.
-
-<span style="display: inline-block; width: 20px; height:  20px; background-color: #8A15C5;"></span>
-
-**<span style="color:#8A15C5;">4 - Lowest Priority</span>** - This is the lowest priority.
-
---------------------------------------------------------------------------------------------------------------------
-## Date and Time
-> Your CCBot uses date and time to better help you manage your interviews. This section contains all the details on how
-> your CCBot interprets date and time.
-
-* ### Format : `ddMMyyyyHHmm`
-  * `dd` - refers to the day and the acceptable range is from **01** to **31**
-  * `MM` - refers to the month and the acceptable range is from **01** to **12**
-  * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**
-  * `HH` - refers to the hour and the acceptable range is from **00** to **23**
-  * `mm` - refers to the minutes and the acceptable range is from **00** to **59** 
-* ### Examples:
-  * `121220221400` is interpreted as **December 12, 2022 4:00 PM**
-  * `010100010000` is interpreted as **January 01, 0001 12:00 AM**
-> #### Handling leap years
-> * Your CCBot uses the ISO-8601 calendar system to handle leap years. This means that giving a leap day on a non-leap 
-> year returns the last valid day of that month.
-> * Example: `290220090000` will give the same output as `280220090000`
-> * For more information, click [here](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html).
-
---------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -129,6 +88,51 @@ If you need to look for how to use a specific command, you may skip to the relev
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
+
+### Priority
+>From 0-4 our program has 5 priorities. The lower the value, the higher the priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #ff0000;"></span>
+
+**<span style="color:#E11F1F;">0 - High Priority</span>** - This is the highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #E18D1F;"></span>
+
+**<span style="color:#E18D1F;">1 - Medium Priority</span>** - This is the second highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #159584;"></span>
+
+**<span style="color:#159584;">2 - Low Priority</span>** - This is the third highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #1550C5;"></span>
+
+**<span style="color:#1550C5;">3 - Very Low Priority</span>** - This is the fourth highest priority.
+
+<span style="display: inline-block; width: 20px; height:  20px; background-color: #8A15C5;"></span>
+
+**<span style="color:#8A15C5;">4 - Lowest Priority</span>** - This is the lowest priority.
+
+--------------------------------------------------------------------------------------------------------------------
+### Date and Time
+> Your CCBot uses date and time to better help you manage your interviews. This section contains all the details on how
+> your CCBot interprets date and time.
+
+* ### Format : `ddMMyyyyHHmm`
+    * `dd` - refers to the day and the acceptable range is from **01** to **31**
+    * `MM` - refers to the month and the acceptable range is from **01** to **12**
+    * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**
+    * `HH` - refers to the hour and the acceptable range is from **00** to **23**
+    * `mm` - refers to the minutes and the acceptable range is from **00** to **59**
+* ### Examples:
+    * `121220221400` is interpreted as **December 12, 2022 4:00 PM**
+    * `010100010000` is interpreted as **January 01, 0001 12:00 AM**
+> #### Handling leap years
+> * Your CCBot uses the ISO-8601 calendar system to handle leap years. This means that giving a leap day on a non-leap
+    > year returns the last valid day of that month.
+> * Example: `290220090000` will give the same output as `280220090000`
+> * For more information, click [here](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html).
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Viewing help : `help`
 
@@ -162,7 +166,8 @@ i/Remote work s/4000 pl/Python t/criminal pri/4`
 
 Adds a resume.
 
-Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION [pl/PROGRAMMING-LANGUAGE]...`
+Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION 
+[pl/PROGRAMMING_LANGUAGE]...`
 
 * Refer to [parameter constraints table](#parameter-constraints) for more details on acceptable inputs.
 
@@ -179,7 +184,6 @@ _Note: Any extra parameters after `list` will be ignored as it displays the full
 
 Format: `list`
 <div markdown="span" class="alert alert-info">
-
 **:information_source: Note:** Extraneous parameters for `list` will be ignored. (e.g. `list 1` is interpreted 
 `list`.) If you want to find a person in the contact list, refer to the `find` or `filter` feature.
 </div>
@@ -271,7 +275,7 @@ Format: `filter s/SALARY_RANGE [SALARY_RANGE]...`
   * `>=INTEGER`
   * `<=INTEGER`
 
-    where `INTEGER` is a number inclusive of and within 0 and 2147483647.
+  where `INTEGER` is a number inclusive of and between 0 and 2147483647.
 
 Examples:
 * `filter s/5000` returns persons with salaries of $5000.
@@ -366,7 +370,12 @@ Format: `exit`
 ### Saving the data
 
 CCBot data are saved in the hard disk automatically after any command that changes the data. There is no need to save 
-manually.
+manually. 
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Resumes added will not be saved in the hard disk as of v1.4.
+</div>
+
 
 ### Editing the data file
 
@@ -414,7 +423,7 @@ contains the data of your previous CCBot home folder.
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Sort**   | `sort` or `sort rev/ [pri/PRIORITY] [n/NAME] [cn/COMPANY_NAME] [s/SALARY] [tt/INTERVIEW_TIME] [jd/JOB_DIFFICULTY]` <br> e.g., `sort pri/`<br> e.g., `sort rev/ tt/`                                                                                                                                                                                                                                   |
-| **Resume** | `resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/SKILLS]` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `                                                                                                                                                                               |
+| **Resume** | `resume cn/COMPANY_NAME n/NAME p/PHONE e/EMAIL edu/EDUCATION s/SALARY [pl/PROGRAMMING_LANGUAGE]...` <br> e.g., `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++ `                                                                                                                                                              |
 
 ## CLI Syntax Summary
 
@@ -434,20 +443,20 @@ contains the data of your previous CCBot home folder.
 
 ## Parameter Constraints
 
-| Field                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `COMPANY_NAME`       | Should be less than 100 characters, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `NAME`               | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `PHONE_NUMBER`       | Should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `EMAIL`              | Should be a valid email address.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `ADDRESS`            | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `SALARY`             | Should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].                                                                                                                                                                                                                                                                                                             |
-| `PROGRAMMING_LANGUAGE` | Should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.                                                                                                                                                                                                                                                                                                                                                                        |
-| `TAG`                | Should be a single alphanumerical word that does not contain spaces.                     <br/><br/>            <br/>                                                                                                                                                                                                                                                                                                                                                                  |
-| `PRIORITY`           | Should be a number between 0 and 4.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Field                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `COMPANY_NAME`       | Should be less than 100 characters, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `NAME`               | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                              |
+| `PHONE_NUMBER`       | Should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `EMAIL`              | Should be a valid email address.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `ADDRESS`            | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `SALARY`             | Should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].                                                                                                                                                                                                                                                                                                        |
+| `PROGRAMMING_LANGUAGE` | Should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.                                                                                                                                                                                                                                                                                                                                                                   |
+| `TAG`                | Should be a single alphanumerical word that does not contain spaces.                     <br/><br/>            <br/>                                                                                                                                                                                                                                                                                                                                                             |
+| `PRIORITY`           | Should be a number between 0 and 4.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `INTERVIEW_TIME`     | Should be in the format `ddMMyyyyHHmm`.<br/>* `dd` - refers to the day and the acceptable range is from **01** to **31**<br/> * `MM` - refers to the month and the acceptable range is from **01** to **12**<br/>* `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**<br/> * `HH` - refers to the hour and the acceptable range is from **00** to **23**<br/> * `mm` - refers to the minutes and the acceptable range is from **00** to **59** |
-| `INFO`               | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `INDEX` | The index **must be a positive integer** 1, 2, 3, …​                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `INFO`               | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                              |
+| `INDEX` | The index **must be a positive integer** 1, 2, 3, …<br/> _Note: CCBot does not consider 0 to be a positive integer_                                                                                                                                                                                                                                                                                                                                                             |
 
 _Navigate back to [Table Of Contents](#table-of-contents)_
