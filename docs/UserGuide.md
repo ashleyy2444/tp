@@ -7,8 +7,9 @@ Welcome to CCBot and thank you for choosing CCBot!
 >_"Connecting lives, Connecting careers" ~CCBot_
 
 CareerConnectBot (CCBot) is a **desktop app for managing job interview contacts, for you computing professionals!** 
-**It is optimized for use via a Command Line Interface** (CLI) ,while still having the benefits of a Graphical User 
-Interface (GUI). If you can type fast, CCBot can get your contact management tasks done faster than traditional GUI apps.
+**It is optimized for use via a Command Line Interface** (CLI), while still having the **benefits of a Graphical User 
+Interface (GUI)**. If you can type fast, CCBot can get your contact management tasks done **faster** than traditional 
+GUI apps.
 
 ### Key features
 With CCBot, you can keep track and manage your various job applications by:
