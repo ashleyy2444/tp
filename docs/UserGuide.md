@@ -74,12 +74,17 @@ contact management tasks done faster than traditional GUI apps.
 * ### Format : `ddMMyyyyHHmm`
   * `dd` - refers to the day and the acceptable range is from **01** to **31**
   * `MM` - refers to the month and the acceptable range is from **01** to **12**
-  * `yy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**
+  * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**
   * `HH` - refers to the hour and the acceptable range is from **00** to **23**
   * `mm` - refers to the minutes and the acceptable range is from **00** to **59** 
 * ### Examples:
   * `121220221400` is interpreted as **December 12, 2022 4:00 PM**
-  * `010100010000` is interpreted as **January 01, 0001 12:00 AM** 
+  * `010100010000` is interpreted as **January 01, 0001 12:00 AM**
+> #### Handling leap years
+> * Your CCBot uses the ISO-8601 calendar system to handle leap years. This means that giving a leap day on a non-leap 
+> year returns the last valid day of that month.
+> * Example: `290220090000` will give the same output as `280220090000`
+> * For more information, click [here](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html).
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -136,6 +141,11 @@ A person can have any number of tags (including 0)
 * `TAG` should be a single alphanumerical word with no spaces.
 * `PRIORITY` should be a number between 0 and 4.
 * `INTERVIEW_TIME` should be in the format `ddMMyyyyHHmm`.
+  * `dd` - refers to the day and the acceptable range is from **01** to **31**<br/> 
+  * `MM` - refers to the month and the acceptable range is from **01** to **12**<br/>
+  * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**<br/> 
+  * `HH` - refers to the hour and the acceptable range is from **00** to **23**<br/> 
+  * `mm` - refers to the minutes and the acceptable range is from **00** to **59**
 * `INFO` can take any values.
 
 Examples:
