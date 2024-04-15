@@ -131,22 +131,7 @@ Format: `add cn/COMPANY_NAME n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tt/INTERVI
 A person can have any number of tags (including 0)
 </div>
 
-* `COMPANY_NAME` should be less than 100 characters, and it should not be blank.
-* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank.
-* `PHONE_NUMBER` Should only contain numbers, and it should be at least 3 digits long.
-* `EMAIL` should be a valid email address, and it should not be blank.
-* `ADDRESS` can take any values, and it should not be blank.
-* `SALARY` should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].
-* `PROGRAMMING_LANGUAGE` should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.
-* `TAG` should be a single alphanumerical word with no spaces.
-* `PRIORITY` should be a number between 0 and 4.
-* `INTERVIEW_TIME` should be in the format `ddMMyyyyHHmm`.
-  * `dd` - refers to the day and the acceptable range is from **01** to **31**<br/> 
-  * `MM` - refers to the month and the acceptable range is from **01** to **12**<br/>
-  * `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**<br/> 
-  * `HH` - refers to the hour and the acceptable range is from **00** to **23**<br/> 
-  * `mm` - refers to the minutes and the acceptable range is from **00** to **59**
-* `INFO` can take any values.
+* Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs.
 
 Examples:
 * `add cn/Google n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 tt/121220221400
@@ -154,21 +139,13 @@ i/Birthday: 12 May 2001 s/5000 pl/Java t/friends t/owesMoney pri/2`
 * `add cn/ Amazon n/Betsy Crowe p/81234567 e/betsycrowe@example.com a/Newgate Prison tt/121220241200
 i/Remote work s/4000 pl/Python t/criminal pri/4`
 
-
 ### Adding a resume: `resume`
 
 Adds a resume.
 
-Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION [pl/PROGRAMMING-LANGUAGE]`
+Format: `resume cn/COMPANY_NAME n/NAME p/PHONE_NUMBER a/ADDRESS e/EMAIL s/SALARY edu/EDUCATION [pl/PROGRAMMING-LANGUAGE]...`
 
-* `COMPANY_NAME` should be less than 100 characters, and it should not be blank.
-* `NAME` should only contain alphanumeric characters and spaces, and it should not be blank.
-* `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long.
-* `EMAIL` should be a valid email address.
-* `ADDRESS` can take any values, and it should not be blank.
-* `SALARY` should only contain numbers, with range [0, 2147483647] or two pure digital numbers with '-' in between. Both digital numbers should be within the range [0, 2147483647].
-* `EDUCATION` should only contain alphanumeric characters and spaces, and it should not be blank.
-* `PROGRAMMING_LANGUAGE` should be alphanumeric and may contain some special characters (+ and #), and must be less than 50 characters.
+* Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs.
 
 Examples:
 * `resume cn/Google n/John Doe p/98765432 e/johnd@example.com s/3000 edu/NUS a/311, Clementi Ave 2, #02-25 pl/Java pl/C++`
@@ -188,16 +165,17 @@ Edits an existing person in the address book.
 Format: `edit INDEX [cn/COMPANY_NAME] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [tt/INTERVIEW-TIME] [i/INFO]
 [s/SALARY] [pl/PROGRAMMING-LANGUAGE]... [t/TAG]... [pri/PRIORITY(0-4)]​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags and info, the existing tags and info of the person will be removed i.e adding of tags and info are
   not cumulative.
   * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
   * You can remove all the person’s info by typing `i/` without specifying any info after it.
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs.
+* Examples:
+  *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+  *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 
 
@@ -247,6 +225,7 @@ Format: `filter tt/INTERVIEW_TIME_RANGE [MORE_INTERVIEW_TIME_RANGE]...`
   * `before/INTERVIEWTIME`
   * `after/INTERVIEWTIME`
   * `from/INTERVIEWTIME-INTERVIEWTIME`
+  * Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs for `INTERVIEWTIME`. 
 
 Examples:
 * `filter tt/before/010120200000 from/010120220000-010120230000` returns persons with interview times before 1 Jan
@@ -261,7 +240,7 @@ Format: `filter s/SALARY_RANGE [MORE_SALARY_RANGE]...`
 * Only the salaries of each of the contacts are searched.
 * Persons with salaries within the range provided will be returned.
 * Valid `SALARY_RANGE` includes:
-  * Valid `SALARY`
+  * [Acceptable values for `SALARY`](#constraints-summary)
   * `>=INTEGER`
   * `<=INTEGER`
 
@@ -279,6 +258,7 @@ Format `filter pl/PROGRAMMING_LANGUAGE [MORE_PROGRAMMING_LANGUAGE]...`
 * The search is case-insensitive.
 * Only the programming language of each of the contacts are searched.
 * Persons matching at least one programming language will be returned.
+* Refer to [constraints summary table](#constraints-summary) for more details on acceptable inputs for `PROGRAMMING_LANGUAGE`.
 
 Examples:
 * `filter pl/Java` returns any persons with a programming language, `java`.
@@ -346,7 +326,7 @@ Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Extraneous parameters for `clear` will be ignored. (e.g. `clear 1` is interpreted as `clear`)
-If you only want to clear **some** and **not all** entries from the address book, refer to [delete]((UserGuide.html#deleting-a-personpersons-delete)). 
+If you only want to clear **some** and **not all** entries from the address book, refer to [delete](#deleting-a-personpersons-delete-). 
 </div>
 
 ### Exiting the program : `exit`  
@@ -435,5 +415,6 @@ This value cannot be modified or added by the `edit` or `add` commands.
 | `INTERVIEW_TIME`     | Should be in the format `ddMMyyyyHHmm`.<br/>* `dd` - refers to the day and the acceptable range is from **01** to **31**<br/> * `MM` - refers to the month and the acceptable range is from **01** to **12**<br/>* `yyyy` - refers to the year and accepts any **4-digit** numbers from **0001** to **9999**<br/> * `HH` - refers to the hour and the acceptable range is from **00** to **23**<br/> * `mm` - refers to the minutes and the acceptable range is from **00** to **59** |
 | `INFO`               | Can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `EDUCATION`          | Should only contain alphanumeric characters and spaces, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `INDEX` | The index **must be a positive integer** 1, 2, 3, …​                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 
