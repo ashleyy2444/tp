@@ -231,8 +231,7 @@ according to their respective categories.
 3. Returns the list of contacts containing the keyword.
 
 ### Deleting Contacts With Same Tag Feature
-
-
+![delete_tag_seq_diagram](images/DeleteTagSequenceDiagram.png)
 
 #### Overview of DeletingTagCommand
 The `DeleteTagCommand` feature enables users to delete all contacts associated with a specified tag from the address 
